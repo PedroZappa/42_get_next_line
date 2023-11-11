@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 22:10:04 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/11 23:19:47 by passunca         ###   ########.fr       */
+/*   Created: 2023/11/11 23:00:52 by passunca          #+#    #+#             */
+/*   Updated: 2023/11/11 23:23:07 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "get_next_line.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 7
-# endif
-
-// Node buffer to store read strs
-typedef struct s_list
+int ft_isnewline(t_list *strs)
 {
-	char			*str;
-	struct s_list	*next;
-}					t_list;
+	int		i;
+	t_list	*curr_strs;
 
-// Get next line functions
-char	*get_next_line(int fd);
+	if (!strs)
+		return (0);
+	curr_strs = ft_getlastnode(strs);
+	i = 0;
+	while (curr_strs->str[i])
+	{
+		if (curr_strs->str[i] == '\n')
+			return (1);
+		++i;
+	}
+	return (0);
+}
 
-// Utils functions
-int		ft_isnewline(t_list *strs);
-t_list	*ft_getlastnode(t_list *strs);
-
-#endif
+t_list *ft_getlastnode(t_list *strs)
+{
+	while (strs && strs->next)
+		strs = strs->next;
+	return (strs);
+}
