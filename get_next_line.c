@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 22:09:28 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/12 10:50:36 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/12 11:25:16 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,18 +93,58 @@ void ft_storestr(t_list **strs, char *buffer, int c_read)
 /* Gets chars from each 'str' from 'strs' list until '\n' is found */
 void	ft_getstrs(t_list *strs, char **line)
 {
+	int line_i;
 	int i;
-	int j;
 
 	if (!strs)
 		return ;
-	ft_makeline();
-
+	ft_makeline(line, strs);
+	if (*line == NULL)
+		return ;
+	line_i = 0;
+	while (strs)
+	{
+		i = 0;
+		while (strs->str[i])
+		{
+			if (strs->str[i] == '\n')
+			{
+				(*line)[line_i++] = strs->str[i];
+				break ;
+			}
+			(*line)[line_i++] = strs->str[i++];
+		}
+		strs = strs->next;
+	}
+	(*line)[line_i] = '\0';
 }
 
 /* Clears read buffers from 'strs' list, only characters that have not been
  * read yet will remain in the 'strs' list */
 void ft_clear_strs(t_list **strs)
 {
+	t_list	*last_n;
+	t_list	*cleared;
+	int i;
+	int j;
 
+	cleared = malloc(sizeof(t_list));
+	if (!strs || !cleared)
+		return ;
+	cleared->next = NULL;
+	last_n = ft_getlastnode(*strs);
+	i = 0;
+	while (last_n->str[i] && last_n->str[i] != '\n')
+		++i;
+	if (last_n->str && (last_n->str[i] == '\n'))
+		++i;
+	cleared->str = malloc(sizeof(char) * ((ft_strlen(last_n->str) - i) + 1));
+	if (!cleared->str)
+		return ;
+	j = 0;
+	while (last_n->str[i])
+		cleared->str[j++] = last_n->str[i++];
+	cleared->str[j] = '\0';
+	ft_freelst(*strs);
+	*strs = cleared;
 }
