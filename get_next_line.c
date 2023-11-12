@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 22:09:28 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/11 23:44:54 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/12 00:11:40 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_getline(int fd, t_list **strs, int *c_read);
 int		ft_isnewline(t_list *strs);
 void	ft_storestr(t_list **strs, char *buffer, int c_read);
+void	ft_makeline(t_list *strs, char **line);
 
 char	*get_next_line(int fd)
 {
@@ -30,7 +31,7 @@ char	*get_next_line(int fd)
 	ft_getline(fd, &strs, &c_read);
 	if (!strs)
 		return (NULL);
-
+	ft_makeline(strs, &line);
 	
 	return (line);
 }
@@ -84,4 +85,9 @@ void ft_storestr(t_list **strs, char *buffer, int c_read)
 	}
 	last_str = ft_getlastnode(*strs);
 	last_str->next = new_str;
+}
+
+void	ft_makeline(t_list *strs, char **line);
+{
+	
 }
