@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 22:10:04 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/11 23:19:47 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/12 11:01:52 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+// Default compile time buffersize
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 7
 # endif
@@ -29,9 +30,16 @@ typedef struct s_list
 
 // Get next line functions
 char	*get_next_line(int fd);
+void	ft_getline(int fd, t_list **strs, int *c_read);
+void	ft_storestr(t_list **strs, char *buffer, int c_read);
+void	ft_getstrs(t_list *strs, char **line);
+void	ft_clear_strs(t_list **strs);
 
 // Utils functions
 int		ft_isnewline(t_list *strs);
 t_list	*ft_getlastnode(t_list *strs);
+void	ft_makeline(char **line, t_list *strs);
+void ft_freelst(t_list *strs);
+int ft_strlen(const char *str);
 
 #endif

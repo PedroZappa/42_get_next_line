@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 22:09:28 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/12 00:11:40 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/12 10:50:36 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	ft_getline(int fd, t_list **strs, int *c_read);
 int		ft_isnewline(t_list *strs);
 void	ft_storestr(t_list **strs, char *buffer, int c_read);
-void	ft_makeline(t_list *strs, char **line);
+void	ft_getstrs(t_list *strs, char **line);
+void	ft_clear_strs(t_list **strs);
 
 char	*get_next_line(int fd)
 {
@@ -31,11 +32,12 @@ char	*get_next_line(int fd)
 	ft_getline(fd, &strs, &c_read);
 	if (!strs)
 		return (NULL);
-	ft_makeline(strs, &line);
-	
+	ft_getstrs(strs, &line);
+	ft_clear_strs(&strs);
 	return (line);
 }
 
+/* Read chars from file descriptor and store them in 'strs' list */
 void	ft_getline(int fd, t_list **strs, int *c_read)
 {
 	char	*buffer;
@@ -58,6 +60,7 @@ void	ft_getline(int fd, t_list **strs, int *c_read)
 	return ;
 }
 
+/* Appends buffer contents to the end of 'strs' list */
 void ft_storestr(t_list **strs, char *buffer, int c_read)
 {
 	int		i;
@@ -87,7 +90,21 @@ void ft_storestr(t_list **strs, char *buffer, int c_read)
 	last_str->next = new_str;
 }
 
-void	ft_makeline(t_list *strs, char **line);
+/* Gets chars from each 'str' from 'strs' list until '\n' is found */
+void	ft_getstrs(t_list *strs, char **line)
 {
-	
+	int i;
+	int j;
+
+	if (!strs)
+		return ;
+	ft_makeline();
+
+}
+
+/* Clears read buffers from 'strs' list, only characters that have not been
+ * read yet will remain in the 'strs' list */
+void ft_clear_strs(t_list **strs)
+{
+
 }
