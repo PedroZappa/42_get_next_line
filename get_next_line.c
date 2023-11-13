@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 22:09:28 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/13 11:19:05 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:41:22 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	ft_storestr(t_list **strs, char *buffer, int c_read)
 }
 
 /* Gets chars from each 'str' from 'strs' list until '\n' is found */
-void	ft_getstrs(t_list *strs, char **line)
+void	ft_get_strs(t_list *strs, char **line)
 {
 	int	line_i;
 	int	i;

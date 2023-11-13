@@ -6,13 +6,13 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 23:00:52 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/13 11:08:58 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:23:09 by passunca         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/* checks for a '\n' character in the 'strs' list*/
+/* checks for a '\n' character in the 'strs' list */
 int	ft_isnewline(t_list *strs)
 {
 	int		i;
@@ -40,7 +40,7 @@ t_list	*ft_getlastnode(t_list *strs)
 }
 
 /* Computes number of chars in current line (incl. '\n') and allocs memory */
-void	ft_makeline(char **line, t_list *strs)
+void	ft_allocline(char **line, t_list *strs)
 {
 	int	seglen;
 	int	linelen;

@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 22:10:04 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/13 11:13:27 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:41:38 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_list
 char	*get_next_line(int fd);
 void	ft_getline(int fd, t_list **strs, int *c_read);
 void	ft_storestr(t_list **strs, char *buffer, int c_read);
-void	ft_getstrs(t_list *strs, char **line);
+void	ft_get_strs(t_list *strs, char **line);
 void	ft_clear_strs(t_list **strs);
 
 // Utils functions
