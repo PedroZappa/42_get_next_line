@@ -6,14 +6,13 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 22:09:28 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/13 08:44:28 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/13 09:24:39 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 void	ft_getline(int fd, t_list **strs, int *c_read);
-int		ft_isnewline(t_list *strs);
 void	ft_storestr(t_list **strs, char *buffer, int c_read);
 void	ft_getstrs(t_list *strs, char **line);
 void	ft_clear_strs(t_list **strs);
