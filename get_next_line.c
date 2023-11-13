@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 22:09:28 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/13 08:33:59 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/13 08:44:28 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ void	ft_getline(int fd, t_list **strs, int *c_read)
 {
 	char	*buffer;
 
-	while (!ft_isnewline(*strs) && *c_read != 0)
+	while (!ft_isnewline(*strs) && (*c_read != 0))
 	{
 		buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 		if (!buffer)
 			return ;
 		*c_read = (int)read(fd, buffer, BUFFER_SIZE);
-		if ((!*strs && *c_read == 0) || (*c_read == -1))
+		if ((!*strs && (*c_read == 0)) || (*c_read == -1))
 		{
 			free(buffer);
 			return ;
