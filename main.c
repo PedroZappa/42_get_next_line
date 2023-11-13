@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 08:47:17 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/13 10:55:33 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/13 14:58:33 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,17 @@
 
 int main()
 {
+	int n = 1;
+	int max_n = 10;
 	char *str = NULL;
 	int fd = open("files/kglw.txt", O_RDONLY);
-	
-	str = get_next_line(fd);
-	printf("Str: %s", str);
+
+	while (n <= max_n)
+	{
+		str = get_next_line(fd);
+		printf("Line\t%d:\t%s", n, str);
+		++n;
+		free(str);
+	}
 	return (0);
 }

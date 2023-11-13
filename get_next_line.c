@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 22:09:28 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/13 11:41:22 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:19:15 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_getline(int fd, t_list **strs, int *c_read);
 void	ft_storestr(t_list **strs, char *buffer, int c_read);
-void	ft_getstrs(t_list *strs, char **line);
+void	ft_get_strs(t_list *strs, char **line);
 void	ft_clear_strs(t_list **strs);
 
 char	*get_next_line(int fd)
@@ -23,7 +23,6 @@ char	*get_next_line(int fd)
 	char			*line;
 	int				c_read;
 
-	strs = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &line, 0) < 0)
 		return (NULL);
 	c_read = 1;
@@ -31,7 +30,7 @@ char	*get_next_line(int fd)
 	ft_getline(fd, &strs, &c_read);
 	if (!strs)
 		return (NULL);
-	ft_getstrs(strs, &line);
+	ft_get_strs(strs, &line);
 	ft_clear_strs(&strs);
 	return (line);
 }

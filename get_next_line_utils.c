@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 23:00:52 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/13 11:23:09 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/13 14:41:24 by passunca         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	ft_strlen(const char *str)
 	int	len;
 
 	len = 0;
-	while (str++)
+	while (str[len])
 		++len;
 	return (len);
 }
