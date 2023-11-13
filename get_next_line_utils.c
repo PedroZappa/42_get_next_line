@@ -6,8 +6,8 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 23:00:52 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/13 08:35:36 by passunca         ###   ########.fr       */
-/*                                                                            */
+/*   Updated: 2023/11/13 11:08:58 by passunca         ###   ########.fr       */
+/*                                                                           */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
@@ -42,22 +42,22 @@ t_list	*ft_getlastnode(t_list *strs)
 /* Computes number of chars in current line (incl. '\n') and allocs memory */
 void	ft_makeline(char **line, t_list *strs)
 {
-	int	currlen;
+	int	seglen;
 	int	linelen;
 
 	linelen = 0;
 	while (strs)
 	{
-		currlen = 0;
-		while (strs->str[currlen])
+		seglen = 0;
+		while (strs->str[seglen])
 		{
-			if (strs->str[currlen] == '\n')
+			if (strs->str[seglen] == '\n')
 			{
 				++linelen;
 				break ;
 			}
 			++linelen;
-			++currlen;
+			++seglen;
 		}
 		strs = strs->next;
 	}
