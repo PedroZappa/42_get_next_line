@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 22:09:28 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/12 11:25:16 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/13 08:33:59 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*get_next_line(int fd)
 	int				c_read;
 
 	strs = NULL;
-	if (fd < 0 || BUFFER_SIZE == 0 || read(fd, &line, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &line, 0) < 0)
 		return (NULL);
 	c_read = 1;
 	line = NULL;
@@ -55,13 +55,13 @@ void	ft_getline(int fd, t_list **strs, int *c_read)
 		}
 		buffer[*c_read] = '\0';
 		ft_storestr(strs, buffer, *c_read);
-		free(buffer);	
+		free(buffer);
 	}
 	return ;
 }
 
 /* Appends buffer contents to the end of 'strs' list */
-void ft_storestr(t_list **strs, char *buffer, int c_read)
+void	ft_storestr(t_list **strs, char *buffer, int c_read)
 {
 	int		i;
 	t_list	*last_str;
@@ -93,8 +93,8 @@ void ft_storestr(t_list **strs, char *buffer, int c_read)
 /* Gets chars from each 'str' from 'strs' list until '\n' is found */
 void	ft_getstrs(t_list *strs, char **line)
 {
-	int line_i;
-	int i;
+	int	line_i;
+	int	i;
 
 	if (!strs)
 		return ;
@@ -121,12 +121,12 @@ void	ft_getstrs(t_list *strs, char **line)
 
 /* Clears read buffers from 'strs' list, only characters that have not been
  * read yet will remain in the 'strs' list */
-void ft_clear_strs(t_list **strs)
+void	ft_clear_strs(t_list **strs)
 {
 	t_list	*last_n;
 	t_list	*cleared;
-	int i;
-	int j;
+	int		i;
+	int		j;
 
 	cleared = malloc(sizeof(t_list));
 	if (!strs || !cleared)

@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 23:00:52 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/12 11:02:39 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/13 08:35:36 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@ t_list	*ft_getlastnode(t_list *strs)
 }
 
 /* Computes number of chars in current line (incl. '\n') and allocs memory */
-void ft_makeline(char **line, t_list *strs)
+void	ft_makeline(char **line, t_list *strs)
 {
 	int	currlen;
 	int	linelen;
 
 	linelen = 0;
-	while(strs)
+	while (strs)
 	{
 		currlen = 0;
-		while(strs->str[currlen])
+		while (strs->str[currlen])
 		{
 			if (strs->str[currlen] == '\n')
 			{
@@ -61,7 +61,7 @@ void ft_makeline(char **line, t_list *strs)
 		}
 		strs = strs->next;
 	}
-	*line = (char *)malloc(sizeof(char) * (linelen + 1));
+	*line = malloc(sizeof(char) * (linelen + 1));
 	if (!*line)
 		return ;
 }
@@ -69,8 +69,8 @@ void ft_makeline(char **line, t_list *strs)
 /* Free the entire 'strs' list */
 void	ft_freelst(t_list *strs)
 {
-	t_list *curr_str;
-	t_list *next_str;
+	t_list	*curr_str;
+	t_list	*next_str;
 
 	curr_str = strs;
 	while (curr_str)
@@ -85,7 +85,7 @@ void	ft_freelst(t_list *strs)
 /* Get the length of a givengiven 'str' */
 int	ft_strlen(const char *str)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (str++)
