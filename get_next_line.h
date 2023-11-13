@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 22:10:04 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/12 11:06:14 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:13:27 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_clear_strs(t_list **strs);
 // Utils functions
 int		ft_isnewline(t_list *strs);
 t_list	*ft_getlastnode(t_list *strs);
-void	ft_makeline(char **line, t_list *strs);
+void	ft_allocline(char **line, t_list *strs);
 void	ft_freelst(t_list *strs);
 int		ft_strlen(const char *str);
 
