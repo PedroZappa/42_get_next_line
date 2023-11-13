@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 22:09:28 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/13 09:24:39 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:18:13 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_storestr(t_list **strs, char *buffer, int c_read)
 		++i;
 	}
 	new_str->str[i] = '\0';
-	if (!*strs)
+	if (!(*strs))
 	{
 		*strs = new_str;
 		return ;
