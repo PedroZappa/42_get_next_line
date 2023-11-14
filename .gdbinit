@@ -55,6 +55,7 @@ end
 # Start at get_next_line()
 break get_next_line
 run
+# target record-full
 refresh
 gnl
 next

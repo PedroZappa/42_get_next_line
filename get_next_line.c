@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 22:09:28 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/14 12:44:18 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:35:46 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ char	*get_next_line(int fd)
 	char			*line;
 	int				c_read;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &line, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+		// strs = NULL;
 	c_read = 1;
 	line = NULL;
 	ft_getline(fd, &strs, &c_read);
-	if (!strs)
+	if (!strs || c_read == -1)
 		return (NULL);
 	ft_get_strs(strs, &line);
 	if (!strs || !line)
@@ -37,7 +38,6 @@ char	*get_next_line(int fd)
 	if (line[0] == '\0')
 	{
 		ft_freelst(strs);
-		strs = NULL;
 		free(line);
 		return (NULL);
 	}
@@ -57,6 +57,7 @@ void	ft_getline(int fd, t_list **strs, int *c_read)
 		*c_read = (int)read(fd, buffer, BUFFER_SIZE);
 		if ((!*strs && (*c_read == 0)) || (*c_read == -1))
 		{
+			ft_freelst(*strs);	
 			free(buffer);
 			return ;
 		}
@@ -64,7 +65,6 @@ void	ft_getline(int fd, t_list **strs, int *c_read)
 		ft_storestr(strs, buffer, *c_read);
 		free(buffer);
 	}
-	return ;
 }
 
 /* Appends buffer contents to the end of 'strs' list */

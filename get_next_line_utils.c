@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 23:00:52 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/13 16:44:43 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:20:37 by passunca         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void	ft_freelst(t_list *strs)
 	curr_str = strs;
 	while (curr_str)
 	{
-		free(curr_str->str);
+		if (curr_str->str)
+			free(curr_str->str);
 		next_str = curr_str->next;
 		free(curr_str);
 		curr_str = next_str;
