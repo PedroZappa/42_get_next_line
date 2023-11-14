@@ -1,6 +1,6 @@
 define main
 	display n
-	display max_n
+	# display max_n
 	display fd
 	display str
 	display *str
@@ -53,12 +53,12 @@ define clear_strs
 end
 
 # Start at get_next_line()
-break get_next_line
-run
+# break get_next_line
+# run
 # target record-full
-refresh
-gnl
-next
+# refresh
+# gnl
+# next
 
 # Start at ft_storestr()
 # break ft_storestr

@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 23:00:52 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/14 16:20:37 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/14 17:23:14 by passunca         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -76,11 +76,15 @@ void	ft_freelst(t_list *strs)
 	while (curr_str)
 	{
 		if (curr_str->str)
+		{
 			free(curr_str->str);
+			curr_str->str = NULL;
+		}
 		next_str = curr_str->next;
 		free(curr_str);
 		curr_str = next_str;
 	}
+	// curr_str->str = NULL;
 }
 
 /* Get the length of a givengiven 'str' */

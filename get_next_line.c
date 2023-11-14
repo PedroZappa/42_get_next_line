@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 22:09:28 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/14 16:48:51 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/14 17:34:16 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ void	ft_getline(int fd, t_list **strs, int *c_read)
 		buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 		if (!buffer)
 			return ;
-		*c_read = (int)read(fd, buffer, BUFFER_SIZE);
+		*c_read = read(fd, buffer, BUFFER_SIZE);
 		if ((!*strs && (*c_read == 0)) || (*c_read == -1))
 		{
-			ft_freelst(*strs);
+			// ft_freelst(*strs);
 			free(buffer);
 			return ;
 		}
@@ -130,6 +130,34 @@ void	ft_get_strs(t_list *strs, char **line)
 
 /* Clears read buffers from 'strs' list, only characters that have not been
  * read yet will remain in the 'strs' list */
+// void	ft_clear_strs(t_list **strs)
+// {
+// 	t_list	*last_n;
+// 	t_list	*cleared;
+// 	int		i;
+// 	int		j;
+//
+// 	cleared = malloc(sizeof(t_list));
+// 	if (!strs || !cleared)
+// 		return ;
+// 	cleared->next = NULL;
+// 	last_n = ft_getlastnode(*strs);
+// 	i = 0;
+// 	while (last_n->str[i] && (last_n->str[i] != '\n'))
+// 		++i;
+// 	if (last_n->str && (last_n->str[i] == '\n'))
+// 		++i;
+// 	cleared->str = malloc(sizeof(char) * ((ft_strlen(last_n->str) - i) + 1));
+// 	if (!cleared->str)
+// 		return ;
+// 	j = 0;
+// 	while (last_n->str[i])
+// 		cleared->str[j++] = last_n->str[i++];
+// 	cleared->str[j] = '\0';
+// 	ft_freelst(*strs);
+// 	*strs = cleared;
+// }
+
 void	ft_clear_strs(t_list **strs)
 {
 	t_list	*last_n;
@@ -137,23 +165,28 @@ void	ft_clear_strs(t_list **strs)
 	int		i;
 	int		j;
 
-	cleared = malloc(sizeof(t_list));
-	if (!strs || !cleared)
-		return ;
-	cleared->next = NULL;
 	last_n = ft_getlastnode(*strs);
 	i = 0;
 	while (last_n->str[i] && (last_n->str[i] != '\n'))
 		++i;
 	if (last_n->str && (last_n->str[i] == '\n'))
 		++i;
-	cleared->str = malloc(sizeof(char) * ((ft_strlen(last_n->str) - i) + 1));
-	if (!cleared->str)
-		return ;
-	j = 0;
-	while (last_n->str[i])
-		cleared->str[j++] = last_n->str[i++];
-	cleared->str[j] = '\0';
-	ft_freelst(*strs);
-	*strs = cleared;
+	if (last_n->str[i]) {
+		cleared = malloc(sizeof(t_list));
+		if (!strs || !cleared)
+			return ;
+		cleared->next = NULL;
+		cleared->str = malloc(sizeof(char) * ((ft_strlen(last_n->str) - i) + 1));
+		if (!cleared->str)
+			return ;
+		j = 0;
+		while (last_n->str[i])
+			cleared->str[j++] = last_n->str[i++];
+		cleared->str[j] = '\0';
+		ft_freelst(*strs);
+		*strs = cleared;
+	} else {
+		ft_freelst(*strs);
+		*strs = NULL;
+	}
 }
