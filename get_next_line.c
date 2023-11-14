@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 22:09:28 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/14 16:35:46 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:48:51 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-		// strs = NULL;
 	c_read = 1;
 	line = NULL;
 	ft_getline(fd, &strs, &c_read);
 	if (!strs || c_read == -1)
+	{
+		ft_freelst(strs);
 		return (NULL);
+	}
 	ft_get_strs(strs, &line);
 	if (!strs || !line)
 		return (NULL);
@@ -57,7 +59,7 @@ void	ft_getline(int fd, t_list **strs, int *c_read)
 		*c_read = (int)read(fd, buffer, BUFFER_SIZE);
 		if ((!*strs && (*c_read == 0)) || (*c_read == -1))
 		{
-			ft_freelst(*strs);	
+			ft_freelst(*strs);
 			free(buffer);
 			return ;
 		}
