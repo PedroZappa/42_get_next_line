@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 22:09:28 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/13 16:41:15 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/14 12:44:18 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,16 @@ char	*get_next_line(int fd)
 	if (!strs)
 		return (NULL);
 	ft_get_strs(strs, &line);
+	if (!strs || !line)
+		return (NULL);
 	ft_clear_strs(&strs);
+	if (line[0] == '\0')
+	{
+		ft_freelst(strs);
+		strs = NULL;
+		free(line);
+		return (NULL);
+	}
 	return (line);
 }
 
@@ -94,7 +103,7 @@ void	ft_get_strs(t_list *strs, char **line)
 	int	line_i;
 	int	i;
 
-	if (!strs)
+	if (!strs || !line)
 		return ;
 	ft_allocline(line, strs);
 	if (*line == NULL)
