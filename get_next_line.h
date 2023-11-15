@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:38 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/15 12:19:16 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/15 12:44:33 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@
 
 // Default compile time buffersize
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 7
+#  define BUFFER_SIZE 3
 # endif
 
 // Get next line functions
+char	*get_next_line(int fd);
 char	*ft_getline(int fd, char *input, char *line);
 char	*ft_gettillnl(char *input);
 char	*ft_getrest(char *input);

@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:19 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/15 12:19:04 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/15 13:12:06 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ char *get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	line = NULL;
+	// Other edge checks
 	line = ft_getline(fd, input, line);
 	return (line);
 }
@@ -34,7 +35,6 @@ char	*ft_getline(int fd, char *input, char *line)
 {
 	int c_read;
 
-	c_read = 1;
 	c_read = (int)read(fd, input, BUFFER_SIZE);	
 	while (c_read)
 	{
@@ -55,13 +55,14 @@ char	*ft_gettillnl(char *input)
 	int		i;
 	char	*line;
 
-	while (input[i] && input[i] != '\n')
+	i = 0;
+	while (input[i] && (input[i] != '\n'))
 		++i;
 	if (input[i] == '\n')
 		++i;
 	line = malloc(sizeof(char) * (i + 1));
 	line[i] = '\0';
-	while (i--)
+	while (i-- > 0)
 		line[i] = input[i];
 	return (line);
 }
@@ -71,16 +72,16 @@ char	*ft_getrest(char *input)
 {
 	int		i;
 	int		j;
-	char	*rest;
 
 	i = 0;
-	while (input[i] != '\n')
+	while (input[i] && (input[i] != '\n'))
 		++i;
 	if (input[i] == '\n')
 		++i;
 	j = 0;
 	while (input[i])
-		rest[j++] = input[i++];
-	while (rest[j])
-		rest[j++] = '\0';
+		input[j++] = input[i++];
+	while (input[j])
+		input[j] = '\0';
+	return (input);
 }
