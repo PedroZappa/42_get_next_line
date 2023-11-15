@@ -1,4 +1,5 @@
 define main
+	# target record-full
 	display n
 	# display max_n
 	display fd
@@ -23,6 +24,11 @@ define getline
 	display *strs
 	display *c_read
 	next
+end
+
+define isnl
+	display i
+	display *curr_strs
 end
 
 define storestr
@@ -55,6 +61,7 @@ end
 # Start at get_next_line()
 # break get_next_line
 # run
+start
 # target record-full
 # refresh
 # gnl

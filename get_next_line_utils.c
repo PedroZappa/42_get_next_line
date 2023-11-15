@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 23:00:52 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/14 17:23:14 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/15 08:36:12 by passunca         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	ft_isnewline(t_list *strs)
 	if (!strs)
 		return (0);
 	curr_strs = ft_getlastnode(strs);
+	if (!curr_strs || !curr_strs->str)
+		return (0);
 	i = 0;
 	while (curr_strs->str[i])
 	{
