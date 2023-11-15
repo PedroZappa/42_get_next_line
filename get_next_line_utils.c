@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:57 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/15 11:17:26 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/15 11:41:26 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,21 @@ int	ft_strlen(const char *str)
 	while (str[len])
 		++len;
 	return (len);
+}
+
+/* Find a char in a given 'str' */
+char	*ft_strchr(const char *s, int c)
+{
+	int i;
+	int len;
+
+	i = 0;
+	len = ft_strlen(s);
+	while (i < len)
+	{
+		if (s[i] == (char)c)
+			return ((char *)s + i);
+		++i;
+	}
+	return (NULL);
 }

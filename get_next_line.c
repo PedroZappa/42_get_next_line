@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:19 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/15 11:31:41 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/15 12:10:16 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 char	*ft_getline(int fd, char *input, char *line);
 char	*ft_gettillnl(char *input);
+void	ft_getrest(char *input);
 
 char *get_next_line(int fd)
 {
@@ -38,13 +39,17 @@ char	*ft_getline(int fd, char *input, char *line)
 	while (c_read)
 	{
 		line = ft_strjoin(line, ft_gettillnl(input));
+		ft_getrest(input);
+		if (ft_strchr(input, '\n'))
+			return (line);
+		c_read = (int)read(fd, input, BUFFER_SIZE);
 	}
 	if (!input)
 		return (NULL);
 	return (line);
 }
 
-/* Join 'substr's into 'line' until '\n' is found */
+/* Copy 'substr's into 'line' until '\n' is found */
 char	*ft_gettillnl(char *input)
 {
 	int		i;
@@ -59,4 +64,22 @@ char	*ft_gettillnl(char *input)
 	while (i--)
 		line[i] = input[i];
 	return (line);
+}
+
+void ft_getrest(char *input)
+{
+	int		i;
+	int		j;
+	char	*rest;
+
+	i = 0;
+	while (input[i] != '\n')
+		++i;
+	if (input[i] == '\n')
+		++i;
+	j = 0;
+	while (input[i])
+		rest[j++] = input[i++];
+	while (rest[j])
+		rest[j++] = '\0';
 }
