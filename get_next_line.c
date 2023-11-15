@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:19 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/15 12:10:16 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/15 12:19:04 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_getline(int fd, char *input, char *line);
 char	*ft_gettillnl(char *input);
-void	ft_getrest(char *input);
+char	*ft_getrest(char *input);
 
 char *get_next_line(int fd)
 {
@@ -39,7 +39,7 @@ char	*ft_getline(int fd, char *input, char *line)
 	while (c_read)
 	{
 		line = ft_strjoin(line, ft_gettillnl(input));
-		ft_getrest(input);
+		input = ft_getrest(input);
 		if (ft_strchr(input, '\n'))
 			return (line);
 		c_read = (int)read(fd, input, BUFFER_SIZE);
@@ -66,7 +66,8 @@ char	*ft_gettillnl(char *input)
 	return (line);
 }
 
-void ft_getrest(char *input)
+/* Save the rest of 'input' after '\n' */
+char	*ft_getrest(char *input)
 {
 	int		i;
 	int		j;
