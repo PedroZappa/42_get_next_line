@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:38 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/15 11:17:40 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/15 11:22:26 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # endif
 
 // Get next line functions
+char	*ft_getline(int fd, char *input, char *line);
 
 // Utils functions
 char	*ft_strjoin(char const *s1, char const *s2);

@@ -6,13 +6,14 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:19 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/15 11:11:24 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/15 11:31:41 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 char	*ft_getline(int fd, char *input, char *line);
+char	*ft_gettillnl(char *input);
 
 char *get_next_line(int fd)
 {
@@ -36,9 +37,26 @@ char	*ft_getline(int fd, char *input, char *line)
 	c_read = (int)read(fd, input, BUFFER_SIZE);	
 	while (c_read)
 	{
-		
+		line = ft_strjoin(line, ft_gettillnl(input));
 	}
 	if (!input)
 		return (NULL);
+	return (line);
+}
+
+/* Join 'substr's into 'line' until '\n' is found */
+char	*ft_gettillnl(char *input)
+{
+	int		i;
+	char	*line;
+
+	while (input[i] && input[i] != '\n')
+		++i;
+	if (input[i] == '\n')
+		++i;
+	line = malloc(sizeof(char) * (i + 1));
+	line[i] = '\0';
+	while (i--)
+		line[i] = input[i];
 	return (line);
 }
