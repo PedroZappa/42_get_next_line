@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:19 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/15 13:56:49 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:22:06 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ char *get_next_line(int fd)
 	line = NULL;
 	// Other edge checks
 	if (input[0] == '\0')
+	{
+		line = ft_gettillnl(input);
+		ft_getrest(input);
+		if (ft_strchr(input, '\n'))
+			return (line);
+	}
 	line = ft_getline(fd, input, line);
 	return (line);
 }

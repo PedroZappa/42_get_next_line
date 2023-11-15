@@ -11,6 +11,7 @@ define gnl
 	display fd
 	display line
 	display *line
+	display input
 	next
 end
 
@@ -37,8 +38,6 @@ define getrest
 	display j
 	display input
 	display input[i]
-	display rest
-	display *rest
 	next
 end
 
