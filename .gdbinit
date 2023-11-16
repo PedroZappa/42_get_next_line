@@ -43,11 +43,12 @@ end
 
 define clearvault
 	display i
-	display restlen
+	display del_i
 	display vault
-	display vault[i]
+	display *vault
 	display rest
 	display rest[i]
+	display newline
 	next
 end
 
@@ -67,10 +68,11 @@ define strjoin
 end
 
 # Start at get_next_line()
-break get_next_line
-# run
-start
-next
+# break get_next_line
+break ft_clearvault
+run
+# start
+clearvault
 # target record-full
 # refresh
 # gnl

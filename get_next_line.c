@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:19 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/16 18:33:57 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:47:41 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	c_read = 1;
-	vault = "";
+	if (!vault)
+		vault = "";
 	substr = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!substr)
 		return (NULL);
@@ -91,7 +92,7 @@ static void	ft_gettillnl(char **vault, char **line)
 static void	ft_clearvault(char **vault)
 {
 	int		i;
-	int		restlen;
+	int		del_i;
 	char	*newline;
 	char	*rest;
 
@@ -104,9 +105,9 @@ static void	ft_clearvault(char **vault)
 	}
 	rest = malloc(sizeof(char) * (ft_strlen(*vault)));
 	i = 0;
-	restlen = (ft_strlen(*vault) - ft_strlen(newline) + 1);
-	while (restlen  < ft_strlen(*vault))
-		rest[i++] = (*vault)[restlen++];
+	del_i = (ft_strlen(*vault) - ft_strlen(newline) + 1);
+	while (del_i  < ft_strlen(*vault))
+		rest[i++] = (*vault)[del_i++];
 	rest[i] = '\0';
 	*vault = rest;
 	if (**vault == '\0')
