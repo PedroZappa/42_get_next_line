@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:38 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/16 09:18:30 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/16 09:36:40 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 // Get next line functions
 char	*get_next_line(int fd);
 int		ft_getline(int fd, char **input, char *substr);
-void	ft_gettillnl(char **input);
-void	*ft_getrest(char **input);
+void	ft_gettillnl(char **vault, char **line);
+void	ft_clearvault(char **input);
 
 // Utils functions
 char	*ft_strjoin(char const *s1, char const *s2);
