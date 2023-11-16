@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:57 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/15 11:41:26 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/16 08:22:15 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,13 @@ char	*ft_strchr(const char *s, int c)
 		++i;
 	}
 	return (NULL);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+		((unsigned char *)s)[i++] = '\0';
 }
