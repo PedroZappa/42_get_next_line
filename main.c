@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 08:47:17 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/15 13:04:49 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:44:15 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int main()
 	int fd = open("files/mini-vulf.txt", O_RDONLY);
 	// int fd = open("files/read_error.txt", O_RDONLY);
 
-	str = get_next_line(fd);
+	// str = get_next_line(fd);
 	// int i = 0;
-	while (str)
+	while ((str = get_next_line(fd)) != NULL)
 	{
 		printf("Line\t%d:\t%s", n, str);
 		free(str);
@@ -34,7 +34,7 @@ int main()
 		// 	close(fd);
 		// 	i++;
 		// }
-		str = get_next_line(fd);
+		// str = get_next_line(fd);
 		// printf("fd : %d", fd);
 		// if(i == 1)
 		// {
@@ -44,6 +44,7 @@ int main()
 		// }
 		++n;
 	}
+	close(fd);
 	free(str);
 	return (0);
 }

@@ -8,8 +8,10 @@ define main
 end
 
 define gnl
+	display vault
+	display *vault
 	display fd
-	display buffer
+	display substr
 	display line
 	display *line
 	display c_read
@@ -21,7 +23,6 @@ define getline
 	display vault
 	display *vault
 	display substr
-	display *substr
 	display c_read
 	display line
 	display *line
@@ -53,8 +54,14 @@ define strchr
 	display *s
 	display c
 	display *c
-	display i
+	next
+end
+
+define strjoin
 	display len
+	display i
+	display str
+	display str[i]
 	next
 end
 

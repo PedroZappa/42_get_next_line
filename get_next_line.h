@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:38 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/16 09:36:40 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:02:55 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,16 @@
 
 // Default compile time buffersize
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 3
+#  define BUFFER_SIZE 10
 # endif
 
-// Get next line functions
 char	*get_next_line(int fd);
-int		ft_getline(int fd, char **input, char *substr);
-void	ft_gettillnl(char **vault, char **line);
-void	ft_clearvault(char **input);
 
 // Utils functions
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strlen(const char *str);
 char	*ft_strchr(const char *s, int c);
 void	ft_bzero(void *s, size_t n);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 
 #endif

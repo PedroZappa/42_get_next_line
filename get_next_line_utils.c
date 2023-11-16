@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:57 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/16 10:09:58 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:59:31 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,21 @@
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
-	int		s1_len;
-	int		s2_len;
+	int		len;
 	int		i;
-	int		j;
 
 	if (!s1 || !s2)
 		return (NULL);
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	str = malloc(sizeof(char) * (s1_len + s2_len + 1));
+	len = ft_strlen(s1) + ft_strlen(s2);
+	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
 	i = 0;
-	j = 0;
-	while (i < s1_len)
-		str[j++] = s1[i++];
-	i = 0;
-	while (i < s2_len)
-		str[j++] = s2[i++];
-	str[s1_len + s2_len] = '\0';
+	while (s1 && *s1)
+		str[i++] = *s1++;
+	while (s2 && *s2)
+		str[i++] = *s2++;
+	str[i] = '\0';
 	return (str);
 }
 
@@ -44,27 +39,25 @@ int	ft_strlen(const char *str)
 	int	len;
 
 	len = 0;
-	if (str == NULL)
-		return (0);
-	while (str[len])
-		++len;
+	if (str)
+		while (str[len])
+			++len;
 	return (len);
 }
 
 /* Find a char in a given 'str' */
 char	*ft_strchr(const char *s, int c)
 {
-	int i;
-	int len;
-
-	i = 0;
-	len = ft_strlen(s);
-	while (i < len)
+	if (s == NULL)
+		return (NULL);
+	while (*s)
 	{
-		if (s[i] == (char)c)
-			return ((char *)s + i);
-		++i;
+		if ((unsigned char)*s == (unsigned char)c)
+			return ((char *)s);
+		++s;
 	}
+	if ((*s == '\0') && (c == '\0'))
+		return ((char *)s);
 	return (NULL);
 }
 
