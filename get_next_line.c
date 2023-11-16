@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:19 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/16 14:53:44 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:30:32 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	while (!ft_strchr(vault, '\n') && (c_read > 0))
 		c_read = ft_getline(fd, &vault, substr);
-	free(substr);
+	if (substr)
+		free(substr);
 	if (c_read == -1 || (ft_strlen(vault) == 0))
 		return (NULL);
 	ft_gettillnl(&vault, &line);
@@ -58,7 +59,7 @@ static int	ft_getline(int fd, char **vault, char *substr)
 	if (c_read == 0)
 		return (c_read);
 	line = ft_strjoin(*vault, substr);
-	free(*vault);
+	// free(*vault);
 	*vault = line;
 	return (c_read);
 }
@@ -90,7 +91,7 @@ static void	ft_gettillnl(char **vault, char **line)
 static void	ft_clearvault(char **vault)
 {
 	int		i;
-	int		j;
+	int		restlen;
 	char	*newline;
 	char	*rest;
 
@@ -103,12 +104,11 @@ static void	ft_clearvault(char **vault)
 	}
 	rest = malloc(sizeof(char) * (ft_strlen(*vault)));
 	i = 0;
-	j = (ft_strlen(*vault) - ft_strlen(newline) + 1);
-	while (j < ft_strlen(*vault))
-		rest[i++] = (*vault)[j++];
+	restlen = (ft_strlen(*vault) - ft_strlen(newline) + 1);
+	while (restlen  < ft_strlen(*vault))
+		rest[i++] = (*vault)[restlen++];
 	rest[i] = '\0';
-	free(*vault);
-	*vault = NULL;
+	*vault = rest;
 	if (**vault == '\0')
 	{
 		free(*vault);

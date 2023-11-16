@@ -43,9 +43,11 @@ end
 
 define clearvault
 	display i
-	display j
+	display restlen
 	display vault
 	display vault[i]
+	display rest
+	display rest[i]
 	next
 end
 
@@ -53,7 +55,6 @@ define strchr
 	display s
 	display *s
 	display c
-	display *c
 	next
 end
 
