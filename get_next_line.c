@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:19 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/16 18:30:32 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:33:57 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	ft_gettillnl(char **vault, char **line)
 	int		i;
 
 	newline = ft_strchr(*vault, '\n');
-	len = (ft_strlen(*vault) - ft_strlen(newline) + 1);
+	len = (ft_strlen(*vault) - ft_strlen(newline) + 2);
 	*line = malloc(sizeof(char) * len);
 	if (!line)
 		return ;
