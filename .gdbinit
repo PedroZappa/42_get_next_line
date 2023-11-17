@@ -68,12 +68,13 @@ define strjoin
 end
 
 # Start at get_next_line()
-# break get_next_line
-break ft_clearvault
+break get_next_line
+fs cmd
+# break ft_clearvault
 run
 # start
-clearvault
+# clearvault
 # target record-full
-# refresh
+refresh
 # gnl
 # next
