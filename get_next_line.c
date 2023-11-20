@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:19 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/20 19:59:50 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/20 20:04:14 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,30 @@ static char		*ft_getline(int fd, char *vault)
  * */
 static char		*ft_gettillnl(char *vault)
 {
+	int		i;
+	char	*line;
 
+	i = 0;
+	if (!vault[i])
+		return (NULL);
+	while (vault[i] && (vault[i] != '\n'))
+		++i;
+	line = malloc(sizeof(char) * (i + 2));
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (vault[i] && (vault[i] != '\n'))
+	{
+		line[i] = vault[i];
+		++i;
+	}
+	if (vault[i] == '\n')
+	{
+		line[i] = vault[i];
+		++i;
+	}
+	line[i] = '\0';
+	return (line);
 }
 
 /*	Clear already printed chars in 'vault'
