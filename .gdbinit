@@ -4,7 +4,6 @@ define main
 	display fd
 	display str
 	display *str
-	next
 end
 
 define gnl
@@ -15,7 +14,6 @@ define gnl
 	display line
 	display *line
 	display c_read
-	next
 end
 
 define getline
@@ -26,7 +24,6 @@ define getline
 	display c_read
 	display line
 	display *line
-	next
 end
 
 define gettillnl
@@ -38,7 +35,6 @@ define gettillnl
 	display *line
 	display newline
 	display *newline
-	next
 end
 
 define clearvault
@@ -49,14 +45,12 @@ define clearvault
 	display rest
 	display rest[i]
 	display newline
-	next
 end
 
 define strchr
 	display s
 	display *s
 	display c
-	next
 end
 
 define strjoin
@@ -64,7 +58,6 @@ define strjoin
 	display i
 	display str
 	display str[i]
-	next
 end
 
 define memchk
