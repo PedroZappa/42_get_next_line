@@ -67,6 +67,10 @@ define strjoin
 	next
 end
 
+define memchk
+	monitor leak_check full reachable any
+end
+
 # Start at get_next_line()
 break get_next_line
 fs cmd

@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:19 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/20 09:39:44 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/20 12:16:36 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static void	ft_clearvault(char **vault);
 
 char	*get_next_line(int fd)
 {
-	static char	*vault;
+	// static char	*vault;
+	static char	*vault = "";
 	char		*substr;
 	char		*line;
 	int			c_read;
@@ -26,8 +27,6 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	c_read = 1;
-	if (!vault)
-		vault = "";
 	substr = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!substr)
 		return (NULL);
