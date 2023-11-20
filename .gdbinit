@@ -71,10 +71,10 @@ end
 break get_next_line
 fs cmd
 # break ft_clearvault
-run
+# run
 # start
 # clearvault
 # target record-full
-refresh
+# refresh
 # gnl
 # next

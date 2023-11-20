@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:19 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/16 18:47:41 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/20 09:39:44 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	while (!ft_strchr(vault, '\n') && (c_read > 0))
 		c_read = ft_getline(fd, &vault, substr);
-	if (substr)
-		free(substr);
+	free(substr);
 	if (c_read == -1 || (ft_strlen(vault) == 0))
 		return (NULL);
 	ft_gettillnl(&vault, &line);
@@ -60,7 +59,6 @@ static int	ft_getline(int fd, char **vault, char *substr)
 	if (c_read == 0)
 		return (c_read);
 	line = ft_strjoin(*vault, substr);
-	// free(*vault);
 	*vault = line;
 	return (c_read);
 }
@@ -109,6 +107,7 @@ static void	ft_clearvault(char **vault)
 	while (del_i  < ft_strlen(*vault))
 		rest[i++] = (*vault)[del_i++];
 	rest[i] = '\0';
+	free(*vault);
 	*vault = rest;
 	if (**vault == '\0')
 	{
