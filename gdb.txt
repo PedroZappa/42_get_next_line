@@ -3018,3 +3018,69 @@ ft_getline (fd=0x3, vault=0x404060 <get_next_line.vault>,
 get_next_line (fd=0x3) at get_next_line.c:34
 26: vault = 0x4a57750 "Vulfnull\n"
 27: *vault = 0x56
+28: fd = 0x3
+29: substr = 0x4a57700 "fnull\n"
+30: line = 0x4a57660 "Vulfnick\n"
+31: *line = 0x56
+32: c_read = 0x6
+33: vault = 0x4a57750 "Vulfnull\n"
+34: *vault = 0x56
+35: fd = 0x3
+36: substr = 0x4a57700 "fnull\n"
+37: line = 0x4a57660 "Vulfnick\n"
+38: *line = 0x56
+39: c_read = 0x6
++memchk
+++next
+26: vault = 0x4a57750 "Vulfnull\n"
+27: *vault = 0x56
+28: fd = 0x3
+29: substr = 0x4a57700 "fnull\n"
+30: line = 0x4a57660 "Vulfnick\n"
+31: *line = 0x56
+32: c_read = 0x6
+33: vault = 0x4a57750 "Vulfnull\n"
+34: *vault = 0x56
+35: fd = 0x3
+36: substr = 0x4a57700 "fnull\n"
+37: line = 0x4a57660 "Vulfnick\n"
+38: *line = 0x56
+39: c_read = 0x6
++monitor leak_check full reachable any
+==344568== 10 bytes in 1 blocks are still reachable in loss record 2 of 5
+==344568==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==344568==    by 0x4016C3: ft_strjoin (get_next_line_utils.c:24)
+==344568==    by 0x40141C: ft_getline (get_next_line.c:67)
+==344568==    by 0x4012D8: get_next_line (get_next_line.c:35)
+==344568==    by 0x4011BB: main (main.c:28)
+==344568== 
+==344568== 11 bytes in 1 blocks are still reachable in loss record 3 of 5
+==344568==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==344568==    by 0x401263: get_next_line (get_next_line.c:31)
+==344568==    by 0x4011BB: main (main.c:28)
+==344568== 
+==344568== 22 bytes in 2 blocks are definitely lost in loss record 4 of 5
+==344568==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==344568==    by 0x40159F: ft_clearvault (get_next_line.c:116)
+==344568==    by 0x401338: get_next_line (get_next_line.c:40)
+==344568==    by 0x4011BB: main (main.c:28)
+==344568== 
+==344568== 1,024 bytes in 1 blocks are still reachable in loss record 5 of 5
+==344568==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==344568==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==344568==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==344568==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==344568==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==344568==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==344568==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==344568==    by 0x48C3D3E: printf (printf.c:33)
+==344568==    by 0x4011E1: main (main.c:30)
+==344568== 
+==344568== LEAK SUMMARY:
+==344568==    definitely lost: 22 bytes in 2 blocks
+==344568==    indirectly lost: 0 bytes in 0 blocks
+==344568==      possibly lost: 0 bytes in 0 blocks
+==344568==    still reachable: 1,045 bytes in 3 blocks
+==344568==         suppressed: 0 bytes in 0 blocks
+==344568== 
++q

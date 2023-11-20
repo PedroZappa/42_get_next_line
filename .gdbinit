@@ -1,3 +1,6 @@
+set trace-commands on
+set logging on
+
 define main
 	# target record-full
 	display n
