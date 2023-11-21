@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:57 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/21 11:52:43 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:51:28 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,22 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		len;
 	int		i;
 
-	if (!s1)
-	{
-		s1 = malloc(1);
-		s1[0] = '\0';
-	}
 	if (!s1 || !s2)
 		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
 	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
-	{
-		free(s1);
-		free(s2);
 		return (NULL);
-	}
 	i = 0;
 	if (s1)
-		while (s1 && *s1)
+	{
+		while (*s1)
 			str[i++] = *s1++;
-	while (s2 && *s2)
+		// free(s1 - i);
+	}
+	while (*s2)
 		str[i++] = *s2++;
 	str[i] = '\0';
-	// free(s1);
 	return (str);
 }
 
@@ -70,13 +63,4 @@ char	*ft_strchr(const char *s, int c)
 	if ((*s == '\0') && (c == '\0'))
 		return ((char *)s);
 	return (NULL);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < n)
-		((unsigned char *)s)[i++] = '\0';
 }
