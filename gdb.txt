@@ -11569,3 +11569,4 @@ Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
 ==1012639==    still reachable: 1,037 bytes in 2 blocks
 ==1012639==         suppressed: 0 bytes in 0 blocks
 ==1012639== 
++q

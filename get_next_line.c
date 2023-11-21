@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:19 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/21 15:00:56 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:07:50 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	*ft_getline(int fd, char *vault);
 static char	*ft_gettillnl(char *vault);
 static char	*ft_getrest(char *vault);
 
-char		*get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	static char	*vault;
 	char		*line;
@@ -38,7 +38,7 @@ char		*get_next_line(int fd)
 
 /* Read BUFFER_SIZE bytes from 'fd' and store in 'vault'
  * */
-static char		*ft_getline(int fd, char *vault)
+static char	*ft_getline(int fd, char *vault)
 {
 	char	*buffer;
 	int		bytes_read;
@@ -59,7 +59,6 @@ static char		*ft_getline(int fd, char *vault)
 		}
 		buffer[bytes_read] = '\0';
 		vault = ft_strjoin(vault, buffer);
-		// free(buffer);
 	}
 	free(buffer);
 	return (vault);
@@ -67,7 +66,7 @@ static char		*ft_getline(int fd, char *vault)
 
 /*	Get line terminate by '\n' from 'vault'
  * */
-static char		*ft_gettillnl(char *vault)
+static char	*ft_gettillnl(char *vault)
 {
 	int		i;
 	char	*line;
@@ -97,7 +96,7 @@ static char		*ft_gettillnl(char *vault)
 
 /*	Clear already printed chars in 'vault'
  * */
-static char		*ft_getrest(char *vault)
+static char	*ft_getrest(char *vault)
 {
 	int		i;
 	int		rest_i;
