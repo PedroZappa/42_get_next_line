@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:19 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/21 15:07:50 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:17:50 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char	*ft_getline(int fd, char *vault)
 	if (!buffer)
 		return (NULL);
 	bytes_read = 1;
-	while (!ft_strchr(vault, '\n') && bytes_read != 0)
+	while (!ft_strchr_gnl(vault, '\n') && bytes_read != 0)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
@@ -58,7 +58,7 @@ static char	*ft_getline(int fd, char *vault)
 			return (NULL);
 		}
 		buffer[bytes_read] = '\0';
-		vault = ft_strjoin(vault, buffer);
+		vault = ft_strjoin_gnl(vault, buffer);
 	}
 	free(buffer);
 	return (vault);
@@ -110,7 +110,7 @@ static char	*ft_getrest(char *vault)
 		free(vault);
 		return (NULL);
 	}
-	rest = malloc(sizeof(char) * (ft_strlen(vault) - i + 1));
+	rest = malloc(sizeof(char) * (ft_strlen_gnl(vault) - i + 1));
 	if (!rest)
 	{
 		free(rest);

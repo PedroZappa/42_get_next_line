@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:38 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/21 12:09:59 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:16:07 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 char	*get_next_line(int fd);
 
 // Utils functions
-char	*ft_strjoin(char *s1, char *s2);
-int		ft_strlen(char *str);
-char	*ft_strchr(const char *s, int c);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+int		ft_strlen_gnl(char *str);
+char	*ft_strchr_gnl(const char *s, int c);
+void	*ft_memcpy_gnl(void *dest, const void *src, size_t n);
 
 #endif

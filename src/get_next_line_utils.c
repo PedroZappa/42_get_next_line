@@ -6,13 +6,13 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:57 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/21 14:54:38 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:17:16 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	char	*str;
 	char	*sptr;
@@ -22,7 +22,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	sptr = s1;
-	len = ft_strlen(s1) + ft_strlen(s2);
+	len = ft_strlen_gnl(s1) + ft_strlen_gnl(s2);
 	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
@@ -41,7 +41,7 @@ char	*ft_strjoin(char *s1, char *s2)
 }
 
 /* Get the length of a givengiven 'str' */
-int	ft_strlen(char *str)
+int	ft_strlen_gnl(char *str)
 {
 	int	len;
 
@@ -53,7 +53,7 @@ int	ft_strlen(char *str)
 }
 
 /* Find a char in a given 'str' */
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr_gnl(const char *s, int c)
 {
 	if (s == NULL)
 		return (NULL);
