@@ -13,40 +13,34 @@ define gnl
 	display vault
 	display *vault
 	display fd
-	display substr
 	display line
 	display *line
-	display c_read
 end
 
 define getline
 	display fd
-	display vault
-	display *vault
-	display substr
-	display c_read
-	display line
-	display *line
+	display bytes_read
+	# display vault
+	# display *vault
+	display buffer
+	display *buffer
 end
 
 define gettillnl
 	display vault
 	display *vault
 	display i
-	display len
 	display line
 	display *line
-	display newline
-	display *newline
 end
 
-define clearvault
+define getrest
 	display i
-	display del_i
+	display rest_i
 	display vault
-	display *vault
+	display vault[i]
 	display rest
-	display rest[i]
+	display rest[rest_i]
 	display newline
 end
 
@@ -61,6 +55,10 @@ define strjoin
 	display i
 	display str
 	display str[i]
+end
+
+define vgdb
+	target remote | vgdb
 end
 
 define memchk

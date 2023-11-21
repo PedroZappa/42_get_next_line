@@ -3084,3 +3084,732 @@ get_next_line (fd=0x3) at get_next_line.c:34
 ==344568==         suppressed: 0 bytes in 0 blocks
 ==344568== 
 +q
++define main
++define gnl
++define getline
++define gettillnl
++define clearvault
++define strchr
++define strjoin
++define memchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+Undefined command: "vgdb".  Try "help".
++q
++define main
++define gnl
++define getline
++define gettillnl
++define clearvault
++define strchr
++define strjoin
++define vgdb
++define memchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 599582
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x0000000004001100 in _start () from /lib64/ld-linux-x86-64.so.2
++c
+Continuing.
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
+warning: Source file is more recent than executable.
++gnl
+++display vault
+++display *vault
+++display fd
+++display substr
+No symbol "substr" in current context.
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define memchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 605167
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x0000000004001100 in _start () from /lib64/ld-linux-x86-64.so.2
++c
+Continuing.
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
+warning: Source file is more recent than executable.
++gnl
+++display vault
+++display *vault
+++display fd
+++display line
+++display *line
++gdb
+Undefined command: "gdb".  Try "help".
++gnl
+++display vault
+++display *vault
+++display fd
+++display line
+++display *line
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+8: fd = 0x3
+9: line = 0x0
+10: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+8: fd = 0x3
+9: line = 0x0
+10: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+8: fd = 0x3
+9: line = 0x0
+10: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+Quit
++c
+Continuing.
+[Inferior 1 (Remote target) exited normally]
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 606499
+0x0000000004001100 in _start ()
+   from /lib64/ld-linux-x86-64.so.2
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
++n
+Single stepping until exit from function _start,
+which has no line number information.
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+8: fd = 0x3
+9: line = 0x0
+10: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+8: fd = 0x3
+9: line = 0x0
+10: *line = <error: Cannot access memory at address 0x0>
++s
+ft_getline (fd=0x3, vault=0x0) at get_next_line.c:41
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
++getline
+++display fd
+++display bytes_read
+++display vault
+++display *vault
+++display buffer
+++display *buffer
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0x0
+13: vault = 0x0
+14: *vault = <error: Cannot access memory at address 0x0>
+15: buffer = 0x4a57040 ""
+16: *buffer = 0x0
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0x0
+13: vault = 0x0
+14: *vault = <error: Cannot access memory at address 0x0>
+15: buffer = 0x4a57040 ""
+16: *buffer = 0x0
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0x1
+13: vault = 0x0
+14: *vault = <error: Cannot access memory at address 0x0>
+15: buffer = 0x4a57040 ""
+16: *buffer = 0x0
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0x1
+13: vault = 0x0
+14: *vault = <error: Cannot access memory at address 0x0>
+15: buffer = 0x4a57040 ""
+16: *buffer = 0x0
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0xa
+13: vault = 0x0
+14: *vault = <error: Cannot access memory at address 0x0>
+15: buffer = 0x4a57040 "Vulfmon\nVu"
+16: *buffer = 0x56
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0xa
+13: vault = 0x0
+14: *vault = <error: Cannot access memory at address 0x0>
+15: buffer = 0x4a57040 "Vulfmon\nVu"
+16: *buffer = 0x56
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0xa
+13: vault = 0x0
+14: *vault = <error: Cannot access memory at address 0x0>
+15: buffer = 0x4a57040 "Vulfmon\nVu"
+16: *buffer = 0x56
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0xa
+13: vault = 0x0
+14: *vault = <error: Cannot access memory at address 0x0>
+15: buffer = 0x4a57040 "Vulfmon\nVu"
+16: *buffer = 0x56
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0xa
+13: vault = 0x0
+14: *vault = <error: Cannot access memory at address 0x0>
+15: buffer = 0x4a57040 "Vulfmon\nVu"
+16: *buffer = 0x56
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0xa
+13: vault = 0x0
+14: *vault = <error: Cannot access memory at address 0x0>
+15: buffer = 0x4a57040 "lfnick\nVul"
+16: *buffer = 0x6c
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0xa
+13: vault = 0x0
+14: *vault = <error: Cannot access memory at address 0x0>
+15: buffer = 0x4a57040 "lfnick\nVul"
+16: *buffer = 0x6c
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0xa
+13: vault = 0x0
+14: *vault = <error: Cannot access memory at address 0x0>
+15: buffer = 0x4a57040 "lfnick\nVul"
+16: *buffer = 0x6c
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0xa
+13: vault = 0x0
+14: *vault = <error: Cannot access memory at address 0x0>
+15: buffer = 0x4a57040 "lfnick\nVul"
+16: *buffer = 0x6c
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0xa
+13: vault = 0x0
+14: *vault = <error: Cannot access memory at address 0x0>
+15: buffer = 0x4a57040 "lfnick\nVul"
+16: *buffer = 0x6c
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0x6
+13: vault = 0x0
+14: *vault = <error: Cannot access memory at address 0x0>
+15: buffer = 0x4a57040 "fnull\n\nVul"
+16: *buffer = 0x66
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0x6
+13: vault = 0x0
+14: *vault = <error: Cannot access memory at address 0x0>
+15: buffer = 0x4a57040 "fnull\n\nVul"
+16: *buffer = 0x66
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0x6
+13: vault = 0x0
+14: *vault = <error: Cannot access memory at address 0x0>
+15: buffer = 0x4a57040 "fnull\n"
+16: *buffer = 0x66
++s
+ft_strjoin (s1=0x0, s2=0x4a57040 "fnull\n")
+    at get_next_line_utils.c:21
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
++strjoin
+++display len
+++display i
+++display str
+++display str[i]
++n
+ft_getline (fd=0x3, vault=0x0) at get_next_line.c:45
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0x6
+13: vault = 0x0
+14: *vault = <error: Cannot access memory at address 0x0>
+15: buffer = 0x4a57040 "fnull\n"
+16: *buffer = 0x66
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0x6
+13: vault = 0x0
+14: *vault = <error: Cannot access memory at address 0x0>
+15: buffer = 0x4a57040 "fnull\n"
+16: *buffer = 0x66
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+6: vault = 0x0
+7: *vault = <error: Cannot access memory at address 0x0>
+11: fd = 0x3
+12: bytes_read = 0x0
+13: vault = 0x0
+Quit
++kill
+[Inferior 1 (Remote target) killed]
++vgdb
+++target remote | vgdb
+`/nfs/homes/passunca/C0D3/42CommonCore/Projects/003_get_next_line/a.out' has changed; re-reading symbols.
+relaying data between gdb and process 612742
+0x0000000004001100 in _start ()
+   from /lib64/ld-linux-x86-64.so.2
++c
+Continuing.
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
++gnl
+++display vault
+++display *vault
+++display fd
+++display line
+++display *line
++n
+21: vault = 0x0
+22: *vault = <error: Cannot access memory at address 0x0>
+23: fd = 0x3
+24: line = 0x0
+25: *line = <error: Cannot access memory at address 0x0>
++n
+21: vault = 0x0
+22: *vault = <error: Cannot access memory at address 0x0>
+23: fd = 0x3
+24: line = 0x0
+25: *line = <error: Cannot access memory at address 0x0>
++n
+21: vault = 0x0
+22: *vault = <error: Cannot access memory at address 0x0>
+23: fd = 0x3
+24: line = 0x0
+25: *line = <error: Cannot access memory at address 0x0>
++kill
+[Inferior 1 (Remote target) killed]
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define memchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++kill
+The program is not being run.
+/build/gdb-ktlO15/gdb-9.2/gdb/tui/tui-winsource.c:339: internal-error: void tui_source_window_base::show_source_conten+define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define memchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 614840
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x0000000004001100 in _start () from /lib64/ld-linux-x86-64.so.2
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define memchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 614840
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x000000000496ffd2 in __GI___libc_read (fd=0x3, buf=0x4a57040, nbytes=0xa) at ../sysdeps/unix/sysv/linux/read.c:26
+../sysdeps/unix/sysv/linux/read.c: No such file or directory.
++lay n
++lay n
++lay n
++lay n
++lay n
++lay n
++lay n
++lay n
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define memchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++c
+The program is not being run.
++n
+The program is not being run.
++gnl
+++display vault
+No symbol "vault" in current context.
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define memchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++lay n
++lay n
++lay n
++lay n
++lay n
++layout 
+Usage: layout prev | next | LAYOUT-NAME
++lay p
++lay 
+Usage: layout prev | next | LAYOUT-NAME
++lay n
++lay n
++lay n
++lay n
++lay n
++lay n
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define memchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+no --pid= arg given and multiple valgrind pids found:
+use --pid=614840 for /usr/bin/valgrind.bin --tool=memcheck --vgdb=yes --vgdb-error=0 ./a.out 
+use --pid=624648 for /usr/bin/valgrind.bin -q --leak-check=full ./gnlTest 
+Remote communication error.  Target disconnected.: Connection reset by peer.
++vgdb
+++target remote | vgdb
+no --pid= arg given and multiple valgrind pids found:
+use --pid=614840 for /usr/bin/valgrind.bin --tool=memcheck --vgdb=yes --vgdb-error=0 ./a.out 
+use --pid=624648 for /usr/bin/valgrind.bin -q --leak-check=full ./gnlTest 
+Remote communication error.  Target disconnected.: Connection reset by peer.
++vgdb
+++target remote | vgdb
+no --pid= arg given and multiple valgrind pids found:
+use --pid=614840 for /usr/bin/valgrind.bin --tool=memcheck --vgdb=yes --vgdb-error=0 ./a.out 
+use --pid=624648 for /usr/bin/valgrind.bin -q --leak-check=full ./gnlTest 
+Remote communication error.  Target disconnected.: Connection reset by peer.
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define memchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++gnl
+++display vault
+No symbol "vault" in current context.
++n
+The program is not being run.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 614840
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x000000000496ffd2 in __GI___libc_read (fd=0x3, buf=0x4a57040, nbytes=0xa) at ../sysdeps/unix/sysv/linux/read.c:26
+../sysdeps/unix/sysv/linux/read.c: No such file or directory.
++n
+The program is not being run.
++n
+The program is not being run.
++n
+The program is not being run.
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define memchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++gnl
+++display vault
+No symbol "vault" in current context.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 614840
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x000000000496ffd2 in __GI___libc_read (fd=0x3, buf=0x4a57040, nbytes=0xa) at ../sysdeps/unix/sysv/linux/read.c:26
+../sysdeps/unix/sysv/linux/read.c: No such file or directory.
++c
+The program is not being run.
++start
+Temporary breakpoint 2 at 0x40118f: file main.c, line 19.
+Starting program: /nfs/homes/passunca/C0D3/42CommonCore/Projects/003_get_next_line/a.out 
+
+Temporary breakpoint 2, main () at main.c:19
++main
+++display n
+++display fd
+++display str
+++display *str
++n
+1: n = 0x1
+2: fd = 0x0
+3: str = 0x7fffffffd800 "\001"
+4: *str = 0x1
++n
+1: n = 0x1
+2: fd = 0x0
+3: str = 0x0
+4: *str = <error: Cannot access memory at address 0x0>
++n
+1: n = 0x1
+2: fd = 0x3
+3: str = 0x0
+4: *str = <error: Cannot access memory at address 0x0>
++s
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
++gnl
+++display vault
+++display *vault
+++display fd
+++display line
+++display *line
++n
+5: vault = 0x0
+6: *vault = <error: Cannot access memory at address 0x0>
+7: fd = 0x3
+8: line = 0x7fffffffd6f7 ""
+9: *line = 0x0
++s
+ft_getline (fd=0x3, vault=0x0) at get_next_line.c:41
+5: vault = 0x0
+6: *vault = <error: Cannot access memory at address 0x0>
++getline
+++display fd
+++display bytes_read
+++display buffer
+++display *buffer
++n
+5: vault = 0x0
+6: *vault = <error: Cannot access memory at address 0x0>
+10: fd = 0x3
+11: bytes_read = 0x0
+12: buffer = 0x4052a0 ""
+13: *buffer = 0x0
++n
+5: vault = 0x0
+6: *vault = <error: Cannot access memory at address 0x0>
+10: fd = 0x3
+11: bytes_read = 0x0
+12: buffer = 0x4052a0 ""
+13: *buffer = 0x0
++n
+5: vault = 0x0
+6: *vault = <error: Cannot access memory at address 0x0>
+10: fd = 0x3
+11: bytes_read = 0x1
+12: buffer = 0x4052a0 ""
+13: *buffer = 0x0
++n
+5: vault = 0x0
+6: *vault = <error: Cannot access memory at address 0x0>
+10: fd = 0x3
+11: bytes_read = 0x1
+12: buffer = 0x4052a0 ""
+13: *buffer = 0x0
++n
+5: vault = 0x0
+6: *vault = <error: Cannot access memory at address 0x0>
+10: fd = 0x3
+11: bytes_read = 0xa
+12: buffer = 0x4052a0 "Vulfmon\nVu"
+13: *buffer = 0x56

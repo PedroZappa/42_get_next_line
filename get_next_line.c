@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:19 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/20 20:10:37 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/21 08:51:30 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*ft_getrest(char *vault);
 
 char		*get_next_line(int fd)
 {
-	static char	*vault;
+	static char	*vault = "";
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
@@ -45,7 +45,7 @@ static char		*ft_getline(int fd, char *vault)
 	while (!ft_strchr(vault, '\n'))
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read <= 0)
+		if (bytes_read == -1 || bytes_read == 0)
 		{
 			free(buffer);
 			free(vault);
@@ -93,7 +93,7 @@ static char		*ft_gettillnl(char *vault)
 static char		*ft_getrest(char *vault)
 {
 	int		i;
-	int		pos;
+	int		rest_i;
 	char	*rest;
 
 	i = 0;
@@ -111,10 +111,10 @@ static char		*ft_getrest(char *vault)
 		return (NULL);
 	}
 	++i;
-	pos = 0;
+	rest_i = 0;
 	while (vault[i])
-		rest[pos++] = vault[i++];
-	rest[pos] = '\0';
+		rest[rest_i++] = vault[i++];
+	rest[rest_i] = '\0';
 	free(vault);
 	return (rest);
 }
