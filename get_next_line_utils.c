@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:57 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/21 09:28:59 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/21 09:58:50 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2 && *s2)
 		str[i++] = *s2++;
 	str[i] = '\0';
-	free(s1);
+	// free(s1);
 	return (str);
 }
 

@@ -28,10 +28,10 @@ end
 
 define gettillnl
 	display vault
-	display *vault
+	display vault[i]
 	display i
 	display line
-	display *line
+	display line[i]
 end
 
 define getrest
@@ -53,6 +53,8 @@ end
 define strjoin
 	display len
 	display i
+	display s1
+	display s2
 	display str
 	display str[i]
 end
@@ -69,6 +71,7 @@ end
 break get_next_line
 fs cmd
 vgdb
+continue
 # break ft_clearvault
 # run
 # start
