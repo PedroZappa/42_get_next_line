@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:19 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/21 08:51:30 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/21 09:16:45 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,14 @@ static char	*ft_getrest(char *vault);
 
 char		*get_next_line(int fd)
 {
-	static char	*vault = "";
+	static char	*vault;
 	char		*line;
 
+	if (!vault)
+	{
+		vault = malloc(1);
+		vault = "";
+	}
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	vault = ft_getline(fd, vault);
@@ -42,13 +47,14 @@ static char		*ft_getline(int fd, char *vault)
 	if (!buffer)
 		return (NULL);
 	bytes_read = 1;
-	while (!ft_strchr(vault, '\n'))
+	while (!ft_strchr(vault, '\n') && bytes_read != 0)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read == -1 || bytes_read == 0)
+		if (bytes_read == -1)
 		{
 			free(buffer);
 			free(vault);
+			vault = NULL;
 			return (NULL);
 		}
 		buffer[bytes_read] = '\0';

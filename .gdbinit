@@ -61,13 +61,14 @@ define vgdb
 	target remote | vgdb
 end
 
-define memchk
+define mchk
 	monitor leak_check full reachable any
 end
 
 # Start at get_next_line()
 break get_next_line
 fs cmd
+vgdb
 # break ft_clearvault
 # run
 # start
