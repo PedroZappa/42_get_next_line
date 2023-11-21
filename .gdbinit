@@ -68,10 +68,9 @@ define mchk
 end
 
 # Start at get_next_line()
-break get_next_line
+# break get_next_line
 fs cmd
 vgdb
-continue
 # break ft_clearvault
 # run
 # start

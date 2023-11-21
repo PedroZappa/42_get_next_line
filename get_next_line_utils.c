@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:57 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/21 09:58:50 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/21 11:52:43 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		len;
 	int		i;
 
+	if (!s1)
+	{
+		s1 = malloc(1);
+		s1[0] = '\0';
+	}
 	if (!s1 || !s2)
 		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
@@ -29,8 +34,9 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (NULL);
 	}
 	i = 0;
-	while (s1 && *s1)
-		str[i++] = *s1++;
+	if (s1)
+		while (s1 && *s1)
+			str[i++] = *s1++;
 	while (s2 && *s2)
 		str[i++] = *s2++;
 	str[i] = '\0';
@@ -39,7 +45,7 @@ char	*ft_strjoin(char *s1, char *s2)
 }
 
 /* Get the length of a givengiven 'str' */
-int	ft_strlen(const char *str)
+int	ft_strlen(char *str)
 {
 	int	len;
 
