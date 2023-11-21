@@ -71,6 +71,9 @@ end
 break get_next_line
 fs cmd
 vgdb
+next
+gnl
+# target record-full
 # break ft_clearvault
 # run
 # start

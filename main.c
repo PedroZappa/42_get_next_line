@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 08:47:17 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/20 09:34:53 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:38:21 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ int main()
 		++n;
 	}
 	close(fd);
-	free(str);
+	// free(str);
 	return (0);
 }

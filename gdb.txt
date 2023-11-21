@@ -8364,3 +8364,3208 @@ get_next_line (fd=0x3) at get_next_line.c:32
 ==893460==    still reachable: 1,037 bytes in 2 blocks
 ==893460==         suppressed: 0 bytes in 0 blocks
 ==893460== 
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+vgdb error: no FIFO found and no pid given
+.gdbinit:73: Error in sourced command file:
+Remote communication error.  Target disconnected.: Connection reset by peer.
++set args ertert ertert
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 955982
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x0000000004001100 in _start () from /lib64/ld-linux-x86-64.so.2
++n
+Single stepping until exit from function _start,
+which has no line number information.
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
++n
++n
++vgdb
+++target remote | vgdb
+vgdb error: no FIFO found and no pid given
+Remote communication error.  Target disconnected.: Connection reset by peer.
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 976447
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x0000000004001100 in _start () from /lib64/ld-linux-x86-64.so.2
++n
+Single stepping until exit from function _start,
+which has no line number information.
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
++gnl
+++display vault
+++display *vault
+++display fd
+++display line
+++display *line
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++s
+ft_getline (fd=0x3, vault=0x40201e "") at get_next_line.c:46
+1: vault = 0x40201e ""
+2: *vault = 0x0
++getline
+++display fd
+++display bytes_read
+++display buffer
+++display *buffer
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0x0
+8: buffer = 0x4a57040 ""
+9: *buffer = 0x0
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0x0
+8: buffer = 0x4a57040 ""
+9: *buffer = 0x0
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0x1
+8: buffer = 0x4a57040 ""
+9: *buffer = 0x0
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0x1
+8: buffer = 0x4a57040 ""
+9: *buffer = 0x0
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a57040 "Vulfmon\nVu"
+9: *buffer = 0x56
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a57040 "Vulfmon\nVu"
+9: *buffer = 0x56
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a57040 "Vulfmon\nVu"
+9: *buffer = 0x56
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a57040 "Vulfmon\nVu"
+9: *buffer = 0x56
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a57040 "Vulfmon\nVu"
+9: *buffer = 0x56
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a57040 "Vulfmon\nVu"
+9: *buffer = 0x56
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a57040 "Vulfmon\nVu"
+9: *buffer = 0x56
++n
+get_next_line (fd=0x3) at get_next_line.c:32
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+main () at main.c:30
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++mchk
+++monitor leak_check full reachable any
+==976447== 4 bytes in 1 blocks are still reachable in loss record 1 of 2
+==976447==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==976447==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==976447==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==976447==    by 0x4011BB: main (main.c:28)
+==976447== 
+==976447== 1,024 bytes in 1 blocks are still reachable in loss record 2 of 2
+==976447==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==976447==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==976447==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==976447==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==976447==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==976447==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==976447==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==976447==    by 0x48C3D3E: printf (printf.c:33)
+==976447==    by 0x4011E1: main (main.c:30)
+==976447== 
+==976447== LEAK SUMMARY:
+==976447==    definitely lost: 0 bytes in 0 blocks
+==976447==    indirectly lost: 0 bytes in 0 blocks
+==976447==      possibly lost: 0 bytes in 0 blocks
+==976447==    still reachable: 1,028 bytes in 2 blocks
+==976447==         suppressed: 0 bytes in 0 blocks
+==976447== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++s
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++mchk
+++monitor leak_check full reachable any
+==976447== 4 bytes in 1 blocks are still reachable in loss record 1 of 2
+==976447==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==976447==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==976447==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==976447==    by 0x4011BB: main (main.c:28)
+==976447== 
+==976447== 1,024 bytes in 1 blocks are still reachable in loss record 2 of 2
+==976447==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==976447==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==976447==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==976447==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==976447==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==976447==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==976447==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==976447==    by 0x48C3D3E: printf (printf.c:33)
+==976447==    by 0x4011E1: main (main.c:30)
+==976447== 
+==976447== LEAK SUMMARY:
+==976447==    definitely lost: 0 bytes in 0 blocks
+==976447==    indirectly lost: 0 bytes in 0 blocks
+==976447==      possibly lost: 0 bytes in 0 blocks
+==976447==    still reachable: 1,028 bytes in 2 blocks
+==976447==         suppressed: 0 bytes in 0 blocks
+==976447== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57610 "Vulfnick\nVul"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57610 "Vulfnick\nVul"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++mchk
+++monitor leak_check full reachable any
+==976447== 4 bytes in 1 blocks are definitely lost in loss record 2 of 4
+==976447==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==976447==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==976447==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==976447==    by 0x4011BB: main (main.c:28)
+==976447== 
+==976447== 13 bytes in 1 blocks are still reachable in loss record 3 of 4
+==976447==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==976447==    by 0x4016F3: ft_strjoin (get_next_line_utils.c:24)
+==976447==    by 0x4013B3: ft_getline (get_next_line.c:61)
+==976447==    by 0x40127D: get_next_line (get_next_line.c:31)
+==976447==    by 0x4011BB: main (main.c:28)
+==976447== 
+==976447== 1,024 bytes in 1 blocks are still reachable in loss record 4 of 4
+==976447==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==976447==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==976447==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==976447==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==976447==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==976447==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==976447==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==976447==    by 0x48C3D3E: printf (printf.c:33)
+==976447==    by 0x4011E1: main (main.c:30)
+==976447== 
+==976447== LEAK SUMMARY:
+==976447==    definitely lost: 4 bytes in 1 blocks
+==976447==    indirectly lost: 0 bytes in 0 blocks
+==976447==      possibly lost: 0 bytes in 0 blocks
+==976447==    still reachable: 1,037 bytes in 2 blocks
+==976447==         suppressed: 0 bytes in 0 blocks
+==976447== 
++kill
+[Inferior 1 (Remote target) killed]
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target record-full
+.gdbinit:74: Error in sourced command file:
+Process record: the program is not being run.
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 977829
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x0000000004001100 in _start () from /lib64/ld-linux-x86-64.so.2
++run
+.gdbinit:74: Error in sourced command file:
+The "remote" target does not support "run".  Try "help target" or "continue".
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 978949
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x0000000004001100 in _start () from /lib64/ld-linux-x86-64.so.2
++next
+Single stepping until exit from function _start,
+which has no line number information.
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
++target record-full
++gnl
+++display vault
+++display *vault
+++display fd
+++display line
+++display *line
++n
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 978949
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+get_next_line (fd=0x3) at get_next_line.c:24
++next
+ft_strjoin (s1=0x4a57130 "Vu", s2=0x4a575c0 "lfnick\nVul") at get_next_line_utils.c:31
++target record-full
++kill
+[Inferior 1 (Remote target) killed]
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 982527
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x0000000004001100 in _start () from /lib64/ld-linux-x86-64.so.2
++next
+Single stepping until exit from function _start,
+which has no line number information.
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
++target record-full
++killn
+Undefined command: "killn".  Try "help".
++n
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 982527
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+get_next_line (fd=0x3) at get_next_line.c:24
++next
+ft_strjoin (s1=0x4a57130 "Vu", s2=0x4a575c0 "lfnick\nVul") at get_next_line_utils.c:31
++target record-full
++kill
+[Inferior 1 (Remote target) killed]
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 984301
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x0000000004001100 in _start () from /lib64/ld-linux-x86-64.so.2
++next
+Single stepping until exit from function _start,
+which has no line number information.
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
++target record-full
++gnl
+++display vault
+++display *vault
+++display fd
+++display line
+++display *line
++mchk
+++monitor leak_check full reachable any
+==984301== All heap blocks were freed -- no leaks are possible
+==984301== 
++n
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 984301
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+get_next_line (fd=0x3) at get_next_line.c:24
++next
+ft_strjoin (s1=0x4a57130 "Vu", s2=0x4a575c0 "lfnick\nVul") at get_next_line_utils.c:31
++kill
+[Inferior 1 (Remote target) killed]
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 985880
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x0000000004001100 in _start () from /lib64/ld-linux-x86-64.so.2
++next
+Single stepping until exit from function _start,
+which has no line number information.
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
++gnl
+++display vault
+++display *vault
+++display fd
+++display line
+++display *line
++gnl
+++display vault
+++display *vault
+++display fd
+++display line
+++display *line
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
+6: vault = 0x40201e ""
+7: *vault = 0x0
+8: fd = 0x3
+9: line = 0x0
+10: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
+6: vault = 0x40201e ""
+7: *vault = 0x0
+8: fd = 0x3
+9: line = 0x0
+10: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
+6: vault = 0x4a57090 "Vulfmon\nVu"
+7: *vault = 0x56
+8: fd = 0x3
+9: line = 0x0
+10: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
+6: vault = 0x4a57090 "Vulfmon\nVu"
+7: *vault = 0x56
+8: fd = 0x3
+9: line = 0x0
+10: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
+6: vault = 0x4a57090 "Vulfmon\nVu"
+7: *vault = 0x56
+8: fd = 0x3
+9: line = 0x4a570e0 "Vulfmon\n"
+10: *line = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
+6: vault = 0x4a57130 "Vu"
+7: *vault = 0x56
+8: fd = 0x3
+9: line = 0x4a570e0 "Vulfmon\n"
+10: *line = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
+6: vault = 0x4a57130 "Vu"
+7: *vault = 0x56
+8: fd = 0x3
+9: line = 0x4a570e0 "Vulfmon\n"
+10: *line = 0x56
++n
+main () at main.c:30
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: vault = 0x4a57130 "Vu"
+7: *vault = 0x56
++mchk
+++monitor leak_check full reachable any
+==985880== 4 bytes in 1 blocks are still reachable in loss record 1 of 2
+==985880==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==985880==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==985880==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==985880==    by 0x4011BB: main (main.c:28)
+==985880== 
+==985880== 9 bytes in 1 blocks are still reachable in loss record 2 of 2
+==985880==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==985880==    by 0x401475: ft_gettillnl (get_next_line.c:79)
+==985880==    by 0x4012AE: get_next_line (get_next_line.c:34)
+==985880==    by 0x4011BB: main (main.c:28)
+==985880== 
+==985880== LEAK SUMMARY:
+==985880==    definitely lost: 0 bytes in 0 blocks
+==985880==    indirectly lost: 0 bytes in 0 blocks
+==985880==      possibly lost: 0 bytes in 0 blocks
+==985880==    still reachable: 13 bytes in 2 blocks
+==985880==         suppressed: 0 bytes in 0 blocks
+==985880== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: vault = 0x4a57130 "Vu"
+7: *vault = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: vault = 0x4a57130 "Vu"
+7: *vault = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: vault = 0x4a57130 "Vu"
+7: *vault = 0x56
++s
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
+6: vault = 0x4a57130 "Vu"
+7: *vault = 0x56
+8: fd = 0x3
+9: line = 0x0
+10: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
+6: vault = 0x4a57130 "Vu"
+7: *vault = 0x56
+8: fd = 0x3
+9: line = 0x0
+10: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
+6: vault = 0x4a57130 "Vu"
+7: *vault = 0x56
+8: fd = 0x3
+9: line = 0x0
+10: *line = <error: Cannot access memory at address 0x0>
++s
+ft_getline (fd=0x3, vault=0x4a57130 "Vu") at get_next_line.c:46
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: vault = 0x4a57130 "Vu"
+7: *vault = 0x56
++getline
+++display fd
+++display bytes_read
+++display buffer
+++display *buffer
++mchk
+++monitor leak_check full reachable any
+==985880== 4 bytes in 1 blocks are still reachable in loss record 2 of 3
+==985880==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==985880==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==985880==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==985880==    by 0x4011BB: main (main.c:28)
+==985880== 
+==985880== 1,024 bytes in 1 blocks are still reachable in loss record 3 of 3
+==985880==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==985880==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==985880==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==985880==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==985880==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==985880==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==985880==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==985880==    by 0x48C3D3E: printf (printf.c:33)
+==985880==    by 0x4011E1: main (main.c:30)
+==985880== 
+==985880== LEAK SUMMARY:
+==985880==    definitely lost: 0 bytes in 0 blocks
+==985880==    indirectly lost: 0 bytes in 0 blocks
+==985880==      possibly lost: 0 bytes in 0 blocks
+==985880==    still reachable: 1,028 bytes in 2 blocks
+==985880==         suppressed: 0 bytes in 0 blocks
+==985880== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: vault = 0x4a57130 "Vu"
+7: *vault = 0x56
+11: fd = 0x3
+12: bytes_read = 0x0
+13: buffer = 0x4a575c0 ""
+14: *buffer = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: vault = 0x4a57130 "Vu"
+7: *vault = 0x56
+11: fd = 0x3
+12: bytes_read = 0xa
+13: buffer = 0x4a575c0 "lfnick\nVul"
+14: *buffer = 0x6c
++mchk
+++monitor leak_check full reachable any
+==985880== 4 bytes in 1 blocks are still reachable in loss record 1 of 4
+==985880==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==985880==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==985880==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==985880==    by 0x4011BB: main (main.c:28)
+==985880== 
+==985880== 11 bytes in 1 blocks are still reachable in loss record 2 of 4
+==985880==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==985880==    by 0x4012F8: ft_getline (get_next_line.c:46)
+==985880==    by 0x40127D: get_next_line (get_next_line.c:31)
+==985880==    by 0x4011BB: main (main.c:28)
+==985880== 
+==985880== 13 bytes in 1 blocks are still reachable in loss record 3 of 4
+==985880==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==985880==    by 0x4016F3: ft_strjoin (get_next_line_utils.c:24)
+==985880==    by 0x4013B3: ft_getline (get_next_line.c:61)
+==985880==    by 0x40127D: get_next_line (get_next_line.c:31)
+==985880==    by 0x4011BB: main (main.c:28)
+==985880== 
+==985880== 1,024 bytes in 1 blocks are still reachable in loss record 4 of 4
+==985880==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==985880==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==985880==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==985880==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==985880==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==985880==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==985880==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==985880==    by 0x48C3D3E: printf (printf.c:33)
+==985880==    by 0x4011E1: main (main.c:30)
+==985880== 
+==985880== LEAK SUMMARY:
+==985880==    definitely lost: 0 bytes in 0 blocks
+==985880==    indirectly lost: 0 bytes in 0 blocks
+==985880==      possibly lost: 0 bytes in 0 blocks
+==985880==    still reachable: 1,052 bytes in 4 blocks
+==985880==         suppressed: 0 bytes in 0 blocks
+==985880== 
++k
+[Inferior 1 (Remote target) killed]
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++gnl
+++display vault
+.gdbinit:72: Error in sourced command file:
+No symbol "vault" in current context.
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++https://github.com/Kelho0812/get_next_line/blob/master/get_next_line.c
+.gdbinit:69: Error in sourced command file:
+Undefined command: "https".  Try "help".
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 993005
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x0000000004001100 in _start () from /lib64/ld-linux-x86-64.so.2
++next
+Single stepping until exit from function _start,
+which has no line number information.
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
++gnl
+++display vault
+++display *vault
+++display fd
+++display line
+++display *line
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++s
+ft_getline (fd=0x3, vault=0x40201e "") at get_next_line.c:46
+1: vault = 0x40201e ""
+2: *vault = 0x0
++getline
+++display fd
+++display bytes_read
+++display buffer
+++display *buffer
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0x0
+8: buffer = 0x4a57040 ""
+9: *buffer = 0x0
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0x0
+8: buffer = 0x4a57040 ""
+9: *buffer = 0x0
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0x1
+8: buffer = 0x4a57040 ""
+9: *buffer = 0x0
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0x1
+8: buffer = 0x4a57040 ""
+9: *buffer = 0x0
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a57040 "Vulfmon\nVu"
+9: *buffer = 0x56
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a57040 "Vulfmon\nVu"
+9: *buffer = 0x56
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a57040 "Vulfmon\nVu"
+9: *buffer = 0x56
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a57040 "Vulfmon\nVu"
+9: *buffer = 0x56
++mchk
+++monitor leak_check full reachable any
+==993005== 11 bytes in 1 blocks are still reachable in loss record 1 of 2
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4012F8: ft_getline (get_next_line.c:46)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 11 bytes in 1 blocks are still reachable in loss record 2 of 2
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4016F3: ft_strjoin (get_next_line_utils.c:24)
+==993005==    by 0x4013B3: ft_getline (get_next_line.c:61)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== LEAK SUMMARY:
+==993005==    definitely lost: 0 bytes in 0 blocks
+==993005==    indirectly lost: 0 bytes in 0 blocks
+==993005==      possibly lost: 0 bytes in 0 blocks
+==993005==    still reachable: 22 bytes in 2 blocks
+==993005==         suppressed: 0 bytes in 0 blocks
+==993005== 
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a57040 "Vulfmon\nVu"
+9: *buffer = 0x56
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a57040 "Vulfmon\nVu"
+9: *buffer = 0x56
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a57040 "Vulfmon\nVu"
+9: *buffer = 0x56
++n
+get_next_line (fd=0x3) at get_next_line.c:32
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+main () at main.c:30
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++mchk
+++monitor leak_check full reachable any
+==993005== 4 bytes in 1 blocks are still reachable in loss record 3 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==993005==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 9 bytes in 1 blocks are still reachable in loss record 4 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x401475: ft_gettillnl (get_next_line.c:79)
+==993005==    by 0x4012AE: get_next_line (get_next_line.c:34)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== LEAK SUMMARY:
+==993005==    definitely lost: 0 bytes in 0 blocks
+==993005==    indirectly lost: 0 bytes in 0 blocks
+==993005==      possibly lost: 0 bytes in 0 blocks
+==993005==    still reachable: 13 bytes in 2 blocks
+==993005==         suppressed: 0 bytes in 0 blocks
+==993005== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++mchk
+++monitor leak_check full reachable any
+==993005== 4 bytes in 1 blocks are still reachable in loss record 1 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==993005==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 9 bytes in 1 blocks are still reachable in loss record 2 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x401475: ft_gettillnl (get_next_line.c:79)
+==993005==    by 0x4012AE: get_next_line (get_next_line.c:34)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 1,024 bytes in 1 blocks are still reachable in loss record 3 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==993005==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==993005==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==993005==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==993005==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==993005==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==993005==    by 0x48C3D3E: printf (printf.c:33)
+==993005==    by 0x4011E1: main (main.c:30)
+==993005== 
+==993005== LEAK SUMMARY:
+==993005==    definitely lost: 0 bytes in 0 blocks
+==993005==    indirectly lost: 0 bytes in 0 blocks
+==993005==      possibly lost: 0 bytes in 0 blocks
+==993005==    still reachable: 1,037 bytes in 3 blocks
+==993005==         suppressed: 0 bytes in 0 blocks
+==993005== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++mchk
+++monitor leak_check full reachable any
+==993005== 4 bytes in 1 blocks are still reachable in loss record 2 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==993005==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 1,024 bytes in 1 blocks are still reachable in loss record 3 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==993005==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==993005==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==993005==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==993005==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==993005==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==993005==    by 0x48C3D3E: printf (printf.c:33)
+==993005==    by 0x4011E1: main (main.c:30)
+==993005== 
+==993005== LEAK SUMMARY:
+==993005==    definitely lost: 0 bytes in 0 blocks
+==993005==    indirectly lost: 0 bytes in 0 blocks
+==993005==      possibly lost: 0 bytes in 0 blocks
+==993005==    still reachable: 1,028 bytes in 2 blocks
+==993005==         suppressed: 0 bytes in 0 blocks
+==993005== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++n
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++mchk
+++monitor leak_check full reachable any
+==993005== 4 bytes in 1 blocks are still reachable in loss record 1 of 2
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==993005==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 1,024 bytes in 1 blocks are still reachable in loss record 2 of 2
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==993005==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==993005==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==993005==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==993005==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==993005==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==993005==    by 0x48C3D3E: printf (printf.c:33)
+==993005==    by 0x4011E1: main (main.c:30)
+==993005== 
+==993005== LEAK SUMMARY:
+==993005==    definitely lost: 0 bytes in 0 blocks
+==993005==    indirectly lost: 0 bytes in 0 blocks
+==993005==      possibly lost: 0 bytes in 0 blocks
+==993005==    still reachable: 1,028 bytes in 2 blocks
+==993005==         suppressed: 0 bytes in 0 blocks
+==993005== 
++s
+ft_getline (fd=0x3, vault=0x4a57130 "Vu") at get_next_line.c:46
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: fd = 0x3
+7: bytes_read = 0x0
+8: buffer = 0x0
+9: *buffer = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: fd = 0x3
+7: bytes_read = 0x0
+8: buffer = 0x4a575c0 ""
+9: *buffer = 0x0
++mchk
+++monitor leak_check full reachable any
+==993005== 4 bytes in 1 blocks are still reachable in loss record 1 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==993005==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 11 bytes in 1 blocks are still reachable in loss record 2 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4012F8: ft_getline (get_next_line.c:46)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 1,024 bytes in 1 blocks are still reachable in loss record 3 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==993005==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==993005==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==993005==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==993005==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==993005==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==993005==    by 0x48C3D3E: printf (printf.c:33)
+==993005==    by 0x4011E1: main (main.c:30)
+==993005== 
+==993005== LEAK SUMMARY:
+==993005==    definitely lost: 0 bytes in 0 blocks
+==993005==    indirectly lost: 0 bytes in 0 blocks
+==993005==      possibly lost: 0 bytes in 0 blocks
+==993005==    still reachable: 1,039 bytes in 3 blocks
+==993005==         suppressed: 0 bytes in 0 blocks
+==993005== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: fd = 0x3
+7: bytes_read = 0x0
+8: buffer = 0x4a575c0 ""
+9: *buffer = 0x0
++mchk
+++monitor leak_check full reachable any
+==993005== 4 bytes in 1 blocks are still reachable in loss record 1 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==993005==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 11 bytes in 1 blocks are still reachable in loss record 2 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4012F8: ft_getline (get_next_line.c:46)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 1,024 bytes in 1 blocks are still reachable in loss record 3 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==993005==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==993005==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==993005==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==993005==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==993005==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==993005==    by 0x48C3D3E: printf (printf.c:33)
+==993005==    by 0x4011E1: main (main.c:30)
+==993005== 
+==993005== LEAK SUMMARY:
+==993005==    definitely lost: 0 bytes in 0 blocks
+==993005==    indirectly lost: 0 bytes in 0 blocks
+==993005==      possibly lost: 0 bytes in 0 blocks
+==993005==    still reachable: 1,039 bytes in 3 blocks
+==993005==         suppressed: 0 bytes in 0 blocks
+==993005== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: fd = 0x3
+7: bytes_read = 0x1
+8: buffer = 0x4a575c0 ""
+9: *buffer = 0x0
++mchk
+++monitor leak_check full reachable any
+==993005== 4 bytes in 1 blocks are still reachable in loss record 1 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==993005==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 11 bytes in 1 blocks are still reachable in loss record 2 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4012F8: ft_getline (get_next_line.c:46)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 1,024 bytes in 1 blocks are still reachable in loss record 3 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==993005==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==993005==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==993005==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==993005==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==993005==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==993005==    by 0x48C3D3E: printf (printf.c:33)
+==993005==    by 0x4011E1: main (main.c:30)
+==993005== 
+==993005== LEAK SUMMARY:
+==993005==    definitely lost: 0 bytes in 0 blocks
+==993005==    indirectly lost: 0 bytes in 0 blocks
+==993005==      possibly lost: 0 bytes in 0 blocks
+==993005==    still reachable: 1,039 bytes in 3 blocks
+==993005==         suppressed: 0 bytes in 0 blocks
+==993005== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: fd = 0x3
+7: bytes_read = 0x1
+8: buffer = 0x4a575c0 ""
+9: *buffer = 0x0
++mchk
+++monitor leak_check full reachable any
+==993005== 4 bytes in 1 blocks are still reachable in loss record 1 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==993005==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 11 bytes in 1 blocks are still reachable in loss record 2 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4012F8: ft_getline (get_next_line.c:46)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 1,024 bytes in 1 blocks are still reachable in loss record 3 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==993005==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==993005==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==993005==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==993005==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==993005==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==993005==    by 0x48C3D3E: printf (printf.c:33)
+==993005==    by 0x4011E1: main (main.c:30)
+==993005== 
+==993005== LEAK SUMMARY:
+==993005==    definitely lost: 0 bytes in 0 blocks
+==993005==    indirectly lost: 0 bytes in 0 blocks
+==993005==      possibly lost: 0 bytes in 0 blocks
+==993005==    still reachable: 1,039 bytes in 3 blocks
+==993005==         suppressed: 0 bytes in 0 blocks
+==993005== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a575c0 "lfnick\nVul"
+9: *buffer = 0x6c
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a575c0 "lfnick\nVul"
+9: *buffer = 0x6c
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a575c0 "lfnick\nVul"
+9: *buffer = 0x6c
++mchk
+++monitor leak_check full reachable any
+==993005== 4 bytes in 1 blocks are still reachable in loss record 1 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==993005==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 11 bytes in 1 blocks are still reachable in loss record 2 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4012F8: ft_getline (get_next_line.c:46)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 1,024 bytes in 1 blocks are still reachable in loss record 3 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==993005==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==993005==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==993005==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==993005==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==993005==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==993005==    by 0x48C3D3E: printf (printf.c:33)
+==993005==    by 0x4011E1: main (main.c:30)
+==993005== 
+==993005== LEAK SUMMARY:
+==993005==    definitely lost: 0 bytes in 0 blocks
+==993005==    indirectly lost: 0 bytes in 0 blocks
+==993005==      possibly lost: 0 bytes in 0 blocks
+==993005==    still reachable: 1,039 bytes in 3 blocks
+==993005==         suppressed: 0 bytes in 0 blocks
+==993005== 
++s
+ft_strjoin (s1=0x4a57130 "Vu", s2=0x4a575c0 "lfnick\nVul") at get_next_line_utils.c:21
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++strjoin
+++display len
+++display i
+++display s1
+++display s2
+++display str
+++display str[i]
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x0
+12: s1 = 0x4a57130 "Vu"
+13: s2 = 0x4a575c0 "lfnick\nVul"
+14: str = 0x4a57610 ""
+15: str[i] = 0x0
++mchk
+++monitor leak_check full reachable any
+==993005== 4 bytes in 1 blocks are still reachable in loss record 1 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==993005==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 11 bytes in 1 blocks are still reachable in loss record 2 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4012F8: ft_getline (get_next_line.c:46)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 13 bytes in 1 blocks are still reachable in loss record 3 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4016F3: ft_strjoin (get_next_line_utils.c:24)
+==993005==    by 0x4013B3: ft_getline (get_next_line.c:61)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 1,024 bytes in 1 blocks are still reachable in loss record 4 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==993005==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==993005==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==993005==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==993005==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==993005==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==993005==    by 0x48C3D3E: printf (printf.c:33)
+==993005==    by 0x4011E1: main (main.c:30)
+==993005== 
+==993005== LEAK SUMMARY:
+==993005==    definitely lost: 0 bytes in 0 blocks
+==993005==    indirectly lost: 0 bytes in 0 blocks
+==993005==      possibly lost: 0 bytes in 0 blocks
+==993005==    still reachable: 1,052 bytes in 4 blocks
+==993005==         suppressed: 0 bytes in 0 blocks
+==993005== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x1
+12: s1 = 0x4a57131 "u"
+13: s2 = 0x4a575c0 "lfnick\nVul"
+14: str = 0x4a57610 "V"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x1
+12: s1 = 0x4a57131 "u"
+13: s2 = 0x4a575c0 "lfnick\nVul"
+14: str = 0x4a57610 "V"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x2
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c0 "lfnick\nVul"
+14: str = 0x4a57610 "Vu"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x2
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c0 "lfnick\nVul"
+14: str = 0x4a57610 "Vu"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x2
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c0 "lfnick\nVul"
+14: str = 0x4a57610 "Vu"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x2
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c0 "lfnick\nVul"
+14: str = 0x4a57610 "Vu"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x3
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c1 "fnick\nVul"
+14: str = 0x4a57610 "Vul"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x3
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c1 "fnick\nVul"
+14: str = 0x4a57610 "Vul"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x4
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c2 "nick\nVul"
+14: str = 0x4a57610 "Vulf"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x4
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c2 "nick\nVul"
+14: str = 0x4a57610 "Vulf"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x5
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c3 "ick\nVul"
+14: str = 0x4a57610 "Vulfn"
+15: str[i] = 0x0
++mchk
+++monitor leak_check full reachable any
+==993005== 4 bytes in 1 blocks are still reachable in loss record 1 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==993005==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 11 bytes in 1 blocks are still reachable in loss record 2 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4012F8: ft_getline (get_next_line.c:46)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 13 bytes in 1 blocks are still reachable in loss record 3 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4016F3: ft_strjoin (get_next_line_utils.c:24)
+==993005==    by 0x4013B3: ft_getline (get_next_line.c:61)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 1,024 bytes in 1 blocks are still reachable in loss record 4 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==993005==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==993005==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==993005==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==993005==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==993005==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==993005==    by 0x48C3D3E: printf (printf.c:33)
+==993005==    by 0x4011E1: main (main.c:30)
+==993005== 
+==993005== LEAK SUMMARY:
+==993005==    definitely lost: 0 bytes in 0 blocks
+==993005==    indirectly lost: 0 bytes in 0 blocks
+==993005==      possibly lost: 0 bytes in 0 blocks
+==993005==    still reachable: 1,052 bytes in 4 blocks
+==993005==         suppressed: 0 bytes in 0 blocks
+==993005== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x5
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c3 "ick\nVul"
+14: str = 0x4a57610 "Vulfn"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x6
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c4 "ck\nVul"
+14: str = 0x4a57610 "Vulfni"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x6
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c4 "ck\nVul"
+14: str = 0x4a57610 "Vulfni"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x7
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c5 "k\nVul"
+14: str = 0x4a57610 "Vulfnic"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x7
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c5 "k\nVul"
+14: str = 0x4a57610 "Vulfnic"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x8
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c6 "\nVul"
+14: str = 0x4a57610 "Vulfnick"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x8
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c6 "\nVul"
+14: str = 0x4a57610 "Vulfnick"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x9
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c7 "Vul"
+14: str = 0x4a57610 "Vulfnick\n"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0x9
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c7 "Vul"
+14: str = 0x4a57610 "Vulfnick\n"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0xa
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c8 "ul"
+14: str = 0x4a57610 "Vulfnick\nV"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0xa
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c8 "ul"
+14: str = 0x4a57610 "Vulfnick\nV"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0xb
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c9 "l"
+14: str = 0x4a57610 "Vulfnick\nVu"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0xb
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575c9 "l"
+14: str = 0x4a57610 "Vulfnick\nVu"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0xc
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575ca ""
+14: str = 0x4a57610 "Vulfnick\nVul"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0xc
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575ca ""
+14: str = 0x4a57610 "Vulfnick\nVul"
+15: str[i] = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0xc
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575ca ""
+14: str = 0x4a57610 "Vulfnick\nVul"
+15: str[i] = 0x0
++mchk
+++monitor leak_check full reachable any
+==993005== 4 bytes in 1 blocks are still reachable in loss record 1 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==993005==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 11 bytes in 1 blocks are still reachable in loss record 2 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4012F8: ft_getline (get_next_line.c:46)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 13 bytes in 1 blocks are still reachable in loss record 3 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4016F3: ft_strjoin (get_next_line_utils.c:24)
+==993005==    by 0x4013B3: ft_getline (get_next_line.c:61)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 1,024 bytes in 1 blocks are still reachable in loss record 4 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==993005==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==993005==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==993005==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==993005==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==993005==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==993005==    by 0x48C3D3E: printf (printf.c:33)
+==993005==    by 0x4011E1: main (main.c:30)
+==993005== 
+==993005== LEAK SUMMARY:
+==993005==    definitely lost: 0 bytes in 0 blocks
+==993005==    indirectly lost: 0 bytes in 0 blocks
+==993005==      possibly lost: 0 bytes in 0 blocks
+==993005==    still reachable: 1,052 bytes in 4 blocks
+==993005==         suppressed: 0 bytes in 0 blocks
+==993005== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+10: len = 0xc
+11: i = 0xc
+12: s1 = 0x4a57132 ""
+13: s2 = 0x4a575ca ""
+14: str = 0x4a57610 "Vulfnick\nVul"
+15: str[i] = 0x0
++n
+ft_getline (fd=0x3, vault=0x4a57610 "Vulfnick\nVul") at get_next_line.c:62
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a575c0 "lfnick\nVul"
+9: *buffer = 0x6c
++mchk
+++monitor leak_check full reachable any
+==993005== 4 bytes in 1 blocks are still reachable in loss record 1 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==993005==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 11 bytes in 1 blocks are still reachable in loss record 2 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4012F8: ft_getline (get_next_line.c:46)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 13 bytes in 1 blocks are still reachable in loss record 3 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4016F3: ft_strjoin (get_next_line_utils.c:24)
+==993005==    by 0x4013B3: ft_getline (get_next_line.c:61)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 1,024 bytes in 1 blocks are still reachable in loss record 4 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==993005==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==993005==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==993005==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==993005==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==993005==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==993005==    by 0x48C3D3E: printf (printf.c:33)
+==993005==    by 0x4011E1: main (main.c:30)
+==993005== 
+==993005== LEAK SUMMARY:
+==993005==    definitely lost: 0 bytes in 0 blocks
+==993005==    indirectly lost: 0 bytes in 0 blocks
+==993005==      possibly lost: 0 bytes in 0 blocks
+==993005==    still reachable: 1,052 bytes in 4 blocks
+==993005==         suppressed: 0 bytes in 0 blocks
+==993005== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a575c0 "lfnick\nVul"
+9: *buffer = 0x6c
++mchk
+++monitor leak_check full reachable any
+==993005== 4 bytes in 1 blocks are still reachable in loss record 2 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==993005==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 13 bytes in 1 blocks are still reachable in loss record 3 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4016F3: ft_strjoin (get_next_line_utils.c:24)
+==993005==    by 0x4013B3: ft_getline (get_next_line.c:61)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 1,024 bytes in 1 blocks are still reachable in loss record 4 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==993005==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==993005==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==993005==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==993005==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==993005==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==993005==    by 0x48C3D3E: printf (printf.c:33)
+==993005==    by 0x4011E1: main (main.c:30)
+==993005== 
+==993005== LEAK SUMMARY:
+==993005==    definitely lost: 0 bytes in 0 blocks
+==993005==    indirectly lost: 0 bytes in 0 blocks
+==993005==      possibly lost: 0 bytes in 0 blocks
+==993005==    still reachable: 1,041 bytes in 3 blocks
+==993005==         suppressed: 0 bytes in 0 blocks
+==993005== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a575c0 "lfnick\nVul"
+9: *buffer = 0x6c
++mchk
+++monitor leak_check full reachable any
+==993005== 4 bytes in 1 blocks are still reachable in loss record 1 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==993005==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 13 bytes in 1 blocks are still reachable in loss record 2 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4016F3: ft_strjoin (get_next_line_utils.c:24)
+==993005==    by 0x4013B3: ft_getline (get_next_line.c:61)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 1,024 bytes in 1 blocks are still reachable in loss record 3 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==993005==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==993005==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==993005==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==993005==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==993005==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==993005==    by 0x48C3D3E: printf (printf.c:33)
+==993005==    by 0x4011E1: main (main.c:30)
+==993005== 
+==993005== LEAK SUMMARY:
+==993005==    definitely lost: 0 bytes in 0 blocks
+==993005==    indirectly lost: 0 bytes in 0 blocks
+==993005==      possibly lost: 0 bytes in 0 blocks
+==993005==    still reachable: 1,041 bytes in 3 blocks
+==993005==         suppressed: 0 bytes in 0 blocks
+==993005== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a575c0 "lfnick\nVul"
+9: *buffer = 0x6c
++mchk
+++monitor leak_check full reachable any
+==993005== 4 bytes in 1 blocks are still reachable in loss record 1 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==993005==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 13 bytes in 1 blocks are still reachable in loss record 2 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4016F3: ft_strjoin (get_next_line_utils.c:24)
+==993005==    by 0x4013B3: ft_getline (get_next_line.c:61)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 1,024 bytes in 1 blocks are still reachable in loss record 3 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==993005==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==993005==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==993005==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==993005==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==993005==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==993005==    by 0x48C3D3E: printf (printf.c:33)
+==993005==    by 0x4011E1: main (main.c:30)
+==993005== 
+==993005== LEAK SUMMARY:
+==993005==    definitely lost: 0 bytes in 0 blocks
+==993005==    indirectly lost: 0 bytes in 0 blocks
+==993005==      possibly lost: 0 bytes in 0 blocks
+==993005==    still reachable: 1,041 bytes in 3 blocks
+==993005==         suppressed: 0 bytes in 0 blocks
+==993005== 
++n
+get_next_line (fd=0x3) at get_next_line.c:32
+1: vault = 0x4a57610 "Vulfnick\nVul"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++mchk
+++monitor leak_check full reachable any
+==993005== 4 bytes in 1 blocks are definitely lost in loss record 2 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==993005==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 13 bytes in 1 blocks are still reachable in loss record 3 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4016F3: ft_strjoin (get_next_line_utils.c:24)
+==993005==    by 0x4013B3: ft_getline (get_next_line.c:61)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 1,024 bytes in 1 blocks are still reachable in loss record 4 of 4
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==993005==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==993005==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==993005==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==993005==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==993005==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==993005==    by 0x48C3D3E: printf (printf.c:33)
+==993005==    by 0x4011E1: main (main.c:30)
+==993005== 
+==993005== LEAK SUMMARY:
+==993005==    definitely lost: 4 bytes in 1 blocks
+==993005==    indirectly lost: 0 bytes in 0 blocks
+==993005==      possibly lost: 0 bytes in 0 blocks
+==993005==    still reachable: 1,037 bytes in 2 blocks
+==993005==         suppressed: 0 bytes in 0 blocks
+==993005== 
++n
+1: vault = 0x4a57610 "Vulfnick\nVul"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++mchk
+++monitor leak_check full reachable any
+==993005== 4 bytes in 1 blocks are definitely lost in loss record 1 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==993005==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 13 bytes in 1 blocks are still reachable in loss record 2 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x4016F3: ft_strjoin (get_next_line_utils.c:24)
+==993005==    by 0x4013B3: ft_getline (get_next_line.c:61)
+==993005==    by 0x40127D: get_next_line (get_next_line.c:31)
+==993005==    by 0x4011BB: main (main.c:28)
+==993005== 
+==993005== 1,024 bytes in 1 blocks are still reachable in loss record 3 of 3
+==993005==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993005==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==993005==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==993005==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==993005==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==993005==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==993005==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==993005==    by 0x48C3D3E: printf (printf.c:33)
+==993005==    by 0x4011E1: main (main.c:30)
+==993005== 
+==993005== LEAK SUMMARY:
+==993005==    definitely lost: 4 bytes in 1 blocks
+==993005==    indirectly lost: 0 bytes in 0 blocks
+==993005==      possibly lost: 0 bytes in 0 blocks
+==993005==    still reachable: 1,037 bytes in 2 blocks
+==993005==         suppressed: 0 bytes in 0 blocks
+==993005== 
++kill
+[Inferior 1 (Remote target) killed]
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 999042
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x0000000004001100 in _start () from /lib64/ld-linux-x86-64.so.2
++next
+Single stepping until exit from function _start,
+which has no line number information.
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
++gnl
+++display vault
+++display *vault
+++display fd
+++display line
+++display *line
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+main () at main.c:30
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++n
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++mchk
+++monitor leak_check full reachable any
+==999042== 4 bytes in 1 blocks are still reachable in loss record 1 of 2
+==999042==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==999042==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==999042==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==999042==    by 0x4011BB: main (main.c:28)
+==999042== 
+==999042== 1,024 bytes in 1 blocks are still reachable in loss record 2 of 2
+==999042==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==999042==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==999042==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==999042==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==999042==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==999042==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==999042==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==999042==    by 0x48C3D3E: printf (printf.c:33)
+==999042==    by 0x4011E1: main (main.c:30)
+==999042== 
+==999042== LEAK SUMMARY:
+==999042==    definitely lost: 0 bytes in 0 blocks
+==999042==    indirectly lost: 0 bytes in 0 blocks
+==999042==      possibly lost: 0 bytes in 0 blocks
+==999042==    still reachable: 1,028 bytes in 2 blocks
+==999042==         suppressed: 0 bytes in 0 blocks
+==999042== 
++gnl
+++display vault
+++display *vault
+++display fd
+++display line
+++display *line
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
+6: vault = 0x4a57130 "Vu"
+7: *vault = 0x56
+8: fd = 0x3
+9: line = 0x0
+10: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
+6: vault = 0x4a57130 "Vu"
+7: *vault = 0x56
+8: fd = 0x3
+9: line = 0x0
+10: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57610 "Vulfnick\nVul"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
+6: vault = 0x4a57610 "Vulfnick\nVul"
+7: *vault = 0x56
+8: fd = 0x3
+9: line = 0x0
+10: *line = <error: Cannot access memory at address 0x0>
++mchk
+++monitor leak_check full reachable any
+==999042== 4 bytes in 1 blocks are definitely lost in loss record 2 of 4
+==999042==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==999042==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==999042==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==999042==    by 0x4011BB: main (main.c:28)
+==999042== 
+==999042== 13 bytes in 1 blocks are still reachable in loss record 3 of 4
+==999042==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==999042==    by 0x4016F3: ft_strjoin (get_next_line_utils.c:24)
+==999042==    by 0x4013B3: ft_getline (get_next_line.c:61)
+==999042==    by 0x40127D: get_next_line (get_next_line.c:31)
+==999042==    by 0x4011BB: main (main.c:28)
+==999042== 
+==999042== 1,024 bytes in 1 blocks are still reachable in loss record 4 of 4
+==999042==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==999042==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==999042==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==999042==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==999042==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==999042==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==999042==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==999042==    by 0x48C3D3E: printf (printf.c:33)
+==999042==    by 0x4011E1: main (main.c:30)
+==999042== 
+==999042== LEAK SUMMARY:
+==999042==    definitely lost: 4 bytes in 1 blocks
+==999042==    indirectly lost: 0 bytes in 0 blocks
+==999042==      possibly lost: 0 bytes in 0 blocks
+==999042==    still reachable: 1,037 bytes in 2 blocks
+==999042==         suppressed: 0 bytes in 0 blocks
+==999042== 
++kill
+[Inferior 1 (Remote target) killed]
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 999744
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x0000000004001100 in _start () from /lib64/ld-linux-x86-64.so.2
++gnl
+++display vault
+.gdbinit:74: Error in sourced command file:
+No symbol "vault" in current context.
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 1000204
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x0000000004001100 in _start () from /lib64/ld-linux-x86-64.so.2
++next
+Single stepping until exit from function _start,
+which has no line number information.
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
++gnl
+++display vault
+++display *vault
+++display fd
+++display line
+++display *line
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+main () at main.c:30
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++n
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++s
+ft_getline (fd=0x3, vault=0x4a57130 "Vu") at get_next_line.c:46
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++getline
+++display fd
+++display bytes_read
+++display buffer
+++display *buffer
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: fd = 0x3
+7: bytes_read = 0x0
+8: buffer = 0x4a575c0 ""
+9: *buffer = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a575c0 "lfnick\nVul"
+9: *buffer = 0x6c
++mchk
+++monitor leak_check full reachable any
+==1000204== 4 bytes in 1 blocks are still reachable in loss record 1 of 4
+==1000204==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1000204==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==1000204==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==1000204==    by 0x4011BB: main (main.c:28)
+==1000204== 
+==1000204== 11 bytes in 1 blocks are still reachable in loss record 2 of 4
+==1000204==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1000204==    by 0x4012F8: ft_getline (get_next_line.c:46)
+==1000204==    by 0x40127D: get_next_line (get_next_line.c:31)
+==1000204==    by 0x4011BB: main (main.c:28)
+==1000204== 
+==1000204== 13 bytes in 1 blocks are still reachable in loss record 3 of 4
+==1000204==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1000204==    by 0x4016F3: ft_strjoin (get_next_line_utils.c:24)
+==1000204==    by 0x4013B3: ft_getline (get_next_line.c:61)
+==1000204==    by 0x40127D: get_next_line (get_next_line.c:31)
+==1000204==    by 0x4011BB: main (main.c:28)
+==1000204== 
+==1000204== 1,024 bytes in 1 blocks are still reachable in loss record 4 of 4
+==1000204==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1000204==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==1000204==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==1000204==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==1000204==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==1000204==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==1000204==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==1000204==    by 0x48C3D3E: printf (printf.c:33)
+==1000204==    by 0x4011E1: main (main.c:30)
+==1000204== 
+==1000204== LEAK SUMMARY:
+==1000204==    definitely lost: 0 bytes in 0 blocks
+==1000204==    indirectly lost: 0 bytes in 0 blocks
+==1000204==      possibly lost: 0 bytes in 0 blocks
+==1000204==    still reachable: 1,052 bytes in 4 blocks
+==1000204==         suppressed: 0 bytes in 0 blocks
+==1000204== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a575c0 "lfnick\nVul"
+9: *buffer = 0x6c
++mchk
+++monitor leak_check full reachable any
+==1000204== 4 bytes in 1 blocks are still reachable in loss record 2 of 4
+==1000204==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1000204==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==1000204==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==1000204==    by 0x4011BB: main (main.c:28)
+==1000204== 
+==1000204== 13 bytes in 1 blocks are still reachable in loss record 3 of 4
+==1000204==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1000204==    by 0x4016F3: ft_strjoin (get_next_line_utils.c:24)
+==1000204==    by 0x4013B3: ft_getline (get_next_line.c:61)
+==1000204==    by 0x40127D: get_next_line (get_next_line.c:31)
+==1000204==    by 0x4011BB: main (main.c:28)
+==1000204== 
+==1000204== 1,024 bytes in 1 blocks are still reachable in loss record 4 of 4
+==1000204==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1000204==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==1000204==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==1000204==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==1000204==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==1000204==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==1000204==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==1000204==    by 0x48C3D3E: printf (printf.c:33)
+==1000204==    by 0x4011E1: main (main.c:30)
+==1000204== 
+==1000204== LEAK SUMMARY:
+==1000204==    definitely lost: 0 bytes in 0 blocks
+==1000204==    indirectly lost: 0 bytes in 0 blocks
+==1000204==      possibly lost: 0 bytes in 0 blocks
+==1000204==    still reachable: 1,041 bytes in 3 blocks
+==1000204==         suppressed: 0 bytes in 0 blocks
+==1000204== 
++n
+get_next_line (fd=0x3) at get_next_line.c:32
+1: vault = 0x4a57610 "Vulfnick\nVul"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++mchk
+++monitor leak_check full reachable any
+==1000204== 4 bytes in 1 blocks are definitely lost in loss record 2 of 4
+==1000204==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1000204==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==1000204==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==1000204==    by 0x4011BB: main (main.c:28)
+==1000204== 
+==1000204== 13 bytes in 1 blocks are still reachable in loss record 3 of 4
+==1000204==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1000204==    by 0x4016F3: ft_strjoin (get_next_line_utils.c:24)
+==1000204==    by 0x4013B3: ft_getline (get_next_line.c:61)
+==1000204==    by 0x40127D: get_next_line (get_next_line.c:31)
+==1000204==    by 0x4011BB: main (main.c:28)
+==1000204== 
+==1000204== 1,024 bytes in 1 blocks are still reachable in loss record 4 of 4
+==1000204==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1000204==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==1000204==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==1000204==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==1000204==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==1000204==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==1000204==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==1000204==    by 0x48C3D3E: printf (printf.c:33)
+==1000204==    by 0x4011E1: main (main.c:30)
+==1000204== 
+==1000204== LEAK SUMMARY:
+==1000204==    definitely lost: 4 bytes in 1 blocks
+==1000204==    indirectly lost: 0 bytes in 0 blocks
+==1000204==      possibly lost: 0 bytes in 0 blocks
+==1000204==    still reachable: 1,037 bytes in 2 blocks
+==1000204==         suppressed: 0 bytes in 0 blocks
+==1000204== 
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 1003785
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x0000000004001100 in _start () from /lib64/ld-linux-x86-64.so.2
++next
+Single stepping until exit from function _start,
+which has no line number information.
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
++gnl
+++display vault
+++display *vault
+++display fd
+++display line
+++display *line
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+main () at main.c:30
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++s
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++mchk
+++monitor leak_check full reachable any
+==1003785== 4 bytes in 1 blocks are still reachable in loss record 1 of 2
+==1003785==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1003785==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==1003785==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==1003785==    by 0x4011BB: main (main.c:28)
+==1003785== 
+==1003785== 1,024 bytes in 1 blocks are still reachable in loss record 2 of 2
+==1003785==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1003785==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==1003785==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==1003785==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==1003785==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==1003785==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==1003785==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==1003785==    by 0x48C3D3E: printf (printf.c:33)
+==1003785==    by 0x4011E1: main (main.c:30)
+==1003785== 
+==1003785== LEAK SUMMARY:
+==1003785==    definitely lost: 0 bytes in 0 blocks
+==1003785==    indirectly lost: 0 bytes in 0 blocks
+==1003785==      possibly lost: 0 bytes in 0 blocks
+==1003785==    still reachable: 1,028 bytes in 2 blocks
+==1003785==         suppressed: 0 bytes in 0 blocks
+==1003785== 
++n
+1: vault = 0x4a57610 "Vulfnick\nVul"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++mchk
+++monitor leak_check full reachable any
+==1003785== 4 bytes in 1 blocks are definitely lost in loss record 2 of 4
+==1003785==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1003785==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==1003785==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==1003785==    by 0x4011BB: main (main.c:28)
+==1003785== 
+==1003785== 13 bytes in 1 blocks are still reachable in loss record 3 of 4
+==1003785==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1003785==    by 0x4016F3: ft_strjoin (get_next_line_utils.c:24)
+==1003785==    by 0x4013B3: ft_getline (get_next_line.c:61)
+==1003785==    by 0x40127D: get_next_line (get_next_line.c:31)
+==1003785==    by 0x4011BB: main (main.c:28)
+==1003785== 
+==1003785== 1,024 bytes in 1 blocks are still reachable in loss record 4 of 4
+==1003785==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1003785==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==1003785==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==1003785==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==1003785==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==1003785==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==1003785==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==1003785==    by 0x48C3D3E: printf (printf.c:33)
+==1003785==    by 0x4011E1: main (main.c:30)
+==1003785== 
+==1003785== LEAK SUMMARY:
+==1003785==    definitely lost: 4 bytes in 1 blocks
+==1003785==    indirectly lost: 0 bytes in 0 blocks
+==1003785==      possibly lost: 0 bytes in 0 blocks
+==1003785==    still reachable: 1,037 bytes in 2 blocks
+==1003785==         suppressed: 0 bytes in 0 blocks
+==1003785== 
++n
+1: vault = 0x4a57610 "Vulfnick\nVul"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++mchk
+++monitor leak_check full reachable any
+==1003785== 4 bytes in 1 blocks are definitely lost in loss record 1 of 3
+==1003785==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1003785==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==1003785==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==1003785==    by 0x4011BB: main (main.c:28)
+==1003785== 
+==1003785== 13 bytes in 1 blocks are still reachable in loss record 2 of 3
+==1003785==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1003785==    by 0x4016F3: ft_strjoin (get_next_line_utils.c:24)
+==1003785==    by 0x4013B3: ft_getline (get_next_line.c:61)
+==1003785==    by 0x40127D: get_next_line (get_next_line.c:31)
+==1003785==    by 0x4011BB: main (main.c:28)
+==1003785== 
+==1003785== 1,024 bytes in 1 blocks are still reachable in loss record 3 of 3
+==1003785==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1003785==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==1003785==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==1003785==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==1003785==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==1003785==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==1003785==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==1003785==    by 0x48C3D3E: printf (printf.c:33)
+==1003785==    by 0x4011E1: main (main.c:30)
+==1003785== 
+==1003785== LEAK SUMMARY:
+==1003785==    definitely lost: 4 bytes in 1 blocks
+==1003785==    indirectly lost: 0 bytes in 0 blocks
+==1003785==      possibly lost: 0 bytes in 0 blocks
+==1003785==    still reachable: 1,037 bytes in 2 blocks
+==1003785==         suppressed: 0 bytes in 0 blocks
+==1003785== 
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40122b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 1011680
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x0000000004001100 in _start () from /lib64/ld-linux-x86-64.so.2
++next
+Single stepping until exit from function _start,
+which has no line number information.
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
++gnl
+++display vault
+++display *vault
+++display fd
+++display line
+++display *line
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+main () at main.c:30
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++s
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++mchk
+++monitor leak_check full reachable any
+==1011680== 4 bytes in 1 blocks are still reachable in loss record 1 of 2
+==1011680==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1011680==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==1011680==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==1011680==    by 0x4011BB: main (main.c:28)
+==1011680== 
+==1011680== 1,024 bytes in 1 blocks are still reachable in loss record 2 of 2
+==1011680==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1011680==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==1011680==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==1011680==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==1011680==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==1011680==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==1011680==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==1011680==    by 0x48C3D3E: printf (printf.c:33)
+==1011680==    by 0x4011E1: main (main.c:30)
+==1011680== 
+==1011680== LEAK SUMMARY:
+==1011680==    definitely lost: 0 bytes in 0 blocks
+==1011680==    indirectly lost: 0 bytes in 0 blocks
+==1011680==      possibly lost: 0 bytes in 0 blocks
+==1011680==    still reachable: 1,028 bytes in 2 blocks
+==1011680==         suppressed: 0 bytes in 0 blocks
+==1011680== 
++s
+ft_getline (fd=0x3, vault=0x4a57130 "Vu") at get_next_line.c:46
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++getline
+++display fd
+++display bytes_read
+++display buffer
+++display *buffer
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: fd = 0x3
+7: bytes_read = 0x0
+8: buffer = 0x4a575c0 ""
+9: *buffer = 0x0
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: fd = 0x3
+7: bytes_read = 0xa
+8: buffer = 0x4a575c0 "lfnick\nVul"
+9: *buffer = 0x6c
++mchk
+++monitor leak_check full reachable any
+==1011680== 4 bytes in 1 blocks are still reachable in loss record 1 of 4
+==1011680==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1011680==    by 0x4015F2: ft_getrest (get_next_line.c:113)
+==1011680==    by 0x4012BF: get_next_line (get_next_line.c:35)
+==1011680==    by 0x4011BB: main (main.c:28)
+==1011680== 
+==1011680== 11 bytes in 1 blocks are still reachable in loss record 2 of 4
+==1011680==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1011680==    by 0x4012F8: ft_getline (get_next_line.c:46)
+==1011680==    by 0x40127D: get_next_line (get_next_line.c:31)
+==1011680==    by 0x4011BB: main (main.c:28)
+==1011680== 
+==1011680== 13 bytes in 1 blocks are still reachable in loss record 3 of 4
+==1011680==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1011680==    by 0x4016F3: ft_strjoin (get_next_line_utils.c:24)
+==1011680==    by 0x4013B3: ft_getline (get_next_line.c:61)
+==1011680==    by 0x40127D: get_next_line (get_next_line.c:31)
+==1011680==    by 0x4011BB: main (main.c:28)
+==1011680== 
+==1011680== 1,024 bytes in 1 blocks are still reachable in loss record 4 of 4
+==1011680==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1011680==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==1011680==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==1011680==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==1011680==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==1011680==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==1011680==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==1011680==    by 0x48C3D3E: printf (printf.c:33)
+==1011680==    by 0x4011E1: main (main.c:30)
+==1011680== 
+==1011680== LEAK SUMMARY:
+==1011680==    definitely lost: 0 bytes in 0 blocks
+==1011680==    indirectly lost: 0 bytes in 0 blocks
+==1011680==      possibly lost: 0 bytes in 0 blocks
+==1011680==    still reachable: 1,052 bytes in 4 blocks
+==1011680==         suppressed: 0 bytes in 0 blocks
+==1011680== 
++q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40121b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+relaying data between gdb and process 1012639
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+0x0000000004001100 in _start () from /lib64/ld-linux-x86-64.so.2
++next
+Single stepping until exit from function _start,
+which has no line number information.
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
++gnl
+++display vault
+++display *vault
+++display fd
+++display line
+++display *line
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x40201e ""
+2: *vault = 0x0
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57090 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4a570e0 "Vulfmon\n"
+5: *line = 0x56
++n
+main () at main.c:30
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
++main
+++display n
+++display fd
+++display str
+++display *str
++mchk
+++monitor leak_check full reachable any
+==1012639== 4 bytes in 1 blocks are still reachable in loss record 1 of 2
+==1012639==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1012639==    by 0x4015E2: ft_getrest (get_next_line.c:114)
+==1012639==    by 0x4012AF: get_next_line (get_next_line.c:35)
+==1012639==    by 0x4011BB: main (main.c:28)
+==1012639== 
+==1012639== 9 bytes in 1 blocks are still reachable in loss record 2 of 2
+==1012639==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1012639==    by 0x401465: ft_gettillnl (get_next_line.c:80)
+==1012639==    by 0x40129E: get_next_line (get_next_line.c:34)
+==1012639==    by 0x4011BB: main (main.c:28)
+==1012639== 
+==1012639== LEAK SUMMARY:
+==1012639==    definitely lost: 0 bytes in 0 blocks
+==1012639==    indirectly lost: 0 bytes in 0 blocks
+==1012639==      possibly lost: 0 bytes in 0 blocks
+==1012639==    still reachable: 13 bytes in 2 blocks
+==1012639==         suppressed: 0 bytes in 0 blocks
+==1012639== 
++mchk
+++monitor leak_check full reachable any
+==1012639== 4 bytes in 1 blocks are still reachable in loss record 1 of 2
+==1012639==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1012639==    by 0x4015E2: ft_getrest (get_next_line.c:114)
+==1012639==    by 0x4012AF: get_next_line (get_next_line.c:35)
+==1012639==    by 0x4011BB: main (main.c:28)
+==1012639== 
+==1012639== 9 bytes in 1 blocks are still reachable in loss record 2 of 2
+==1012639==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1012639==    by 0x401465: ft_gettillnl (get_next_line.c:80)
+==1012639==    by 0x40129E: get_next_line (get_next_line.c:34)
+==1012639==    by 0x4011BB: main (main.c:28)
+==1012639== 
+==1012639== LEAK SUMMARY:
+==1012639==    definitely lost: 0 bytes in 0 blocks
+==1012639==    indirectly lost: 0 bytes in 0 blocks
+==1012639==      possibly lost: 0 bytes in 0 blocks
+==1012639==    still reachable: 13 bytes in 2 blocks
+==1012639==         suppressed: 0 bytes in 0 blocks
+==1012639== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: n = 0x1
+7: fd = 0x3
+8: str = 0x4a570e0 "Vulfmon\n"
+9: *str = 0x56
++mchk
+++monitor leak_check full reachable any
+==1012639== 4 bytes in 1 blocks are still reachable in loss record 1 of 3
+==1012639==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1012639==    by 0x4015E2: ft_getrest (get_next_line.c:114)
+==1012639==    by 0x4012AF: get_next_line (get_next_line.c:35)
+==1012639==    by 0x4011BB: main (main.c:28)
+==1012639== 
+==1012639== 9 bytes in 1 blocks are still reachable in loss record 2 of 3
+==1012639==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1012639==    by 0x401465: ft_gettillnl (get_next_line.c:80)
+==1012639==    by 0x40129E: get_next_line (get_next_line.c:34)
+==1012639==    by 0x4011BB: main (main.c:28)
+==1012639== 
+==1012639== 1,024 bytes in 1 blocks are still reachable in loss record 3 of 3
+==1012639==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1012639==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==1012639==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==1012639==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==1012639==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==1012639==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==1012639==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==1012639==    by 0x48C3D3E: printf (printf.c:33)
+==1012639==    by 0x4011E1: main (main.c:30)
+==1012639== 
+==1012639== LEAK SUMMARY:
+==1012639==    definitely lost: 0 bytes in 0 blocks
+==1012639==    indirectly lost: 0 bytes in 0 blocks
+==1012639==      possibly lost: 0 bytes in 0 blocks
+==1012639==    still reachable: 1,037 bytes in 3 blocks
+==1012639==         suppressed: 0 bytes in 0 blocks
+==1012639== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: n = 0x1
+7: fd = 0x3
+8: str = 0x4a570e0 "Vulfmon\n"
+9: *str = 0x56
++mchk
+++monitor leak_check full reachable any
+==1012639== 4 bytes in 1 blocks are still reachable in loss record 2 of 3
+==1012639==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1012639==    by 0x4015E2: ft_getrest (get_next_line.c:114)
+==1012639==    by 0x4012AF: get_next_line (get_next_line.c:35)
+==1012639==    by 0x4011BB: main (main.c:28)
+==1012639== 
+==1012639== 1,024 bytes in 1 blocks are still reachable in loss record 3 of 3
+==1012639==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1012639==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==1012639==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==1012639==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==1012639==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==1012639==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==1012639==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==1012639==    by 0x48C3D3E: printf (printf.c:33)
+==1012639==    by 0x4011E1: main (main.c:30)
+==1012639== 
+==1012639== LEAK SUMMARY:
+==1012639==    definitely lost: 0 bytes in 0 blocks
+==1012639==    indirectly lost: 0 bytes in 0 blocks
+==1012639==      possibly lost: 0 bytes in 0 blocks
+==1012639==    still reachable: 1,028 bytes in 2 blocks
+==1012639==         suppressed: 0 bytes in 0 blocks
+==1012639== 
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+6: n = 0x2
+7: fd = 0x3
+8: str = 0x4a570e0 "Vulfmon\n"
+9: *str = 0x56
++s
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
++gnl
+++display vault
+++display *vault
+++display fd
+++display line
+++display *line
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
+10: vault = 0x4a57130 "Vu"
+11: *vault = 0x56
+12: fd = 0x3
+13: line = 0x0
+14: *line = <error: Cannot access memory at address 0x0>
++n
+1: vault = 0x4a57130 "Vu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
+10: vault = 0x4a57130 "Vu"
+11: *vault = 0x56
+12: fd = 0x3
+13: line = 0x0
+14: *line = <error: Cannot access memory at address 0x0>
++mch
+++monitor leak_check full reachable any
+==1012639== 4 bytes in 1 blocks are still reachable in loss record 1 of 2
+==1012639==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1012639==    by 0x4015E2: ft_getrest (get_next_line.c:114)
+==1012639==    by 0x4012AF: get_next_line (get_next_line.c:35)
+==1012639==    by 0x4011BB: main (main.c:28)
+==1012639== 
+==1012639== 1,024 bytes in 1 blocks are still reachable in loss record 2 of 2
+==1012639==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1012639==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==1012639==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==1012639==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==1012639==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==1012639==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==1012639==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==1012639==    by 0x48C3D3E: printf (printf.c:33)
+==1012639==    by 0x4011E1: main (main.c:30)
+==1012639== 
+==1012639== LEAK SUMMARY:
+==1012639==    definitely lost: 0 bytes in 0 blocks
+==1012639==    indirectly lost: 0 bytes in 0 blocks
+==1012639==      possibly lost: 0 bytes in 0 blocks
+==1012639==    still reachable: 1,028 bytes in 2 blocks
+==1012639==         suppressed: 0 bytes in 0 blocks
+==1012639== 
++n
+1: vault = 0x4a57610 "Vulfnick\nVul"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x0
+5: *line = <error: Cannot access memory at address 0x0>
+10: vault = 0x4a57610 "Vulfnick\nVul"
+11: *vault = 0x56
+12: fd = 0x3
+13: line = 0x0
+14: *line = <error: Cannot access memory at address 0x0>
++mch
+++monitor leak_check full reachable any
+==1012639== 4 bytes in 1 blocks are definitely lost in loss record 2 of 4
+==1012639==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1012639==    by 0x4015E2: ft_getrest (get_next_line.c:114)
+==1012639==    by 0x4012AF: get_next_line (get_next_line.c:35)
+==1012639==    by 0x4011BB: main (main.c:28)
+==1012639== 
+==1012639== 13 bytes in 1 blocks are still reachable in loss record 3 of 4
+==1012639==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1012639==    by 0x4016E3: ft_strjoin (get_next_line_utils.c:24)
+==1012639==    by 0x4013A3: ft_getline (get_next_line.c:61)
+==1012639==    by 0x40126D: get_next_line (get_next_line.c:31)
+==1012639==    by 0x4011BB: main (main.c:28)
+==1012639== 
+==1012639== 1,024 bytes in 1 blocks are still reachable in loss record 4 of 4
+==1012639==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1012639==    by 0x48E3D03: _IO_file_doallocate (filedoalloc.c:101)
+==1012639==    by 0x48F3ECF: _IO_doallocbuf (genops.c:347)
+==1012639==    by 0x48F2F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==1012639==    by 0x48F16B4: _IO_new_file_xsputn (fileops.c:1244)
+==1012639==    by 0x48F16B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==1012639==    by 0x48D97AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==1012639==    by 0x48C3D3E: printf (printf.c:33)
+==1012639==    by 0x4011E1: main (main.c:30)
+==1012639== 
+==1012639== LEAK SUMMARY:
+==1012639==    definitely lost: 4 bytes in 1 blocks
+==1012639==    indirectly lost: 0 bytes in 0 blocks
+==1012639==      possibly lost: 0 bytes in 0 blocks
+==1012639==    still reachable: 1,037 bytes in 2 blocks
+==1012639==         suppressed: 0 bytes in 0 blocks
+==1012639== 
