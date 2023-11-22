@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:19 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/21 15:17:50 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/22 11:38:06 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,25 @@ static char	*ft_getline(int fd, char *vault);
 static char	*ft_gettillnl(char *vault);
 static char	*ft_getrest(char *vault);
 
+/* Added
+ * */
 char	*get_next_line(int fd)
 {
-	static char	*vault;
+	static char	*vault[1024];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if ((fd < 0) || (BUFFER_SIZE <= 0) || (fd > 1024))
 		return (NULL);
-	if (!vault)
+	if (!vault[fd])
 	{
-		vault = malloc(1);
-		vault[0] = '\0';
+		vault[fd] = malloc(1);
+		vault[fd][0] = '\0';
 	}
-	vault = ft_getline(fd, vault);
-	if (!vault)
+	vault[fd] = ft_getline(fd, vault[fd]);
+	if (!vault[fd])
 		return (NULL);
-	line = ft_gettillnl(vault);
-	vault = ft_getrest(vault);
+	line = ft_gettillnl(vault[fd]);
+	vault[fd] = ft_getrest(vault[fd]);
 	return (line);
 }
 
@@ -47,7 +49,7 @@ static char	*ft_getline(int fd, char *vault)
 	if (!buffer)
 		return (NULL);
 	bytes_read = 1;
-	while (!ft_strchr_gnl(vault, '\n') && bytes_read != 0)
+	while (!ft_strchr_gnl(vault, '\n') && (bytes_read != 0))
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
