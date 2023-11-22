@@ -6,11 +6,12 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:19 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/22 11:38:06 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/22 11:56:51 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 static char	*ft_getline(int fd, char *vault);
 static char	*ft_gettillnl(char *vault);
@@ -20,10 +21,10 @@ static char	*ft_getrest(char *vault);
  * */
 char	*get_next_line(int fd)
 {
-	static char	*vault[1024];
+	static char	*vault[FOPEN_MAX];
 	char		*line;
 
-	if ((fd < 0) || (BUFFER_SIZE <= 0) || (fd > 1024))
+	if ((fd < 0) || (BUFFER_SIZE <= 0) || (fd > FOPEN_MAX))
 		return (NULL);
 	if (!vault[fd])
 	{
