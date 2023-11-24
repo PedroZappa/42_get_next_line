@@ -11570,3 +11570,86 @@ Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
 ==1012639==         suppressed: 0 bytes in 0 blocks
 ==1012639== 
 +q
++define main
++define gnl
++define getline
++define gettillnl
++define getrest
++define strchr
++define strjoin
++define vgdb
++define mchk
++break get_next_line
+Breakpoint 1 at 0x40121b: file get_next_line.c, line 24.
++fs cmd
+Focus set to cmd window.
++vgdb
+++target remote | vgdb
+vgdb error: no FIFO found and no pid given
+.gdbinit:73: Error in sourced command file:
+Remote communication error.  Target disconnected.: Connection reset by peer.
++fs src
+Focus set to src window.
++n
+The program is not being run.
++run
+Starting program: /nfs/homes/passunca/C0D3/42CommonCore/Projects/003_get_next_line/a.out 
+
+Breakpoint 1, get_next_line (fd=0x3) at get_next_line.c:24
+get_next_line.c: No such file or directory.
++n
+get_next_line.c: No such file or directory.
++gnl
+++display vault
+++display *vault
+++display fd
+++display line
+++display *line
++n
+1: vault = 0x0
+2: *vault = <error: Cannot access memory at address 0x0>
+3: fd = 0x3
+4: line = 0x7fffffffd7c7 ""
+5: *line = 0x0
+get_next_line.c: No such file or directory.
++n
+1: vault = 0x4052a0 ""
+2: *vault = 0x0
+3: fd = 0x3
+4: line = 0x7fffffffd7c7 ""
+5: *line = 0x0
+get_next_line.c: No such file or directory.
+get_next_line.c: No such file or directory.
+get_next_line.c: No such file or directory.
+get_next_line.c: No such file or directory.
+get_next_line.c: No such file or directory.
+get_next_line.c: No such file or directory.
++n
+1: vault = 0x4052a0 ""
+2: *vault = 0x0
+3: fd = 0x3
+4: line = 0x7fffffffd7c7 ""
+5: *line = 0x0
+get_next_line.c: No such file or directory.
++n
+1: vault = 0x4052e0 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x7fffffffd7c7 ""
+5: *line = 0x0
+get_next_line.c: No such file or directory.
+get_next_line.c: No such file or directory.
++n
+1: vault = 0x4052e0 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x7fffffffd7c7 ""
+5: *line = 0x0
+get_next_line.c: No such file or directory.
++n
+1: vault = 0x4052e0 "Vulfmon\nVu"
+2: *vault = 0x56
+3: fd = 0x3
+4: line = 0x4052c0 "Vulfmon\n"
+5: *line = 0x56
+get_next_line.c: No such file or directory.
