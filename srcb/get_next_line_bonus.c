@@ -6,16 +6,16 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:19 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/22 11:56:51 by passunca         ###   ########.fr       */
+/*   Updated: 2023/11/24 11:33:51 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-static char	*ft_getline(int fd, char *vault);
-static char	*ft_gettillnl(char *vault);
-static char	*ft_getrest(char *vault);
+char	*ft_getline(int fd, char *vault);
+char	*ft_gettillnl(char *vault);
+char	*ft_getrest(char *vault);
 
 /* Added
  * */
@@ -41,7 +41,7 @@ char	*get_next_line(int fd)
 
 /* Read BUFFER_SIZE bytes from 'fd' and store in 'vault'
  * */
-static char	*ft_getline(int fd, char *vault)
+char	*ft_getline(int fd, char *vault)
 {
 	char	*buffer;
 	int		bytes_read;
@@ -69,7 +69,7 @@ static char	*ft_getline(int fd, char *vault)
 
 /*	Get line terminate by '\n' from 'vault'
  * */
-static char	*ft_gettillnl(char *vault)
+char	*ft_gettillnl(char *vault)
 {
 	int		i;
 	char	*line;
@@ -99,7 +99,7 @@ static char	*ft_gettillnl(char *vault)
 
 /*	Clear already printed chars in 'vault'
  * */
-static char	*ft_getrest(char *vault)
+char	*ft_getrest(char *vault)
 {
 	int		i;
 	int		rest_i;
