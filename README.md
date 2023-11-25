@@ -68,6 +68,10 @@ cc main.c srcb/get_next_line_bonus.c srcb/get_next_line_utils_bonus.c
 cc main.c srcll/get_next_line.c srcll/get_next_line_utils.c
 ```
 
+> [!IMPORTANT]
+> The Linked Lists implementation is not mandatory. It was my first attempt at this project but it doesn't pass `The Norm`. 
+> It seems impossible to solve this challenge using `Linked Lists`, avoiding memory leaks and following [norminette](https://github.com/42School/norminette)'s rules simultaneously.
+> Additionally it passes all but one of [francinette](https://github.com/xicodomingues/francinette)'s tests.
 ___
 
 # Implementation :scroll:
