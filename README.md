@@ -27,6 +27,8 @@ ___
 </p>
 <div/>
 
+<div align="left">
+
 # About :pushpin:
 
 `get_next_line` is a [42 Common Core](https://github.com/PedroZappa/42_CommonCore) project that delves into how `static variables` and `file descriptors` work. It is a challenge on `memory allocation`. 
@@ -186,9 +188,14 @@ tail -f gdb.txt
 
 ___
 
+<div/>
+
+<div align="center">
+
 ### License :copyright:
 
 This work is published under the terms of <a href="https://github.com/PedroZappa/ft_printf/blob/master/LICENSE">42 Unlicense</a>.
 
 <p align="right">(<a href="#readme-top">get to top</a>)</p>
 
+<div/>
