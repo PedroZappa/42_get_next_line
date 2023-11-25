@@ -41,7 +41,7 @@ ___
 0. Clone repository & enter directory:
 
 ```sh
-	git clone https://github.com/PedroZappa/get_next_line.git zedro-gnl
+git clone https://github.com/PedroZappa/get_next_line.git zedro-gnl
 	cd zedro-gnl
 ```
 
@@ -169,6 +169,7 @@ valgrind -q --vgdb-error=0 ./a.out
 
 3. On the first terminal, run `gdb` with the `--tui` flag:
 
+> [!SUCCESS]
 > The `.gdbinit` will automatically run the command `target remote | vgdb` connecting the current `gdb` instance with `valgrind`. Additionally custom debugging commands will be loaded to quickly display relevant debugging information.
 
 ```sh
