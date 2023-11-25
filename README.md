@@ -22,6 +22,7 @@ ___
     <a href="#usage-scroll">Usage</a> ~
     <a href="#implementation-exclamation">Implementation</a> ~
     <a href="#structure-bar_chart">Structure</a> ~
+    <a href="#debugging-beetle">Debugging</a> ~
     <a href="#license">License</a> ~
 </p>
 <div/>
@@ -68,16 +69,125 @@ ___
 
 # Implementation :scroll:
 
-## Mandatory 
+## Mandatory Requirements
 
 `get_next_line` must:
 - Return the contents of a line per function call read from a given `file descriptor`, until the end of the file is reached. 
 - it must be implemented so that it handles any `BUFFER_SIZE` defined at compile time. 
 
-## Bonus
+## Bonus Requirements
 
 - Must use only one `static` variable.
 - The function must be able to handle multiple file descriptors appropriately.
 - Each function call should be able to read from different `fd` without loosing track of partial lines read into its `static` buffer. 
 
 ___
+
+# Structure :construction:
+
+### Mandatory & Bonus w/ Arrays: Files and Functions 🗂
+
+```mermaid
+---
+title get_next_line Mandatory & Bonus Structure
+---
+classDiagram
+	class gnl["get_next_line.c"]
+	class gnlu["get_next_line_utils.c"]
+	class gnlh["get_next_line.h"]
+	
+	gnlh <--> gnlu
+	gnlh <--> gnl
+
+	gnl : char *get_next_line(int fd)
+	gnl : static char *ft_getline(int fd, char *vault)
+	gnl : static char *ft_gettillnl(char *vault)
+	gnl : static char *ft_getrest(char *vault)
+
+	gnlu : char * ft_strjoin_gnl(char *s1, char *s2)
+	gnlu : char * ft_strlen_gnl(char *str)
+	gnlu : char * ft_strchr_gnl(const char *s, int c)	
+```
+
+___
+
+### Mandatory w/ Linked Lists: Files and Functions 🔗
+
+```mermaid
+---
+title get_next_line Mandatory w/ Linked Lists Structure
+---
+classDiagram
+	class gnl["get_next_line.c"]
+	class gnlu["get_next_line_utils.c"]
+	class gnlh["get_next_line.h"]
+	
+	gnlh <--> gnlu
+	gnlh <--> gnl
+
+	gnl : char *get_next_line(int fd)
+	gnl : void ft_getline(int fd, t_list **strs, int *c_read)
+	gnl : void ft_storestr(t_list **strs char *buffer, int c_read)
+	gnl : void ft_get_strs(t_list *strs, char *line)
+	gnl : void ft_clear_strs(t_list **strs)
+
+	gnlu : char * ft_strjoin_gnl(char *s1, char *s2)
+	gnlu : char * ft_strlen_gnl(char *str)
+	gnlu : char * ft_strchr_gnl(const char *s, int c)	
+```
+
+___
+
+
+# Debugging :beetle:
+
+Within each implementation folder there is a `.gdbinit` file defining commands to quickly display relevant debug info customized for each implementation. `trace-commands` and `logging` is turned on to save `gdb`'s output into a `gdb.txt` file.
+
+___
+
+### Debugging `get_next_line` with `Arrays`
+
+1. Compile `get_next_line` with `Arrays` with the `-g` flag:
+
+```sh
+cd srcb
+cc -g ../main.c get_next_line.c get_next_line_utils.c
+```
+
+2. Open another terminal instance and fire up `valgrind` with the flag `--vgdb-error=0` to prepare a link to a `gdb` session: 
+
+```sh
+valgrind -q --vgdb-error=0 ./a.out
+```
+
+3. On the first terminal, run `gdb` with the `--tui` flag:
+
+> The `.gdbinit` will automatically run the command `target remote | vgdb` connecting the current `gdb` instance with `valgrind`. Additionally custom debugging commands will be loaded to quickly display relevant debugging information.
+
+```sh
+gdb --tui ./a.out
+```
+
+4. On a third terminal instance run `tail` with the `-f` flag, which will keep track and print to the screen `gdb`'s output:
+
+```sh
+tail -f gdb.txt
+```
+
+5. To investigate the state of the memory  at any point of execution of the program run the custom command `mchk`:
+
+> This command is an alias for `monitor leak_check full reachable any` 
+
+```sh
+(gdb) mchk
+```
+
+
+___
+
+### License :copyright:
+
+This work is published under the terms of <a href="https://github.com/PedroZappa/ft_printf/blob/master/LICENSE">42 Unlicense</a>.
+
+<p align="right">(<a href="#readme-top">get to top</a>)</p>
+
