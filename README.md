@@ -19,9 +19,9 @@ ___
 <p>
     ~
     <a href="#about-pushpin">About</a> ~
-    <a href="#usage-scroll">Usage</a> ~
-    <a href="#implementation-exclamation">Implementation</a> ~
-    <a href="#structure-bar_chart">Structure</a> ~
+    <a href="#usage-checkered_flag">Usage</a> ~
+    <a href="#implementation-scroll">Implementation</a> ~
+    <a href="#structure-construction">Structure</a> ~
     <a href="#debugging-beetle">Debugging</a> ~
     <a href="#license">License</a> ~
 </p>
