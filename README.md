@@ -43,26 +43,27 @@ ___
 	cd zedro-gnl
 ```
 
-Two distinct implementation can be found in this repository: the one on `srcll` implements `Linked Lists` without the bonus; while the other on `srcb` uses `Arrays` and meets both mandatory and bonus requirements. 
+> [!NOTE]
+> Two distinct implementation can be found in this repository: the one on `srcll` implements `Linked Lists` without the bonus; while the other on `srcb` uses `Arrays` and meets both mandatory and bonus requirements. 
 
 ___
 
-1. Compile mandatory `get_next_line` with `Arrays` 🗂:
+1. Compile mandatory with `Arrays` 🗂:
 
 ```sh
-make
+cc main.c srcb/get_next_line.c srcb/get_next_line_utils.c
 ```
 
-2. Compile bonus `get_next_line` with `Arrays` 🗂:
+2. Compile bonus with `Arrays` 🗂:
 
 ```sh
-make bonus
+cc main.c srcb/get_next_line_bonus.c srcb/get_next_line_utils_bonus.c
 ```
 
-3. Compile mandatory `get_next_line` with `Linked Lists` 🔗:
+3. Compile mandatory with `Linked Lists` 🔗:
 
 ```sh
-make extrall
+cc main.c srcll/get_next_line.c srcll/get_next_line_utils.c
 ```
 
 ___
