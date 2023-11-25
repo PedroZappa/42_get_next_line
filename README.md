@@ -28,13 +28,56 @@ ___
 
 # About :pushpin:
 
-`get_next_line` is a [42 Common Core](https://github.com/PedroZappa/42_CommonCore) project that delves into how `static variables` and `file descriptors` work. It is a challenge on `memory allocation`. It returns the contents of a line per function call from a given `fd`, until the end of the file is reached. `get_next_line` must be implemented so that it handles any `BUFFER_SIZE` defined at compile time. The bonus challenge is simple: the implementation must be able to handle multiple file descriptors at any time. Each function call should be able to read from different `fd`s without loosing track of partial lines read into its `static` buffer. 
+`get_next_line` is a [42 Common Core](https://github.com/PedroZappa/42_CommonCore) project that delves into how `static variables` and `file descriptors` work. It is a challenge on `memory allocation`. 
+
 
 ---
 
 # Usage :checkered_flag:
 
-Two distinct implementation can be found in this repository: the one on `srcll` implements `Linked Lists` without the bonus; while the other on `srcb` uses `Arrays` and meets the bonus requirements. 
+0. Clone repository & enter directory:
 
-## srcll : `get_next_line` with `Linked Lists` 🔗
+```sh
+	git clone https://github.com/PedroZappa/get_next_line.git zedro-gnl
+	cd zedro-gnl
+```
 
+Two distinct implementation can be found in this repository: the one on `srcll` implements `Linked Lists` without the bonus; while the other on `srcb` uses `Arrays` and meets both mandatory and bonus requirements. 
+
+___
+
+1. Compile mandatory `get_next_line` with `Arrays` 🗂:
+
+```sh
+make
+```
+
+2. Compile bonus `get_next_line` with `Arrays` 🗂:
+
+```sh
+make bonus
+```
+
+3. Compile mandatory `get_next_line` with `Linked Lists` 🔗:
+
+```sh
+make extrall
+```
+
+___
+
+# Implementation :scroll:
+
+## Mandatory 
+
+`get_next_line` must:
+- Return the contents of a line per function call read from a given `file descriptor`, until the end of the file is reached. 
+- it must be implemented so that it handles any `BUFFER_SIZE` defined at compile time. 
+
+## Bonus
+
+- Must use only one `static` variable.
+- The function must be able to handle multiple file descriptors appropriately.
+- Each function call should be able to read from different `fd` without loosing track of partial lines read into its `static` buffer. 
+
+___
