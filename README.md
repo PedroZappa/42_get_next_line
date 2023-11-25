@@ -3,7 +3,7 @@
 
 # get_next_line
 
-( a [42 School](https://github.com/42School) Project )
+> Because reading a line from a `fd` is way too tedious. 😪
 
 <p>
     <img src="https://img.shields.io/badge/score-...%20%2F%20100-success?style=for-the-badge" />
@@ -25,3 +25,16 @@ ___
     <a href="#license">License</a> ~
 </p>
 <div/>
+
+# About :pushpin:
+
+`get_next_line` is a [42 Common Core](https://github.com/PedroZappa/42_CommonCore) project that delves into how `static variables` and `file descriptors` work. It is a challenge on `memory allocation`. It returns the contents of a line per function call from a given `fd`, until the end of the file is reached. `get_next_line` must be implemented so that it handles any `BUFFER_SIZE` defined at compile time. The bonus challenge is simple: the implementation must be able to handle multiple file descriptors at any time. Each function call should be able to read from different `fd`s without loosing track of partial lines read into its `static` buffer. 
+
+---
+
+# Usage :checkered_flag:
+
+Two distinct implementation can be found in this repository: the one on `srcll` implements `Linked Lists` without the bonus; while the other on `srcb` uses `Arrays` and meets the bonus requirements. 
+
+## srcll : `get_next_line` with `Linked Lists` 🔗
+
