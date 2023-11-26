@@ -67,7 +67,7 @@ char	*ft_getline(int fd, char *vault)
 	return (vault);
 }
 
-/*	Get line terminate by '\n' from 'vault'
+/*	Get line terminated by '\n' from 'vault'
  * */
 char	*ft_gettillnl(char *vault)
 {

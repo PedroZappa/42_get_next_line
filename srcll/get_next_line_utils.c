@@ -86,7 +86,6 @@ void	ft_freelst(t_list *strs)
 		free(curr_str);
 		curr_str = next_str;
 	}
-	// curr_str->str = NULL;
 }
 
 /* Get the length of a givengiven 'str' */

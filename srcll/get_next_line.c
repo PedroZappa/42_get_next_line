@@ -57,7 +57,7 @@ void	ft_getline(int fd, t_list **strs, int *c_read)
 		if (!buffer)
 			return ;
 		*c_read = read(fd, buffer, BUFFER_SIZE);
-		if ((!*strs && (*c_read == 0)) || (*c_read == -1))
+		if ((!*strs && (*c_read <= 0)) || (*c_read == -1))
 		{
 			free(buffer);
 			return ;
