@@ -69,8 +69,9 @@ cc main.c srcll/get_next_line.c srcll/get_next_line_utils.c
 ```
 
 > [!IMPORTANT]
-> The `Linked Lists` implementation is not mandatory. It was my first attempt at this project but it doesn't pass [norminette](https://github.com/42School/norminette)'s tests. 
+> The `Linked Lists` implementation does not fully pass [norminette](https://github.com/42School/norminette)'s tests. It was my first attempt at this project, I decided to keep it for future reference on handling `Linked Lists`. 
 > It seems impossible to solve this challenge using `Linked Lists` taking the appropriate precautions to avoid memory leaks while adhering to `The Norm`.
+
 ___
 
 # Implementation :scroll:
