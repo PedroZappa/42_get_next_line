@@ -52,7 +52,7 @@ $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
 
 bonus: $(OBJSB)
-	@echo "Creating $(NAME) w/ bonus\n"
+	@echo "\nCreating $(NAME) w/ bonus"
 	$(AR) $(NAME) $(OBJSB)
 
 extrall: $(OBJSLL)
