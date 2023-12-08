@@ -148,26 +148,40 @@ ___
 
 # Debugging :beetle:
 
-Within each implementation folder there is a `.gdbinit` file defining commands to quickly display relevant debug info customized for each implementation. `trace-commands` and `logging` is turned on to save `gdb`'s output into a `gdb.txt` file.
+Within each implementation folder there is a `.gdbinit` file defining commands to quickly display relevant debug info customized for each implementation. `trace-commands` and `logging` is turned on to save `gdb`'s output into a `gdb.txt` file that we can track in real time with the command `tail` for a better debugging experience.
 
 ___
 
 ### Debugging `get_next_line` with `Arrays`
 
-1. Compile `get_next_line` with `Arrays` with the `-g` flag:
+0. In your home directory, create a `.gdbinit` file with the following content:
+
+```.gdbinit
+set auto-load safe-path /
+```
+
+> This command is used to set the directories from which `gdb` can automatically load files.
+> When `gdb` starts it reads commands from several initialization files, `.gdbinit` being one of them, it defines the commands to be automatically executed at the start of a `gdb` session.
+
+> [!IMPORTANT]
+> Do this step only if you trust all the contents of the system you're working on, otherwise change `/` to the path to the folder where you cloned this repo to.
+
+1. Compile `get_next_line` with `Arrays` with the `-g` flag to get debugging symbols:
 
 ```sh
 cd srcb
 cc -g ../main.c get_next_line.c get_next_line_utils.c
 ```
 
-2. Open another terminal instance and fire up `valgrind` with the flag `--vgdb-error=0` to prepare a link to a `gdb` session: 
+2. Open another terminal instance and fire up `valgrind` and `vgdb` by running `valgrind` with the flag `--vgdb-error=0`: 
 
 ```sh
 valgrind -q --vgdb-error=0 ./a.out
 ```
 
-3. On the first terminal, run `gdb` with the `--tui` flag:
+> `vgdb` is a small tool that allows `gdb` and `valgrind` to work together.
+
+3. On the first terminal, run `gdb` with the `--tui` flag to launch `gdb` with a graphical user interface:
 
 > [!IMPORTANT]
 > The `.gdbinit` will automatically run the command `target remote | vgdb` connecting the current `gdb` instance with `valgrind`. Additionally custom debugging commands will be loaded to quickly display relevant debugging information.
@@ -184,12 +198,15 @@ tail -f gdb.txt
 
 5. To investigate the state of the memory  at any point of execution of the program run the custom command `mchk`:
 
-> This command is an alias for `monitor leak_check full reachable any` 
-
 ```sh
 (gdb) mchk
 ```
 
+> This command is an alias for `monitor leak_check full reachable any` 
+
+___
+
+#### Happy Debugging! 🐛
 
 ___
 
