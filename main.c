@@ -19,10 +19,10 @@ int main()
 {
 	int n = 1;
 	char *str = NULL;
-	// int fd = open("get_next_line.h", O_RDONLY);
-	int fd = open("../files/mini-vulf.txt", O_RDONLY);
-	// int fd = open(",,/files/vulf.txt", O_RDONLY);
-	// int fd = open("../files/read_error.txt", O_RDONLY);
+	// int fd = open("srcb/get_next_line.h", O_RDONLY);
+	// int fd = open("files/mini-vulf.txt", O_RDONLY);
+	int fd = open("files/vulf.txt", O_RDONLY);
+	// int fd = open("files/read_error.txt", O_RDONLY);
 
 	printf("Testing get_next_line\n\n");
 	
