@@ -19,9 +19,9 @@ ___
 <p>
     ~
     <a href="#about-pushpin">About</a> ~
-    <a href="#usage-checkered_flag">Usage</a> ~
     <a href="#implementation-scroll">Implementation</a> ~
     <a href="#structure-construction">Structure</a> ~
+    <a href="#usage-checkered_flag">Usage</a> ~
     <a href="#debugging-beetle">Debugging</a> ~
     <a href="#license">License</a> ~
 </p>
@@ -33,44 +33,6 @@ ___
 
 `get_next_line` is a [42 Common Core](https://github.com/PedroZappa/42_CommonCore) project that delves into how `static variables` and `file descriptors` work. It is a challenging introduction to `memory allocation`. 
 
-
----
-
-# Usage :checkered_flag:
-
-0. Clone repository & enter directory:
-
-```sh
-git clone https://github.com/PedroZappa/get_next_line.git zedro-gnl
-cd zedro-gnl
-```
-
-> [!NOTE]
-> Two distinct implementation can be found in this repository: the one on `srcll` implements `Linked Lists` without the bonus; while the other on `srcb` uses `Arrays` and meets both mandatory and bonus requirements. 
-
-___
-
-1. Compile mandatory with `Arrays` 🗂:
-
-```sh
-cc main.c srcb/get_next_line.c srcb/get_next_line_utils.c
-```
-
-2. Compile bonus with `Arrays` 🗂:
-
-```sh
-cc main.c srcb/get_next_line_bonus.c srcb/get_next_line_utils_bonus.c
-```
-
-3. Compile mandatory with `Linked Lists` 🔗:
-
-```sh
-cc main.c srcll/get_next_line.c srcll/get_next_line_utils.c
-```
-
-> [!IMPORTANT]
-> The `Linked Lists` implementation does not fully pass [norminette](https://github.com/42School/norminette)'s tests. It was my first attempt at this project, I decided to keep it for future reference on handling `Linked Lists`. 
-> It seems impossible to solve this challenge using `Linked Lists` taking the appropriate precautions to avoid memory leaks while adhering to `The Norm`.
 
 ___
 
@@ -143,12 +105,59 @@ classDiagram
 	gnlu : char * ft_strchr_gnl(const char *s, int c)	
 ```
 
+---
+
+# Usage :checkered_flag:
+
+0. Clone repository & enter directory:
+
+```sh
+git clone https://github.com/PedroZappa/get_next_line.git zedro-gnl
+cd zedro-gnl
+```
+
+> [!NOTE]
+> Two distinct implementation can be found in this repository: the one on `srcll` implements `Linked Lists` without the bonus; while the other on `srcb` uses `Arrays` and meets both mandatory and bonus requirements. 
+
+___
+
+0. To check all the available commands:
+
+```sh
+make help
+```
+
+1. Compile mandatory with `Arrays` 🗂:
+
+```sh
+make gnl
+```
+
+2. Compile bonus with `Arrays` 🗂:
+
+```sh
+make bonus
+```
+
+3. Compile mandatory with `Linked Lists` 🔗:
+
+```sh
+make extrall
+```
+
+> [!IMPORTANT]
+> The `Linked Lists` implementation does not fully pass [norminette](https://github.com/42School/norminette)'s tests. It was my first attempt at this project, I decided to keep it for future reference on handling `Linked Lists`. 
+> It seems impossible to solve this challenge using `Linked Lists` taking the appropriate precautions to avoid memory leaks while adhering to `The Norm`.
+
 ___
 
 
 # Debugging :beetle:
 
 Within each implementation folder there is a `.gdbinit` file defining commands to quickly display relevant debug info customized for each implementation. `trace-commands` and `logging` is turned on to save `gdb`'s output into a `gdb.txt` file that we can track in real time with the command `tail` for a better debugging experience.
+
+> [!NOTE]
+> For user convenience the `make` command will copy the `.gdbinit` file related to the selected implementation into the root of the project.
 
 ___
 
@@ -166,11 +175,10 @@ set auto-load safe-path /
 > [!IMPORTANT]
 > Do this step only if you trust all the contents of the system you're working on, otherwise change `/` to the path to the folder where you cloned this repo to.
 
-1. Compile `get_next_line` with `Arrays` with the `-g` flag to get debugging symbols:
+1. Compile your chosen `get_next_line` implementation, for survey convenience the `-g` flag is called by default at compile time:
 
 ```sh
-cd srcb
-cc -g ../main.c get_next_line.c get_next_line_utils.c
+make bonus
 ```
 
 2. Open another terminal instance and fire up `valgrind` and `vgdb` by running `valgrind` with the flag `--vgdb-error=0`: 
@@ -184,7 +192,7 @@ valgrind -q --vgdb-error=0 ./a.out
 3. On the first terminal, run `gdb` with the `--tui` flag to launch `gdb` with a graphical user interface:
 
 >[!IMPORTANT]
->The `.gdbinit` will automatically run the command `target remote | vgdb` connecting the current `gdb` instance with `valgrind`. Additionally custom debugging commands will be loaded to quickly display relevant debugging information.
+>The `.gdbinit` will automatically run the `target remote | vgdb` command connecting the current `gdb` instance with `valgrind`. Additionally custom debugging commands will be loaded to quickly display relevant debugging information.
 
 ```sh
 gdb --tui ./a.out
