@@ -50,7 +50,7 @@ help: 			## Display this help page
 
 ##@ get_next_line Compilation Rules 🏗
 
-all: $(NAME)
+all: $(OBJS)
 
 .PHONY: gnl
 gnl: $(OBJS)			## Compile Mandatory version
