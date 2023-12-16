@@ -10,9 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-#####################
-### Names & Paths ###
-#####################
+ #######################
+### 󰴠 Names & Paths 󰴠 ###
+ #######################
 
 EXEC	= a.out
 SRCB_PATH	= srcb
@@ -33,20 +33,20 @@ RM		= rm -f
 AR		= ar rcs
 
 
-################
+ ###########
 ### Rules ###
-################
+ ###########
 
 ##@ Help 󰛵
 
 .PHONY: help
-help: 			## Show help
+help: 			## Display this help page
 	@awk 'BEGIN {FS = ":.*##"; \
-		printf "\nUsage:\n  make $(GRN)<target>$(NC)\n"} \
+			printf "\n=> Usage:\n\tmake $(GRN)<target>$(NC)\n"} \
 		/^[a-zA-Z_0-9-]+:.*?##/ { \
-		printf "  $(GRN)%-15s$(NC) %s\n", $$1, $$2 } \
+			printf "\t$(GRN)%-15s$(NC) %s\n", $$1, $$2 } \
 		/^##@/ { \
-		printf "\n$(NC)%s$(GRN)\n", substr($$0, 5) } ' Makefile
+			printf "\n=> %s\n", substr($$0, 5) } ' Makefile
 
 ##@ get_next_line Compilation Rules 🏗
 
@@ -56,19 +56,25 @@ all: $(NAME)
 gnl: $(OBJS)			## Compile Mandatory version
 	@echo "\t$(YEL)Creating $(NAME) w/out bonus$(NC)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJS) -o $(EXEC)
-	@echo "==> $(GRN)SUCCESS compiling gnl!$(NC) $(YEL)🖔$(NC)\n"
+	@echo "\t$(YEL)Getting .gdbinit for debugging$(NC)"
+	cp srcb/.gdbinit .
+	@echo "\n==> $(GRN)SUCCESS compiling gnl!$(NC) $(YEL)🖔$(NC)\n"
 
 .PHONY: bonus
 bonus: $(OBJSB)			## Compile Bonus version
 	@echo "\t$(YEL)Creating $(NAME) w/ bonus$(NC)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJSB) -o $(EXEC)
-	@echo "==> $(GRN)SUCCESS compiling gnl!$(NC) $(YEL)🖔$(NC)\n"
+	@echo "\t$(YEL)Getting .gdbinit for debugging$(NC)"
+	cp srcb/.gdbinit .
+	@echo "\n==> $(GRN)SUCCESS compiling gnl!$(NC) $(YEL)🖔$(NC)\n"
 
 .PHONY: extrall
 extrall: $(OBJSLL)		## Compile Linked Lists version
 	@echo "\t$(YEL)Creating $(NAME) w/ Linked Lists w/out bonus$(NC)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJSLL) -o $(EXEC)
-	@echo "==> $(GRN)SUCCESS compiling gnl!$(NC) $(YEL)🖔$(NC)\n"
+	@echo "\t$(YEL)Getting .gdbinit for debugging$(NC)"
+	cp srcll/.gdbinit .
+	@echo "\n==> $(GRN)SUCCESS compiling gnl!$(NC) $(YEL)🖔$(NC)\n"
 
 ##@ Clean-up Rules 󰃢
 
@@ -76,13 +82,15 @@ extrall: $(OBJSLL)		## Compile Linked Lists version
 clean:					## Remove object files
 	@echo "\t$(RED)Cleaning objects 󰃢$(NC)"
 	$(RM) $(OBJS) $(OBJSB) $(OBJSLL)
-	@echo "==> $(GRN)Object files successfully removed!$(NC)\n"
+	@echo "\n==> $(GRN)Object files successfully removed!$(NC)\n"
 
 .PHONY: fclean
-fclean: clean			## Remove executable
+fclean: clean			## Remove executable and .gdbinit
 	@echo "\t$(RED)Cleaning executable 󰃢$(NC)"
 	$(RM) $(EXEC)
-	@echo "==> $(GRN)$(NAME)Successfully removed!$(NC)\n"
+	@echo "\t$(RED)Cleaning gdbinit 󰃢$(NC)"
+	$(RM) .gdbinit
+	@echo "\n==> $(GRN)$(NAME)Successfully removed!$(NC)\n"
 
 .PHONY: re
 re: fclean all
@@ -132,7 +140,7 @@ MAGB = \033[45m
 CYNB = \033[46m
 WHTB = \033[47m
 
-# High intensity background 
+# High intensity background
 BLKHB = \033[0;100m
 REDHB = \033[0;101m
 GRNHB = \033[0;102m
