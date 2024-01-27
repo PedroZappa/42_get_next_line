@@ -116,7 +116,8 @@ git clone https://github.com/PedroZappa/get_next_line.git zedro-gnl
 cd zedro-gnl
 ```
 
-> [!NOTE]
+>[!NOTE]
+> 
 > Two distinct implementation can be found in this repository: the one on `srcll` implements `Linked Lists` without the bonus; while the other on `srcb` uses `Arrays` and meets both mandatory and bonus requirements. 
 
 ___
@@ -146,6 +147,7 @@ make extrall
 ```
 
 > [!IMPORTANT]
+> 
 > The `Linked Lists` implementation does not fully pass [norminette](https://github.com/42School/norminette)'s tests. It was my first attempt at this project, I decided to keep it for future reference on handling `Linked Lists`. 
 > It seems impossible to solve this challenge using `Linked Lists` taking the appropriate precautions to avoid memory leaks while adhering to `The Norm`.
 
@@ -157,6 +159,7 @@ ___
 Within each implementation folder there is a `.gdbinit` file defining commands to quickly display relevant debug info customized for each implementation. `trace-commands` and `logging` is turned on to save `gdb`'s output into a `gdb.txt` file that we can track in real time with the command `tail` for a better debugging experience.
 
 > [!NOTE]
+>
 > For user convenience the `make` command will copy the `.gdbinit` file related to the selected implementation into the root of the project.
 
 ___
