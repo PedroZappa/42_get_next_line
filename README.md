@@ -112,7 +112,7 @@ classDiagram
 0. Clone repository & enter directory:
 
 ```sh
-git clone https://github.com/PedroZappa/get_next_line.git zedro-gnl
+git clone https://github.com/PedroZappa/42_get_next_line.git zedro-gnl
 cd zedro-gnl
 ```
 
