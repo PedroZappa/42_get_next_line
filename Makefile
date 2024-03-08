@@ -37,17 +37,6 @@ AR		= ar rcs
 ### Rules ###
  ###########
 
-##@ Help 󰛵
-
-.PHONY: help
-help: 			## Display this help page
-	@awk 'BEGIN {FS = ":.*##"; \
-			printf "\n=> Usage:\n\tmake $(GRN)<target>$(NC)\n"} \
-		/^[a-zA-Z_0-9-]+:.*?##/ { \
-			printf "\t$(GRN)%-15s$(NC) %s\n", $$1, $$2 } \
-		/^##@/ { \
-			printf "\n=> %s\n", substr($$0, 5) } ' Makefile
-
 ##@ get_next_line Compilation Rules 🏗
 
 all: $(OBJS)
@@ -91,6 +80,20 @@ fclean: clean			## Remove executable and .gdbinit
 	@echo "\t$(RED)Cleaning gdbinit 󰃢$(NC)"
 	$(RM) .gdbinit
 	@echo "\n==> $(GRN)$(NAME)Successfully removed!$(NC)\n"
+
+
+##@ Help 󰛵
+
+.PHONY: help
+help: 			## Display this help page
+	@awk 'BEGIN {FS = ":.*##"; \
+			printf "\n=> Usage:\n\tmake $(GRN)<target>$(NC)\n"} \
+		/^[a-zA-Z_0-9-]+:.*?##/ { \
+			printf "\t$(GRN)%-15s$(NC) %s\n", $$1, $$2 } \
+		/^##@/ { \
+			printf "\n=> %s\n", substr($$0, 5) } ' Makefile
+## Tweaked from source:
+### https://www.padok.fr/en/blog/beautiful-makefile-awk
 
 .PHONY: re
 re: fclean all
