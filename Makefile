@@ -10,11 +10,33 @@
 #                                                                              #
 # **************************************************************************** #
 
- #######################
-### 󰴠 Names & Paths 󰴠 ###
- #######################
+#==============================================================================#
+#                                  MAKE CONFIG                                 #
+#==============================================================================#
 
-EXEC	= a.out
+MAKE	= make -C
+SHELL	:= bash
+
+#==============================================================================#
+#                                     NAMES                                    #
+#==============================================================================#
+
+UNAME 			= $(shell uname)
+
+### Message Vars
+_SUCCESS 		= [$(GRN)SUCCESS$(D)]
+_INFO 			= [$(BLU)INFO$(D)]
+_NORM 			= [$(MAG)Norminette$(D)]
+_NORM_SUCCESS 	= $(GRN)=== OK:$(D)
+_NORM_INFO 		= $(BLU)File no:$(D)
+_NORM_ERR 		= $(RED)=== KO:$(D)
+_SEP 			= =====================
+
+#==============================================================================#
+#                                    PATHS                                     #
+#==============================================================================#
+
+EXEC		= a.out
 SRCB_PATH	= srcb
 SRCLL_PATH	= srcll
 
@@ -26,16 +48,26 @@ OBJS	= $(SRC:.c=.o)
 OBJSB	= $(SRCB:.c=.o)
 OBJSLL	= $(SRCLL:.c=.o)
 
+#==============================================================================#
+#                              COMPILER & FLAGS                                #
+#==============================================================================#
+
 CC		= cc
+
 CFLAGS	= -Wall -Wextra -Werror -g
 INC		= -I.
+
+#==============================================================================#
+#                                COMMANDS                                      #
+#==============================================================================#
+
 RM		= rm -f
 AR		= ar rcs
+MKDIR_P	= mkdir -p
 
-
- ###########
-### Rules ###
- ###########
+#==============================================================================#
+#                                  RULES                                       #
+#==============================================================================#
 
 ##@ get_next_line Compilation Rules 🏗
 
@@ -98,81 +130,32 @@ help: 			## Display this help page
 .PHONY: re
 re: fclean all
 
+#==============================================================================#
+#                                  UTILS                                       #
+#==============================================================================#
 
-########################
-### ANSI Color Codes ###
-########################
-
-# Regular text
-BLK = \033[0;30m
-RED = \033[0;31m
-GRN = \033[0;32m
-YEL = \033[0;33m
-BLU = \033[0;34m
-MAG = \033[0;35m
-CYN = \033[0;36m
-WHT = \033[0;37m
-
-# Regular bold text
-BBLK = \033[1;30m
-BRED = \033[1;31m
-BGRN = \033[1;32m
-BYEL = \033[1;33m
-BBLU = \033[1;34m
-BMAG = \033[1;35m
-BCYN = \033[1;36m
-BWHT = \033[1;37m
-
-# Regular underline text
-UBLK = \033[4;30m
-URED = \033[4;31m
-UGRN = \033[4;32m
-UYEL = \033[4;33m
-UBLU = \033[4;34m
-UMAG = \033[4;35m
-UCYN = \033[4;36m
-UWHT = \033[4;37m
-
-# Regular background
-BLKB = \033[40m
-REDB = \033[41m
-GRNB = \033[42m
-YELB = \033[43m
-BLUB = \033[44m
-MAGB = \033[45m
-CYNB = \033[46m
-WHTB = \033[47m
-
-# High intensity background
-BLKHB = \033[0;100m
-REDHB = \033[0;101m
-GRNHB = \033[0;102m
-YELHB = \033[0;103m
-BLUHB = \033[0;104m
-MAGHB = \033[0;105m
-CYNHB = \033[0;106m
-WHTHB = \033[0;107m
-
-# High intensity text
-HBLK = \033[0;90m
-HRED = \033[0;91m
-HGRN = \033[0;92m
-HYEL = \033[0;93m
-HBLU = \033[0;94m
-HMAG = \033[0;95m
-HCYN = \033[0;96m
-HWHT = \033[0;97m
-
-# Bold high intensity text
-BHBLK = \033[1;90m
-BHRED = \033[1;91m
-BHGRN = \033[1;92m
-BHYEL = \033[1;93m
-BHBLU = \033[1;94m
-BHMAG = \033[1;95m
-BHCYN = \033[1;96m
-BHWHT = \033[1;97m
-
-# Reset
-NC=\033[0m
-
+# Colors
+#
+# Run the following command to get list of available colors
+# bash -c 'for c in {0..255}; do tput setaf $c; tput setaf $c | cat -v; echo =$c; done'
+#
+B  		= $(shell tput bold)
+BLA		= $(shell tput setaf 0)
+RED		= $(shell tput setaf 1)
+GRN		= $(shell tput setaf 2)
+YEL		= $(shell tput setaf 3)
+BLU		= $(shell tput setaf 4)
+MAG		= $(shell tput setaf 5)
+CYA		= $(shell tput setaf 6)
+WHI		= $(shell tput setaf 7)
+GRE		= $(shell tput setaf 8)
+BRED 	= $(shell tput setaf 9)
+BGRN	= $(shell tput setaf 10)
+BYEL	= $(shell tput setaf 11)
+BBLU	= $(shell tput setaf 12)
+BMAG	= $(shell tput setaf 13)
+BCYA	= $(shell tput setaf 14)
+BWHI	= $(shell tput setaf 15)
+D 		= $(shell tput sgr0)
+BEL 	= $(shell tput bel)
+CLR 	= $(shell tput el 1)
