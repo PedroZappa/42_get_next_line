@@ -40,6 +40,7 @@ _SEP 			= =====================
 
 SRCB_PATH	= srcb
 SRCLL_PATH	= srcll
+LIBS_PATH	= lib
 BUILD_PATH	= .build
 TEMP_PATH	= .temp
 
@@ -51,13 +52,16 @@ OBJS	= $(SRC:$(SRCB_PATH)/%.c=$(BUILD_PATH)/%.o)
 OBJSB	= $(SRCB:$(SRCB_PATH)/%.c=$(BUILD_PATH)/%.o)
 OBJSLL	= $(SRCLL:$(SRCLL_PATH)/%.c=$(BUILD_PATH)/%.o)
 
+LIBFT_PATH	= $(LIBS_PATH)/libft
+LIBFT_ARC	= $(LIBFT_PATH)/libft.a
+
 #==============================================================================#
 #                              COMPILER & FLAGS                                #
 #==============================================================================#
 
 CC		= cc
 
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= -Wall -Wextra -Werror
 DFLAGS	= -g
 INC		= -I.
 
@@ -75,7 +79,34 @@ MKDIR_P	= mkdir -p
 
 ##@ get_next_line Compilation Rules 🏗
 
-all: $(BUILD_PATH) $(EXEC)	## Compile Mandatory version
+all: $(BUILD_PATH) deps $(EXEC)	## Compile Mandatory version
+
+$(EXEC): $(BUILD_PATH) $(OBJS) $(LIBFT_ARC)			## Compile Mandatory version
+	@echo "$(YEL)Compiling test for $(MAG)$(NAME) $(YEL)w/out bonus$(D)"
+	$(CC) $(CFLAGS) $(INC) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
+	@echo "$(YEL)Getting .gdbinit for debugging$(D)"
+	cp srcb/.gdbinit .
+	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) $(YEL)🖔$(D)]"
+
+bonus: $(BUILD_PATH) deps $(OBJSB)		## Compile Bonus version
+	@echo "$(YEL)Creating $(NAME) w/ bonus$(D)"
+	@echo "$(YEL)Compiling test for $(MAG)$(NAME) $(YEL)w/ bonus$(D)"
+	$(CC) $(CFLAGS) $(INC) main.c $(OBJSB) $(LIBFT_ARC) -o $(EXEC)
+	@echo "$(YEL)Getting .gdbinit for debugging$(D)"
+	cp srcb/.gdbinit .
+	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) w/ bonus $(YEL)🖔$(D)]"
+
+extrall: $(BUILD_PATH) $(OBJSLL)	## Compile Linked Lists version
+	@echo "\t$(YEL)Creating $(NAME) w/ Linked Lists w/out bonus$(D)"
+	$(CC) $(CFLAGS) $(INC) main.c $(OBJSLL) $(LIBFT_ARC) -o $(EXEC)
+	@echo "$(YEL)Getting .gdbinit for debugging$(D)"
+	cp srcll/.gdbinit .
+	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) w/ linked lists $(YEL)🖔$(D)]"
+
+deps: 			## Download/Update libft
+	@if test ! -d "$(LIBFT_PATH)"; then make get_libft; \
+		else echo "$(YEL)[libft]$(D) folder found 🖔"; fi
+	@echo " $(RED)$(D) [$(GRN)Nothing to be done!$(D)]"
 
 $(BUILD_PATH)/%.o: $(SRCB_PATH)/%.c
 	@echo -n "$(MAG)█$(D)"
@@ -93,27 +124,13 @@ $(TEMP_PATH):
 	$(MKDIR_P) $(TEMP_PATH)
 	@echo "* $(YEL)Creating $(TEMP_PATH) folder:$(D) $(_SUCCESS)"
 
-$(EXEC): $(BUILD_PATH) $(OBJS)			## Compile Mandatory version
-	@echo "$(YEL)Compiling test for $(MAG)$(NAME) $(YEL)w/out bonus$(D)"
-	$(CC) $(CFLAGS) $(INC) main.c $(OBJS) -o $(EXEC)
-	@echo "$(YEL)Getting .gdbinit for debugging$(D)"
-	cp srcb/.gdbinit .
-	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) $(YEL)🖔$(D)]"
+$(LIBFT_ARC):
+	$(MAKE) $(LIBFT_PATH) extra
 
-bonus: $(BUILD_PATH) $(OBJSB)		## Compile Bonus version
-	@echo "$(YEL)Creating $(NAME) w/ bonus$(D)"
-	@echo "$(YEL)Compiling test for $(MAG)$(NAME) $(YEL)w/ bonus$(D)"
-	$(CC) $(CFLAGS) $(INC) main.c $(OBJSB) -o $(EXEC)
-	@echo "$(YEL)Getting .gdbinit for debugging$(D)"
-	cp srcb/.gdbinit .
-	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) w/ bonus $(YEL)🖔$(D)]"
-
-extrall: $(BUILD_PATH) $(OBJSLL)	## Compile Linked Lists version
-	@echo "\t$(YEL)Creating $(NAME) w/ Linked Lists w/out bonus$(D)"
-	$(CC) $(CFLAGS) $(INC) main.c $(OBJSLL) -o $(EXEC)
-	@echo "$(YEL)Getting .gdbinit for debugging$(D)"
-	cp srcll/.gdbinit .
-	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) w/ linked lists $(YEL)🖔$(D)]"
+get_libft:
+	@echo "* $(CYA)Getting Libft submodule$(D)]"
+	git clone git@github.com:PedroZappa/42_libft.git $(LIBFT_PATH)
+	@echo "* $(GRN)Libft submodule download$(D): $(_SUCCESS)"
 
 ##@ Norm, Debug & Leak Check Rules 
 
@@ -137,6 +154,13 @@ norm: $(TEMP_PATH)		## Run norminette test on source files
 		printf "[$(YEL)Everything is OK$(D)]\n"; \
 	fi
 	@echo "$(CYA)$(_SEP)$(D)"
+
+check_ext_func: all		## Check for external functions
+	@echo "[$(YEL)Checking for external functions$(D)]"
+	@echo "$(YEL)$(_SEP)$(D)"
+	@echo "$(CYA)Reading binary$(D): $(MAG)$(NAME)$(D)"
+	nm ./$(EXEC) | grep "U" | tee $(TEMP_PATH)/ext_func.txt
+	@echo "$(YEL)$(_SEP)$(D)"
 
 ##@ Clean-up Rules 󰃢
 
@@ -169,6 +193,10 @@ fclean: clean			## Remove executable and .gdbinit
 		echo " $(RED)$(D) [$(GRN)Nothing to be fcleaned!$(D)]"; \
 	fi
 	
+libclean: fclean	## Remove libs
+	$(RM) $(LIBS_PATH)
+	@echo "* $(YEL)Removing lib folder & files!$(D) : $(_SUCCESS)"
+
 re: fclean all	## Purge & Recompile
 
 ##@ Help 󰛵
