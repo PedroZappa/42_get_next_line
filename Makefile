@@ -22,6 +22,8 @@ SHELL	:= bash
 #==============================================================================#
 
 UNAME 			= $(shell uname)
+NAME 			= get_next_line
+EXEC			= a.out
 
 ### Message Vars
 _SUCCESS 		= [$(GRN)SUCCESS$(D)]
@@ -36,7 +38,6 @@ _SEP 			= =====================
 #                                    PATHS                                     #
 #==============================================================================#
 
-EXEC		= a.out
 SRCB_PATH	= srcb
 SRCLL_PATH	= srcll
 BUILD_PATH	= .build
@@ -57,6 +58,7 @@ OBJSLL	= $(SRCLL:.c=.o)
 CC		= cc
 
 CFLAGS	= -Wall -Wextra -Werror -g
+DFLAGS		= -g
 INC		= -I.
 
 #==============================================================================#
@@ -91,40 +93,40 @@ $(TEMP_PATH):
 	$(MKDIR_P) $(TEMP_PATH)
 	@echo "* $(YEL)Creating $(TEMP_PATH) folder:$(D) $(_SUCCESS)"
 
-gnl: $(OBJS) $(BUILD_PATH)		## Compile Mandatory version
-	@echo "\t$(YEL)Creating $(NAME) w/out bonus$(D)"
+gnl: $(BUILD_PATH) $(OBJS)		## Compile Mandatory version
+	@echo "$(YEL)Creating $(NAME) w/out bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJS) -o $(EXEC)
-	@echo "\t$(YEL)Getting .gdbinit for debugging$(D)"
+	@echo "$(YEL)Getting .gdbinit for debugging$(D)"
 	cp srcb/.gdbinit .
-	@echo "\n==> $(GRN)SUCCESS compiling gnl!$(D) $(YEL)🖔$(D)\n"
+	@echo "==> $(GRN)SUCCESS compiling gnl!$(D) $(YEL)🖔$(D)\n"
 
 bonus: $(OBJSB)			## Compile Bonus version
-	@echo "\t$(YEL)Creating $(NAME) w/ bonus$(D)"
+	@echo "$(YEL)Creating $(NAME) w/ bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJSB) -o $(EXEC)
-	@echo "\t$(YEL)Getting .gdbinit for debugging$(D)"
+	@echo "$(YEL)Getting .gdbinit for debugging$(D)"
 	cp srcb/.gdbinit .
-	@echo "\n==> $(GRN)SUCCESS compiling gnl!$(D) $(YEL)🖔$(D)\n"
+	@echo "==> $(GRN)SUCCESS compiling gnl!$(D) $(YEL)🖔$(D)\n"
 
 extrall: $(OBJSLL)		## Compile Linked Lists version
 	@echo "\t$(YEL)Creating $(NAME) w/ Linked Lists w/out bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJSLL) -o $(EXEC)
-	@echo "\t$(YEL)Getting .gdbinit for debugging$(D)"
+	@echo "$(YEL)Getting .gdbinit for debugging$(D)"
 	cp srcll/.gdbinit .
-	@echo "\n==> $(GRN)SUCCESS compiling gnl!$(D) $(YEL)🖔$(D)\n"
+	@echo "==> $(GRN)SUCCESS compiling gnl!$(D) $(YEL)🖔$(D)\n"
 
 ##@ Clean-up Rules 󰃢
 
 clean:					## Remove object files
-	@echo "\t$(RED)Cleaning objects 󰃢$(D)"
+	@echo "$(RED)Cleaning objects 󰃢$(D)"
 	$(RM) $(OBJS) $(OBJSB) $(OBJSLL)
-	@echo "\n==> $(GRN)Object files successfully removed!$(D)\n"
+	@echo "==> $(GRN)Object files successfully removed!$(D)\n"
 
 fclean: clean			## Remove executable and .gdbinit
-	@echo "\t$(RED)Cleaning executable 󰃢$(D)"
+	@echo "$(RED)Cleaning executable 󰃢$(D)"
 	$(RM) $(EXEC)
-	@echo "\t$(RED)Cleaning gdbinit 󰃢$(D)"
+	@echo "$(RED)Cleaning gdbinit 󰃢$(D)"
 	$(RM) .gdbinit
-	@echo "\n==> $(GRN)$(NAME)Successfully removed!$(D)\n"
+	@echo "==> $(GRN)$(NAME)Successfully removed!$(D)\n"
 
 re: fclean all		# Purge & Recompile
 
