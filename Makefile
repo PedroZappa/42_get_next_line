@@ -115,6 +115,29 @@ extrall: $(BUILD_PATH) $(OBJSLL)	## Compile Linked Lists version
 	cp srcll/.gdbinit .
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) w/ linked lists $(YEL)🖔$(D)]"
 
+##@ Norm, Debug & Leak Check Rules 
+
+norm: $(TEMP_PATH)		## Run norminette test on source files
+	@printf "${_NORM}: $(YEL)$(SRCB_PATH)$(D)\n"
+	@ls $(SRCB_PATH) | wc -l > $(TEMP_PATH)/norm_ls.txt
+	@printf "$(_NORM_INFO) $$(cat $(TEMP_PATH)/norm_ls.txt)\n"
+	@printf "$(_NORM_SUCCESS) "
+	@norminette $(SRCB_PATH) | grep -wc "OK" > $(TEMP_PATH)/norm.txt; \
+	if [ $$? -eq 1 ]; then \
+		echo "0" > $(TEMP_PATH)/norm.txt; \
+	fi
+	@printf "$$(cat $(TEMP_PATH)/norm.txt)\n"
+	@if ! diff -q $(TEMP_PATH)/norm_ls.txt $(TEMP_PATH)/norm.txt > /dev/null; then \
+		printf "$(_NORM_ERR) "; \
+		norminette $(SRCB_PATH) | grep -v "OK"> $(TEMP_PATH)/norm_err.txt; \
+		cat $(TEMP_PATH)/norm_err.txt | grep -wc "Error:" > $(TEMP_PATH)/norm_errn.txt; \
+		printf "$$(cat $(TEMP_PATH)/norm_errn.txt)\n"; \
+		printf "$$(cat $(TEMP_PATH)/norm_err.txt)\n"; \
+	else \
+		printf "[$(YEL)Everything is OK$(D)]\n"; \
+	fi
+	@echo "$(CYA)$(_SEP)$(D)"
+
 ##@ Clean-up Rules 󰃢
 
 clean: 				## Remove object files
