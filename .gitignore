@@ -55,3 +55,7 @@ dkms.conf
 
 # tags
 tags
+
+#directories
+.build
+.temp

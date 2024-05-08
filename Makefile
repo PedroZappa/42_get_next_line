@@ -49,7 +49,7 @@ SRCLL	= $(addprefix $(SRCLL_PATH)/, get_next_line.c get_next_line_utils.c)
 
 OBJS	= $(SRC:$(SRCB_PATH)/%.c=$(BUILD_PATH)/%.o)
 OBJSB	= $(SRCB:$(SRCB_PATH)/%.c=$(BUILD_PATH)/%.o)
-OBJSLL	= $(SRCLL:.c=.o)
+OBJSLL	= $(SRCLL:$(SRCLL_PATH)/%.c=$(BUILD_PATH)/%.o)
 
 #==============================================================================#
 #                              COMPILER & FLAGS                                #
@@ -58,14 +58,14 @@ OBJSLL	= $(SRCLL:.c=.o)
 CC		= cc
 
 CFLAGS	= -Wall -Wextra -Werror -g
-DFLAGS		= -g
+DFLAGS	= -g
 INC		= -I.
 
 #==============================================================================#
 #                                COMMANDS                                      #
 #==============================================================================#
 
-RM		= rm -f
+RM		= rm -rf
 AR		= ar rcs
 MKDIR_P	= mkdir -p
 
@@ -75,13 +75,13 @@ MKDIR_P	= mkdir -p
 
 ##@ get_next_line Compilation Rules 🏗
 
-all: $(OBJS)
+all: $(BUILD_PATH) $(EXEC)	## Compile Mandatory version
 
 $(BUILD_PATH)/%.o: $(SRCB_PATH)/%.c
 	@echo -n "$(MAG)█$(D)"
 	$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@
 
-$(BUILD_PATH)/%.o: $(BONUS_PATH)/%.c
+$(BUILD_PATH)/%.o: $(SRCLL_PATH)/%.c
 	@echo -n "$(MAG)█$(D)"
 	$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@
 
@@ -93,41 +93,59 @@ $(TEMP_PATH):
 	$(MKDIR_P) $(TEMP_PATH)
 	@echo "* $(YEL)Creating $(TEMP_PATH) folder:$(D) $(_SUCCESS)"
 
-gnl: $(BUILD_PATH) $(OBJS)		## Compile Mandatory version
-	@echo "$(YEL)Creating $(NAME) w/out bonus$(D)"
+$(EXEC): $(BUILD_PATH) $(OBJS)			## Compile Mandatory version
+	@echo "$(YEL)Compiling test for $(MAG)$(NAME) $(YEL)w/out bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJS) -o $(EXEC)
 	@echo "$(YEL)Getting .gdbinit for debugging$(D)"
 	cp srcb/.gdbinit .
-	@echo "==> $(GRN)SUCCESS compiling gnl!$(D) $(YEL)🖔$(D)\n"
+	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) $(YEL)🖔$(D)]"
 
-bonus: $(OBJSB)			## Compile Bonus version
+bonus: $(BUILD_PATH) $(OBJSB)		## Compile Bonus version
 	@echo "$(YEL)Creating $(NAME) w/ bonus$(D)"
+	@echo "$(YEL)Compiling test for $(MAG)$(NAME) $(YEL)w/ bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJSB) -o $(EXEC)
 	@echo "$(YEL)Getting .gdbinit for debugging$(D)"
 	cp srcb/.gdbinit .
-	@echo "==> $(GRN)SUCCESS compiling gnl!$(D) $(YEL)🖔$(D)\n"
+	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) w/ bonus $(YEL)🖔$(D)]"
 
-extrall: $(OBJSLL)		## Compile Linked Lists version
+extrall: $(BUILD_PATH) $(OBJSLL)	## Compile Linked Lists version
 	@echo "\t$(YEL)Creating $(NAME) w/ Linked Lists w/out bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJSLL) -o $(EXEC)
 	@echo "$(YEL)Getting .gdbinit for debugging$(D)"
 	cp srcll/.gdbinit .
-	@echo "==> $(GRN)SUCCESS compiling gnl!$(D) $(YEL)🖔$(D)\n"
+	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) w/ linked lists $(YEL)🖔$(D)]"
 
 ##@ Clean-up Rules 󰃢
 
-clean:					## Remove object files
-	@echo "$(RED)Cleaning objects 󰃢$(D)"
-	$(RM) $(OBJS) $(OBJSB) $(OBJSLL)
-	@echo "==> $(GRN)Object files successfully removed!$(D)\n"
+clean: 				## Remove object files
+	@echo "*** $(YEL)Removing $(MAG)$(NAME)$(D) and deps $(YEL)object files$(D)"
+	@if [ -d "$(BUILD_PATH)" ] || [ -d "$(TEMP_PATH)" ]; then \
+		if [ -d "$(BUILD_PATH)" ]; then \
+			$(RM) $(BUILD_PATH); \
+			echo "* $(YEL)Removing $(CYA)$(BUILD_PATH)$(D) folder & files$(D): $(_SUCCESS)"; \
+		fi; \
+		if [ -d "$(TEMP_PATH)" ]; then \
+			$(RM) $(TEMP_PATH); \
+			echo "* $(YEL)Removing $(CYA)$(TEMP_PATH)$(D) folder & files:$(D) $(_SUCCESS)"; \
+		fi; \
+	else \
+		echo " $(RED)$(D) [$(GRN)Nothing to clean!$(D)]"; \
+	fi
 
 fclean: clean			## Remove executable and .gdbinit
-	@echo "$(RED)Cleaning executable 󰃢$(D)"
-	$(RM) $(EXEC)
-	@echo "$(RED)Cleaning gdbinit 󰃢$(D)"
-	$(RM) .gdbinit
-	@echo "==> $(GRN)$(NAME)Successfully removed!$(D)\n"
-
+	@if [ -f ".gdbinit" ] || [ -f "$(EXEC)" ]; then \
+		if [ -f "$(EXEC)" ]; then \
+			$(RM) $(EXEC); \
+			echo "* $(YEL)Removing $(CYA)$(EXEC)$(D) file: $(_SUCCESS)"; \
+		fi; \
+		if [ -f ".gdbinit" ]; then \
+			$(RM) .gdbinit; \
+			echo "* $(YEL)Removing $(CYA).gdbinit$(D) file: $(_SUCCESS)"; \
+		fi; \
+	else \
+		echo " $(RED)$(D) [$(GRN)Nothing to be fcleaned!$(D)]"; \
+	fi
+	
 re: fclean all		# Purge & Recompile
 
 ##@ Help 󰛵
@@ -143,7 +161,7 @@ help: 			## Display this help page
 ### https://www.padok.fr/en/blog/beautiful-makefile-awk
 
 
-.PHONY: gnl bonus extrall clean fclean re help
+.PHONY: bonus extrall clean fclean re help
 
 #==============================================================================#
 #                                  UTILS                                       #
