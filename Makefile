@@ -146,7 +146,7 @@ fclean: clean			## Remove executable and .gdbinit
 		echo " $(RED)$(D) [$(GRN)Nothing to be fcleaned!$(D)]"; \
 	fi
 	
-re: fclean all		# Purge & Recompile
+re: fclean all	## Purge & Recompile
 
 ##@ Help 󰛵
 
