@@ -87,6 +87,7 @@ $(EXEC): $(BUILD_PATH) $(OBJS) $(LIBFT_ARC)			## Compile Mandatory version
 	@echo "$(YEL)Getting .gdbinit for debugging$(D)"
 	cp srcb/.gdbinit .
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) $(YEL)🖔$(D)]"
+	@make norm
 
 bonus: $(BUILD_PATH) deps $(OBJSB)		## Compile Bonus version
 	@echo "$(YEL)Creating $(NAME) w/ bonus$(D)"
@@ -95,6 +96,7 @@ bonus: $(BUILD_PATH) deps $(OBJSB)		## Compile Bonus version
 	@echo "$(YEL)Getting .gdbinit for debugging$(D)"
 	cp srcb/.gdbinit .
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) w/ bonus $(YEL)🖔$(D)]"
+	@make norm
 
 extrall: $(BUILD_PATH) $(OBJSLL)	## Compile Linked Lists version
 	@echo "\t$(YEL)Creating $(NAME) w/ Linked Lists w/out bonus$(D)"
