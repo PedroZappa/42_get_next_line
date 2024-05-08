@@ -39,13 +39,15 @@ _SEP 			= =====================
 EXEC		= a.out
 SRCB_PATH	= srcb
 SRCLL_PATH	= srcll
+BUILD_PATH	= .build
+TEMP_PATH	= .temp
 
 SRC		= $(addprefix $(SRCB_PATH)/, get_next_line.c get_next_line_utils.c)
 SRCB	= $(addprefix $(SRCB_PATH)/, get_next_line_bonus.c get_next_line_utils_bonus.c)
 SRCLL	= $(addprefix $(SRCLL_PATH)/, get_next_line.c get_next_line_utils.c)
 
-OBJS	= $(SRC:.c=.o)
-OBJSB	= $(SRCB:.c=.o)
+OBJS	= $(SRC:$(SRCB_PATH)/%.c=$(BUILD_PATH)/%.o)
+OBJSB	= $(SRCB:$(SRCB_PATH)/%.c=$(BUILD_PATH)/%.o)
 OBJSLL	= $(SRCLL:.c=.o)
 
 #==============================================================================#
@@ -73,62 +75,73 @@ MKDIR_P	= mkdir -p
 
 all: $(OBJS)
 
-.PHONY: gnl
-gnl: $(OBJS)			## Compile Mandatory version
-	@echo "\t$(YEL)Creating $(NAME) w/out bonus$(NC)"
+$(BUILD_PATH)/%.o: $(SRCB_PATH)/%.c
+	@echo -n "$(MAG)█$(D)"
+	$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@
+
+$(BUILD_PATH)/%.o: $(BONUS_PATH)/%.c
+	@echo -n "$(MAG)█$(D)"
+	$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@
+
+$(BUILD_PATH):
+	$(MKDIR_P) $(BUILD_PATH)
+	@echo "* $(YEL)Creating $(BUILD_PATH) folder:$(D) $(_SUCCESS)"
+
+$(TEMP_PATH):
+	$(MKDIR_P) $(TEMP_PATH)
+	@echo "* $(YEL)Creating $(TEMP_PATH) folder:$(D) $(_SUCCESS)"
+
+gnl: $(OBJS) $(BUILD_PATH)		## Compile Mandatory version
+	@echo "\t$(YEL)Creating $(NAME) w/out bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJS) -o $(EXEC)
-	@echo "\t$(YEL)Getting .gdbinit for debugging$(NC)"
+	@echo "\t$(YEL)Getting .gdbinit for debugging$(D)"
 	cp srcb/.gdbinit .
-	@echo "\n==> $(GRN)SUCCESS compiling gnl!$(NC) $(YEL)🖔$(NC)\n"
+	@echo "\n==> $(GRN)SUCCESS compiling gnl!$(D) $(YEL)🖔$(D)\n"
 
-.PHONY: bonus
 bonus: $(OBJSB)			## Compile Bonus version
-	@echo "\t$(YEL)Creating $(NAME) w/ bonus$(NC)"
+	@echo "\t$(YEL)Creating $(NAME) w/ bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJSB) -o $(EXEC)
-	@echo "\t$(YEL)Getting .gdbinit for debugging$(NC)"
+	@echo "\t$(YEL)Getting .gdbinit for debugging$(D)"
 	cp srcb/.gdbinit .
-	@echo "\n==> $(GRN)SUCCESS compiling gnl!$(NC) $(YEL)🖔$(NC)\n"
+	@echo "\n==> $(GRN)SUCCESS compiling gnl!$(D) $(YEL)🖔$(D)\n"
 
-.PHONY: extrall
 extrall: $(OBJSLL)		## Compile Linked Lists version
-	@echo "\t$(YEL)Creating $(NAME) w/ Linked Lists w/out bonus$(NC)"
+	@echo "\t$(YEL)Creating $(NAME) w/ Linked Lists w/out bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJSLL) -o $(EXEC)
-	@echo "\t$(YEL)Getting .gdbinit for debugging$(NC)"
+	@echo "\t$(YEL)Getting .gdbinit for debugging$(D)"
 	cp srcll/.gdbinit .
-	@echo "\n==> $(GRN)SUCCESS compiling gnl!$(NC) $(YEL)🖔$(NC)\n"
+	@echo "\n==> $(GRN)SUCCESS compiling gnl!$(D) $(YEL)🖔$(D)\n"
 
 ##@ Clean-up Rules 󰃢
 
-.PHONY: clean
 clean:					## Remove object files
-	@echo "\t$(RED)Cleaning objects 󰃢$(NC)"
+	@echo "\t$(RED)Cleaning objects 󰃢$(D)"
 	$(RM) $(OBJS) $(OBJSB) $(OBJSLL)
-	@echo "\n==> $(GRN)Object files successfully removed!$(NC)\n"
+	@echo "\n==> $(GRN)Object files successfully removed!$(D)\n"
 
-.PHONY: fclean
 fclean: clean			## Remove executable and .gdbinit
-	@echo "\t$(RED)Cleaning executable 󰃢$(NC)"
+	@echo "\t$(RED)Cleaning executable 󰃢$(D)"
 	$(RM) $(EXEC)
-	@echo "\t$(RED)Cleaning gdbinit 󰃢$(NC)"
+	@echo "\t$(RED)Cleaning gdbinit 󰃢$(D)"
 	$(RM) .gdbinit
-	@echo "\n==> $(GRN)$(NAME)Successfully removed!$(NC)\n"
+	@echo "\n==> $(GRN)$(NAME)Successfully removed!$(D)\n"
 
+re: fclean all		# Purge & Recompile
 
 ##@ Help 󰛵
 
-.PHONY: help
 help: 			## Display this help page
 	@awk 'BEGIN {FS = ":.*##"; \
-			printf "\n=> Usage:\n\tmake $(GRN)<target>$(NC)\n"} \
+			printf "\n=> Usage:\n\tmake $(GRN)<target>$(D)\n"} \
 		/^[a-zA-Z_0-9-]+:.*?##/ { \
-			printf "\t$(GRN)%-15s$(NC) %s\n", $$1, $$2 } \
+			printf "\t$(GRN)%-15s$(D) %s\n", $$1, $$2 } \
 		/^##@/ { \
 			printf "\n=> %s\n", substr($$0, 5) } ' Makefile
 ## Tweaked from source:
 ### https://www.padok.fr/en/blog/beautiful-makefile-awk
 
-.PHONY: re
-re: fclean all
+
+.PHONY: gnl bonus extrall clean fclean re help
 
 #==============================================================================#
 #                                  UTILS                                       #
