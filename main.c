@@ -12,6 +12,8 @@
 
 #include <stdio.h>
 #include <fcntl.h>
+# include "lib/libft/libft/libft.h"			// libft library
+# include "lib/libft/ft_printf/ft_printf.h" 	// ft_printf
 #include "srcb/get_next_line.h"
 #include "srcll/get_next_line.h"
 
@@ -24,11 +26,11 @@ int main()
 	int fd = open("files/vulf.txt", O_RDONLY);
 	// int fd = open("files/read_error.txt", O_RDONLY);
 
-	printf("Testing get_next_line\n\n");
+	ft_printf("Testing get_next_line\n\n");
 	
 	while ((str = get_next_line(fd)) != NULL)
 	{
-		printf("%d:\t%s", n, str);
+		ft_printf("%d:\t%s", n, str);
 		free(str);
 		++n;
 	}
