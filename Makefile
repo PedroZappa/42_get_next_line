@@ -81,7 +81,7 @@ MKDIR_P	= mkdir -p
 
 all: $(BUILD_PATH) deps $(EXEC)	## Compile Mandatory version
 
-$(EXEC): $(BUILD_PATH) $(OBJS) $(LIBFT_ARC)			## Compile Mandatory version
+$(EXEC): $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c			## Compile Mandatory version
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME)$(YEL) w/out bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
 	@echo "$(YEL)Getting $(CYA).gdbinit$(D) $(YEL)for debugging$(D)"
@@ -89,8 +89,7 @@ $(EXEC): $(BUILD_PATH) $(OBJS) $(LIBFT_ARC)			## Compile Mandatory version
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) $(YEL)🖔$(D)]"
 	@make norm
 
-bonus: $(BUILD_PATH) deps $(OBJSB)		## Compile Bonus version
-	@echo "$(YEL)Creating $(MAG)$(NAME) $(YEL)w/ bonus$(D)"
+bonus: $(BUILD_PATH) $(OBJSB) $(LIBFT_ARC) main.c		## Compile Bonus version
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME) $(YEL)w/ bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJSB) $(LIBFT_ARC) -o $(EXEC)
 	@echo "$(YEL)Getting $(CYA).gdbinit $(YEL)for debugging$(D)"
@@ -98,14 +97,14 @@ bonus: $(BUILD_PATH) deps $(OBJSB)		## Compile Bonus version
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) w/ bonus $(YEL)🖔$(D)]"
 	@make norm
 
-extrall: $(BUILD_PATH) $(OBJSLL)	## Compile Linked Lists version
+extrall: $(BUILD_PATH) $(OBJSLL) $(LIBFT_ARC) main.c	## Compile Linked Lists version
 	@echo "$(YEL)Creating $(NAME) w/ Linked Lists w/out bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJSLL) $(LIBFT_ARC) -o $(EXEC)
 	@echo "$(YEL)Getting $(CYA).gdbinit $(YEL)for debugging$(D)"
 	cp srcll/.gdbinit .
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) w/ linked lists $(YEL)🖔$(D)]"
 
-deps: 			## Download/Update libft
+deps:		## Download/Update libft
 	@if test ! -d "$(LIBFT_PATH)"; then make get_libft; \
 		else echo "$(YEL)[libft]$(D) folder found 🖔"; fi
 	@echo " $(RED)$(D) [$(GRN)Nothing to be done!$(D)]"
@@ -131,12 +130,18 @@ $(LIBFT_ARC):
 
 get_libft:
 	@echo "* $(CYA)Getting Libft submodule$(D)]"
-	git clone git@github.com:PedroZappa/42_libft.git $(LIBFT_PATH)
-	@echo "* $(GRN)Libft submodule download$(D): $(_SUCCESS)"
+	@if test ! -d "$(LIBFT_PATH)"; then \
+		git clone git@github.com:PedroZappa/42_libft.git $(LIBFT_PATH); \
+		echo "* $(GRN)Libft submodule download$(D): $(_SUCCESS)"; \
+	else \
+		echo "* $(GRN)Libft submodule already exists 🖔"; \
+	echo " $(RED)$(D) [$(GRN)Nothing to be done!$(D)]"; \
+	fi
 
 ##@ Norm, Debug & Leak Check Rules 
 
 norm: $(TEMP_PATH)		## Run norminette test on source files
+	@echo "$(CYA)$(_SEP)$(D)"
 	@printf "${_NORM}: $(YEL)$(SRCB_PATH)$(D)\n"
 	@ls $(SRCB_PATH) | wc -l > $(TEMP_PATH)/norm_ls.txt
 	@printf "$(_NORM_INFO) $$(cat $(TEMP_PATH)/norm_ls.txt)\n"
