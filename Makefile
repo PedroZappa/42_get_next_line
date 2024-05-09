@@ -109,13 +109,15 @@ deps:		## Download/Update libft
 		else echo "$(YEL)[libft]$(D) folder found 🖔"; fi
 	@echo " $(RED)$(D) [$(GRN)Nothing to be done!$(D)]"
 
+-include $(BUILD_PATH)/%.d
+
 $(BUILD_PATH)/%.o: $(SRCB_PATH)/%.c
 	@echo -n "$(MAG)█$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(DFLAGS) -MMD -MP -c $< -o $@
 
 $(BUILD_PATH)/%.o: $(SRCLL_PATH)/%.c
 	@echo -n "$(MAG)█$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(DFLAGS) -MMD -MP -c $< -o $@
 
 $(BUILD_PATH):
 	$(MKDIR_P) $(BUILD_PATH)
