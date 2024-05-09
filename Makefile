@@ -55,6 +55,8 @@ OBJSLL	= $(SRCLL:$(SRCLL_PATH)/%.c=$(BUILD_PATH)/%.o)
 LIBFT_PATH	= $(LIBS_PATH)/libft
 LIBFT_ARC	= $(LIBFT_PATH)/libft.a
 
+GNLTESTER_PATH	= $(SRCB_PATH)/gnlTester
+
 #==============================================================================#
 #                              COMPILER & FLAGS                                #
 #==============================================================================#
@@ -174,11 +176,26 @@ check_ext_func: all		## Check for external functions
 valgrind: all 			## Run push_swap w/ Valgrind
 	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC)
 
+##@ Test Rules 🧪
+
+gnlTester: $(EXEC) get_gnlTester		## Run gnlTester
+	$(MAKE) $(GNLTESTER_PATH) m
+
+get_gnlTester:
+	@echo "* $(CYA)Getting gnlTester submodule$(D)]"
+	@if test ! -d "$(GNLTESTER_PATH)"; then \
+		git clone git@github.com:Tripouille/gnlTester.git $(GNLTESTER_PATH); \
+		echo "* $(GRN)gnlTester download$(D): $(_SUCCESS)"; \
+	else \
+		echo "* $(GRN)gnlTester already exists 🖔"; \
+		echo " $(RED)$(D) [$(GRN)Nothing to be done!$(D)]"; \
+	fi
+
 ##@ Clean-up Rules 󰃢
 
 clean: 				## Remove object files
 	@echo "*** $(YEL)Removing $(MAG)$(NAME)$(D) and deps $(YEL)object files$(D)"
-	@if [ -d "$(BUILD_PATH)" ] || [ -d "$(TEMP_PATH)" ]; then \
+	@if [ -d "$(BUILD_PATH)" ] || [ -d "$(TEMP_PATH)" ] || [ -d "$(GNLTESTER_PATH)" ]; then \
 		if [ -d "$(BUILD_PATH)" ]; then \
 			$(RM) $(BUILD_PATH); \
 			echo "* $(YEL)Removing $(CYA)$(BUILD_PATH)$(D) folder & files$(D): $(_SUCCESS)"; \
@@ -186,6 +203,10 @@ clean: 				## Remove object files
 		if [ -d "$(TEMP_PATH)" ]; then \
 			$(RM) $(TEMP_PATH); \
 			echo "* $(YEL)Removing $(CYA)$(TEMP_PATH)$(D) folder & files:$(D) $(_SUCCESS)"; \
+		fi; \
+		if [ -d "$(GNLTESTER_PATH)" ]; then \
+			$(RM) $(GNLTESTER_PATH); \
+			echo "* $(YEL)Removing $(CYA)$(GNLTESTER_PATH)$(D) folder & files:$(D) $(_SUCCESS)"; \
 		fi; \
 	else \
 		echo " $(RED)$(D) [$(GRN)Nothing to clean!$(D)]"; \
