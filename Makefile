@@ -82,26 +82,26 @@ MKDIR_P	= mkdir -p
 all: $(BUILD_PATH) deps $(EXEC)	## Compile Mandatory version
 
 $(EXEC): $(BUILD_PATH) $(OBJS) $(LIBFT_ARC)			## Compile Mandatory version
-	@echo "$(YEL)Compiling test for $(MAG)$(NAME) $(YEL)w/out bonus$(D)"
+	@echo "$(YEL)Compiling test for $(MAG)$(NAME)$(YEL) w/out bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
-	@echo "$(YEL)Getting .gdbinit for debugging$(D)"
+	@echo "$(YEL)Getting $(CYA).gdbinit$(D) $(YEL)for debugging$(D)"
 	cp srcb/.gdbinit .
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) $(YEL)🖔$(D)]"
 	@make norm
 
 bonus: $(BUILD_PATH) deps $(OBJSB)		## Compile Bonus version
-	@echo "$(YEL)Creating $(NAME) w/ bonus$(D)"
+	@echo "$(YEL)Creating $(MAG)$(NAME) $(YEL)w/ bonus$(D)"
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME) $(YEL)w/ bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJSB) $(LIBFT_ARC) -o $(EXEC)
-	@echo "$(YEL)Getting .gdbinit for debugging$(D)"
+	@echo "$(YEL)Getting $(CYA).gdbinit $(YEL)for debugging$(D)"
 	cp srcb/.gdbinit .
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) w/ bonus $(YEL)🖔$(D)]"
 	@make norm
 
 extrall: $(BUILD_PATH) $(OBJSLL)	## Compile Linked Lists version
-	@echo "\t$(YEL)Creating $(NAME) w/ Linked Lists w/out bonus$(D)"
+	@echo "$(YEL)Creating $(NAME) w/ Linked Lists w/out bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJSLL) $(LIBFT_ARC) -o $(EXEC)
-	@echo "$(YEL)Getting .gdbinit for debugging$(D)"
+	@echo "$(YEL)Getting $(CYA).gdbinit $(YEL)for debugging$(D)"
 	cp srcll/.gdbinit .
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) w/ linked lists $(YEL)🖔$(D)]"
 
@@ -120,11 +120,11 @@ $(BUILD_PATH)/%.o: $(SRCLL_PATH)/%.c
 
 $(BUILD_PATH):
 	$(MKDIR_P) $(BUILD_PATH)
-	@echo "* $(YEL)Creating $(BUILD_PATH) folder:$(D) $(_SUCCESS)"
+	@echo "* $(YEL)Creating $(CYA)$(BUILD_PATH)$(YEL) folder:$(D) $(_SUCCESS)"
 
 $(TEMP_PATH):
 	$(MKDIR_P) $(TEMP_PATH)
-	@echo "* $(YEL)Creating $(TEMP_PATH) folder:$(D) $(_SUCCESS)"
+	@echo "* $(YEL)Creating $(CYA)$(TEMP_PATH)$(YEL) folder:$(D) $(_SUCCESS)"
 
 $(LIBFT_ARC):
 	$(MAKE) $(LIBFT_PATH) extra
@@ -163,6 +163,9 @@ check_ext_func: all		## Check for external functions
 	@echo "$(CYA)Reading binary$(D): $(MAG)$(NAME)$(D)"
 	nm ./$(EXEC) | grep "U" | tee $(TEMP_PATH)/ext_func.txt
 	@echo "$(YEL)$(_SEP)$(D)"
+
+valgrind: all 			## Run push_swap w/ Valgrind
+	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC)
 
 ##@ Clean-up Rules 󰃢
 
