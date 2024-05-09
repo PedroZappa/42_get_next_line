@@ -179,7 +179,7 @@ valgrind: all 			## Run push_swap w/ Valgrind
 ##@ Test Rules 🧪
 
 gnlTester: $(EXEC) get_gnlTester		## Run gnlTester
-	$(MAKE) $(GNLTESTER_PATH) m
+	$(MAKE) $(GNLTESTER_PATH) a
 
 get_gnlTester:
 	@echo "* $(CYA)Getting gnlTester submodule$(D)]"
