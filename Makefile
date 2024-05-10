@@ -18,9 +18,14 @@ MAKE	= make -C
 SHELL	:= bash
 
 # Default test values
-FILES	:= $(shell ls -l $(TESTS_PATH) | awk '{print $$9}')
+FILES	= $(shell ls -l $(TESTS_PATH) | awk '{print $$9}')
 ARG		?= "files/mini-vulf.txt"
-SIZES	:= 3 6 9
+SIZES	:= 1 3 9
+SIZES	+= 25 50 100
+SIZES	+= 200 400 800
+SIZES	+= 1600 3200 6400
+SIZES	+= 12800 25600 51200
+SIZES	+= 102400 204800 409600
 
 #==============================================================================#
 #                                     NAMES                                    #
@@ -184,27 +189,31 @@ valgrind: all 			## Run push_swap w/ Valgrind
 
 ##@ Test Rules 🧪
 
-# test:
-# 	ls -l $(TESTS_PATH) | awk '{print $$9}'
-
 test:	## Test w/ default BUFFER_SIZE
 	@for file in $(FILES); do \
 		echo "$(YEL)Executing $(CYA)$$file$(D)"; \
 		valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) "$(TESTS_PATH)/$$file"; \
 	done
 
-test_buffer:	## Test w/ different BUFFER_SIZEs
+test_buffer: $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
+	@TIMESTAMP=$(shell date +%Y%m%d%H%M%S); \
+	if [ -f $(TEMP_PATH)/out.txt ]; then \
+		mv -f $(TEMP_PATH)/out.txt $(TEMP_PATH)/out.$$TIMESTAMP.txt; \
+	fi
 	@for size in $(SIZES); do \
-		for file in $(shell ls -l $(TESTS_PATH) | awk '{print $$9}'); do \
+		for file in $(FILES); do \
 			echo "$(YEL)Executing $(CYA)$$file $(YEL)with $(GRN)BUFFER_SIZE=$(RED)$$size$(D)"; \
+			echo "Current BUFFER_SIZE: $$size" >> $(TEMP_PATH)/out.txt; \
+			echo "Current file: $$file" >> $(TEMP_PATH)/out.txt; \
 			BUFFER_SIZE=$$size; \
-			valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) "$(TESTS_PATH)/$$file"; \
+			valgrind --leak-check=full --show-leak-kinds=all --log-file=$(TEMP_PATH)/temp.txt ./$(EXEC) "$(TESTS_PATH)/$$file"; \
+			sed -n '10p' $(TEMP_PATH)/temp.txt >> $(TEMP_PATH)/out.txt; \
 		done; \
 	done
 
 get_res: all
 	valgrind --leak-check=full --show-leak-kinds=all --log-file=$(TEMP_PATH)/temp.txt ./$(EXEC) $(ARG)
-	sed -n '10p' $(TEMP_PATH)/temp.txt > $(TEMP_PATH)/out.txt
+	sed -n '10p' $(TEMP_PATH)/temp.txt >> $(TEMP_PATH)/out.txt
 
 gnlTester: $(EXEC) get_gnlTester		## Run gnlTester
 	$(MAKE) $(GNLTESTER_PATH) a
