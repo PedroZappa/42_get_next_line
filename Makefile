@@ -17,6 +17,9 @@
 MAKE	= make -C
 SHELL	:= bash
 
+ARG		:= "files/mini-vulf.txt"
+SIZES	:= 3 6 9
+
 #==============================================================================#
 #                                     NAMES                                    #
 #==============================================================================#
@@ -182,11 +185,24 @@ valgrind: all 			## Run push_swap w/ Valgrind
 # test:
 # 	ls -l $(TESTS_PATH) | awk '{print $$9}'
 
-test:
+test:	## Test w/ default BUFFER_SIZE
 	@for file in $(shell ls -l $(TESTS_PATH) | awk '{print $$9}'); do \
 		echo "$(YEL)Executing $(CYA)$$file$(D)"; \
 		valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) "$(TESTS_PATH)/$$file"; \
 	done
+
+test_buffer:	## Test w/ different BUFFER_SIZEs
+	@for size in $(SIZES); do \
+		for file in $(shell ls -l $(TESTS_PATH) | awk '{print $$9}'); do \
+			echo "$(YEL)Executing $(CYA)$$file $(YEL)with $(GRN)BUFFER_SIZE=$(RED)$$size$(D)"; \
+			BUFFER_SIZE=$$size; \
+			valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) "$(TESTS_PATH)/$$file"; \
+		done; \
+	done
+
+get_res: all
+	valgrind --leak-check=full --show-leak-kinds=all --log-file=$(TEMP_PATH)/temp.txt ./$(EXEC) $(ARG)
+	sed -n '10p' $(TEMP_PATH)/temp.txt > $(TEMP_PATH)/out.txt
 
 gnlTester: $(EXEC) get_gnlTester		## Run gnlTester
 	$(MAKE) $(GNLTESTER_PATH) a
