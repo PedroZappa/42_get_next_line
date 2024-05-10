@@ -43,6 +43,7 @@ SRCLL_PATH	= srcll
 LIBS_PATH	= lib
 BUILD_PATH	= .build
 TEMP_PATH	= .temp
+TESTS_PATH	= files
 
 SRC		= $(addprefix $(SRCB_PATH)/, get_next_line.c get_next_line_utils.c)
 SRCB	= $(addprefix $(SRCB_PATH)/, get_next_line_bonus.c get_next_line_utils_bonus.c)
@@ -177,6 +178,15 @@ valgrind: all 			## Run push_swap w/ Valgrind
 	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC)
 
 ##@ Test Rules 🧪
+
+# test:
+# 	ls -l $(TESTS_PATH) | awk '{print $$9}'
+
+test:
+	@for file in $(shell ls -l $(TESTS_PATH) | awk '{print $$9}'); do \
+		echo "$(YEL)Executing $(CYA)$$file$(D)"; \
+		valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) "$(TESTS_PATH)/$$file"; \
+	done
 
 gnlTester: $(EXEC) get_gnlTester		## Run gnlTester
 	$(MAKE) $(GNLTESTER_PATH) a
