@@ -117,7 +117,7 @@ extrall: $(BUILD_PATH) $(OBJSLL) $(LIBFT_ARC) main.c	## Compile Linked Lists ver
 	cp srcll/.gdbinit .
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) w/ linked lists $(YEL)🖔$(D)]"
 
-deps:		## Download/Update libft
+deps:		## Download/Update libs
 	@if test ! -d "$(LIBFT_PATH)"; then make get_libft; \
 		else echo "$(YEL)[libft]$(D) folder found 🖔"; fi
 	@echo " $(RED)$(D) [$(GRN)Nothing to be done!$(D)]"
@@ -184,7 +184,7 @@ check_ext_func: all		## Check for external functions
 	nm ./$(EXEC) | grep "U" | tee $(TEMP_PATH)/ext_func.txt
 	@echo "$(YEL)$(_SEP)$(D)"
 
-valgrind: all 			## Run push_swap w/ Valgrind
+valgrind: all 			## Run w/ Valgrind
 	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC)
 
 ##@ Test Rules 🧪
@@ -280,7 +280,6 @@ help: 			## Display this help page
 			printf "\n=> %s\n", substr($$0, 5) } ' Makefile
 ## Tweaked from source:
 ### https://www.padok.fr/en/blog/beautiful-makefile-awk
-
 
 .PHONY: bonus extrall clean fclean re help
 
