@@ -17,7 +17,9 @@
 MAKE	= make -C
 SHELL	:= bash
 
-ARG		:= "files/mini-vulf.txt"
+# Default test values
+FILES	:= $(shell ls -l $(TESTS_PATH) | awk '{print $$9}')
+ARG		?= "files/mini-vulf.txt"
 SIZES	:= 3 6 9
 
 #==============================================================================#
@@ -186,7 +188,7 @@ valgrind: all 			## Run push_swap w/ Valgrind
 # 	ls -l $(TESTS_PATH) | awk '{print $$9}'
 
 test:	## Test w/ default BUFFER_SIZE
-	@for file in $(shell ls -l $(TESTS_PATH) | awk '{print $$9}'); do \
+	@for file in $(FILES); do \
 		echo "$(YEL)Executing $(CYA)$$file$(D)"; \
 		valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) "$(TESTS_PATH)/$$file"; \
 	done
