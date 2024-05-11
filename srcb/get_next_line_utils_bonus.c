@@ -12,6 +12,10 @@
 
 #include "get_next_line.h"
 
+/// @brief		Join two strings
+/// @param s1	First string
+/// @param s2	Second string
+/// @return		Pointer to the newly joined string
 char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	char	*str;

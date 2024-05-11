@@ -12,6 +12,10 @@
 
 #include "get_next_line.h"
 
+/// @brief		Join two strings
+/// @param s1	First string
+/// @param s2	Second string
+/// @return		Pointer to the newly joined string
 char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	char	*str;
@@ -38,7 +42,9 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	return (str);
 }
 
-/* Get the length of a givengiven 'str' */
+/// @brief		Get the length of a given 'str'
+/// @param str	String to be measured
+/// @return		Length of the string
 int	ft_strlen_gnl(char *str)
 {
 	int	len;
@@ -50,7 +56,10 @@ int	ft_strlen_gnl(char *str)
 	return (len);
 }
 
-/* Find a char in a given 'str' */
+/// @brief		Find a char in a given 'str'
+/// @param s	String to be searched
+/// @param c	Char to be looked for
+/// @return		Pointer to the found char in 'str'
 char	*ft_strchr_gnl(const char *s, int c)
 {
 	if (s == NULL)

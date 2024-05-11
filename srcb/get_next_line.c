@@ -16,6 +16,9 @@ static char	*ft_getline(int fd, char *vault);
 static char	*ft_gettillnl(char *vault);
 static char	*ft_getrest(char *vault);
 
+/// @brief		Get next line from 'fd'
+/// @param fd	File descriptor
+/// @return		Pointer to a string
 char	*get_next_line(int fd)
 {
 	static char	*vault;
@@ -36,8 +39,10 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-/* Read BUFFER_SIZE bytes from 'fd' and store in 'vault'
- * */
+/// @brief			Read BUFFER_SIZE bytes from 'fd' and store in 'vault'
+/// @param fd		File descriptor
+/// @param vault	Pointer to the storage vault
+/// @return			Pointer to the filled storage vault
 static char	*ft_getline(int fd, char *vault)
 {
 	char	*buffer;
@@ -64,8 +69,9 @@ static char	*ft_getline(int fd, char *vault)
 	return (vault);
 }
 
-/*	Get line terminate by '\n' from 'vault'
- * */
+/// @brief			Extract line terminated by '\n' from 'vault'
+/// @param vault	Pointer to the storage vault
+/// @return			Pointer to the line
 static char	*ft_gettillnl(char *vault)
 {
 	int		i;
@@ -94,8 +100,9 @@ static char	*ft_gettillnl(char *vault)
 	return (line);
 }
 
-/*	Clear already printed chars in 'vault'
- * */
+/// @brief			Clear extracted chars from 'vault' keeping only the rest
+/// @param vault	Pointer to the storage vault
+/// @return			Pointer to what was left in the storage vault
 static char	*ft_getrest(char *vault)
 {
 	int		i;
