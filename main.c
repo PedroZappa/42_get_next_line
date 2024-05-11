@@ -44,22 +44,33 @@ int main(int argc, char **argv)
     int n = 1;
     char *input_list = NULL;
     int fd[FOPEN_MAX];
-    int num_fds = sizeof(fd) / sizeof(fd[0]);
+    int num_fds = (argc - 1);
 
-    if (argc >= 2)
+    if (argc < 2)
 	{
 		ft_printf("Usage: %s <file1> <file2>\n", argv[0]);
         return 1;
 	}
 
-    // Open the file descriptors
-    fd[0] = open(argv[1], O_RDONLY);
-    fd[1] = open(argv[2], O_RDONLY);
+	for (int i = 0; i < num_fds; ++i) 
+	{
+		fd[i] = open(argv[i + 1], O_RDONLY);
+		if (fd[i] == -1)
+		{
+			ft_printf("Error opening file: %s\n", argv[i + 1]);
+			return 1;
+		}
+	}	
 
-    if (fd[0] == -1 || fd[1] == -1) {
-        perror("Error opening file");
-        return 1;
-    }
+
+    // // Open the file descriptors
+    // fd[0] = open(argv[1], O_RDONLY);
+    // fd[1] = open(argv[2], O_RDONLY);
+    //
+    // if (fd[0] == -1 || fd[1] == -1) {
+    //     perror("Error opening file");
+    //     return 1;
+    // }
 
     ft_printf("Testing get_next_line\n\n");
     for (int i = 0; i < num_fds; ++i) {
