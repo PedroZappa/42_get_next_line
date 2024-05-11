@@ -202,9 +202,15 @@ test_bonus:	## Test w/ default BUFFER_SIZE
 	fi
 	@echo "$(YEL)Creating file with all FILE paths...$(D)"
 	@for file in $(FILES); do \
-		printf $$file >> "$(TEMP_PATH)/in_files.txt "; \
+		printf $$file >> $(TEMP_PATH)/in_files.txt; \
+		printf " " >> $(TEMP_PATH)/in_files.txt; \
 	done
-	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) $(shell cat $(TEMP_PATH)/in_files.txt); \
+	@echo "$(YEL)Executing with valgrind$(D)"
+	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) $(shell cat $(TEMP_PATH)/in_files.txt)
+	@echo "$(YEL)Executing without valgrind$(D)"
+	./$(EXEC) $(shell cat $(TEMP_PATH)/in_files.txt)
+	@echo "$(YEL)Executing with 2 files$(D)"
+	./$(EXEC) "$(TESTS_PATH)/mini-vulf.txt" "$(TESTS_PATH)/read_error.txt"
 
 test_buffer: $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 	@TIMESTAMP=$(shell date +%Y%m%d%H%M%S); \
@@ -258,7 +264,8 @@ get_gnlTester:
 
 gdb:				## Run test w/ gdb
 	tmux split-window -v "valgrind -q --vgdb-error=0 ./$(EXEC)"
-	gdb --tui --args ./$(EXEC) $(shell cat $(TEMP_PATH)/in_files.txt)
+	# gdb --tui --args ./$(EXEC) $(shell cat $(TEMP_PATH)/in_files.txt)
+	
 
 
 ##@ Clean-up Rules 󰃢
