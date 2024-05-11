@@ -102,7 +102,7 @@ static char	*ft_gettillnl(char *vault)
 
 /// @brief			Clear extracted chars from 'vault' keeping only the rest
 /// @param vault	Pointer to the storage vault
-/// @return			Pointer to what was left in the storage vault
+/// @return			Pointer to what is left in the storage vault
 static char	*ft_getrest(char *vault)
 {
 	int		i;
