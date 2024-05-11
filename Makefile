@@ -206,6 +206,7 @@ test_bonus:	## Test w/ default BUFFER_SIZE
 		printf " " >> $(TEMP_PATH)/in_files.txt; \
 	done
 	@echo "$(YEL)Executing with valgrind$(D)"
+	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) "$(TESTS_PATH)/mini-vulf.txt" "$(TESTS_PATH)/read_error.txt"
 	# valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) $(shell cat $(TEMP_PATH)/in_files.txt)
 	# @echo "$(YEL)Executing without valgrind$(D)"
 	# ./$(EXEC) $(shell cat $(TEMP_PATH)/in_files.txt)
