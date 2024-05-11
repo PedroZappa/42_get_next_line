@@ -20,7 +20,7 @@
 // int main(int argc, char **argv)
 // {
 // 	int n = 1;
-// 	char *input_list = NULL;
+// 	char *line = NULL;
 // 	int fd;
 //
 // 	if (argc != 2)
@@ -28,10 +28,10 @@
 // 	fd = open(argv[1], O_RDONLY);
 //
 // 	ft_printf("Testing get_next_line\n\n");
-// 	while ((input_list = get_next_line(fd)) != NULL)
+// 	while ((line = get_next_line(fd)) != NULL)
 // 	{
-// 		ft_printf("%d:\t%s", n, input_list);
-// 		free(input_list);
+// 		ft_printf("%d:\t%s", n, line);
+// 		free(line);
 // 		++n;
 // 	}
 // 	close(fd);
@@ -41,9 +41,9 @@
 // Test bonus
 int main(int argc, char **argv)
 {
-    char *input_list = NULL;
+    char *line;
     int fd[FOPEN_MAX];
-    int num_fds = (argc - 1);
+    int num_fds;
     int n;
     int i;
 
@@ -53,9 +53,10 @@ int main(int argc, char **argv)
         return 1;
 	}
 	// open fds
+    num_fds = (argc - 1);
 	for (i = 0; i < num_fds; ++i) 
 	{
-		if ((fd[i] = open(argv[i + 1], O_RDONLY)) == -1)
+		if ((fd[i] = open(argv[(i + 1)], O_RDONLY)) == -1)
 		{
 			ft_printf("Error opening file: %s\n", argv[i + 1]);
 			return 1;
@@ -64,16 +65,19 @@ int main(int argc, char **argv)
 	// test get_next_line
     ft_printf("Testing get_next_line\n\n");
 	n = 1;
+	line = NULL;
     for (i = 0; i < num_fds; ++i) {
-        while ((input_list = get_next_line(fd[i]))!= NULL) {
-            ft_printf("%d:\t%s", n, input_list);
-            free(input_list);
+        while ((line = get_next_line(fd[i])) != NULL) {
+            ft_printf("%d:\t%s", n, line);
+            free(line);
             ++n;
+			
+            if (++i >= num_fds) // Advance to the next line of the next file descriptor
+                i = 0; // Wrap around to the first file descriptor
         }
     }
 	// close fds
-	for (int i = 0; i < num_fds; ++i) {
+	for (i = 0; i < num_fds; ++i)
 		close(fd[i]);
-	}
     return 0;
 }
