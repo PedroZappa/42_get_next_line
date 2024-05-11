@@ -43,11 +43,14 @@ int main(int argc, char **argv)
 {
     int n = 1;
     char *input_list = NULL;
-    int fd[2]; // Example array of two file descriptors
-    int num_fds = sizeof(fd) / sizeof(fd[0]); // Number of file descriptors
+    int fd[FOPEN_MAX];
+    int num_fds = sizeof(fd) / sizeof(fd[0]);
 
-    if (argc!= 3) // Adjusted to accept two arguments for two file descriptors
-        return 0;
+    if (argc >= 2)
+	{
+		ft_printf("Usage: %s <file1> <file2>\n", argv[0]);
+        return 1;
+	}
 
     // Open the file descriptors
     fd[0] = open(argv[1], O_RDONLY);
