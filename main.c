@@ -71,8 +71,7 @@ int main(int argc, char **argv)
             ft_printf("%d:\t%s", n, line);
             free(line);
             ++n;
-			
-            if (++i >= num_fds) // Advance to the next line of the next file descriptor
+            if (++i >= num_fds)
                 i = 0; // Wrap around to the first file descriptor
         }
     }

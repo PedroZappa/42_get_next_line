@@ -185,9 +185,6 @@ check_ext_func: all		## Check for external functions
 	nm ./$(EXEC) | grep "U" | tee $(TEMP_PATH)/ext_func.txt
 	@echo "$(YEL)$(_SEP)$(D)"
 
-valgrind: all 			## Run w/ Valgrind
-	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC)
-
 ##@ Test Rules 🧪
 
 test:	## Test w/ default BUFFER_SIZE
@@ -202,16 +199,12 @@ test_bonus:	## Test w/ default BUFFER_SIZE
 	fi
 	@echo "$(YEL)Creating file with all FILE paths...$(D)"
 	@for file in $(FILES); do \
-		printf $$file >> $(TEMP_PATH)/in_files.txt; \
-		printf " " >> $(TEMP_PATH)/in_files.txt; \
+		echo "$(TESTS_PATH)//$$file" >> $(TEMP_PATH)/in_files.txt; \
 	done
-	@echo "$(YEL)Executing with valgrind$(D)"
-	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) "$(TESTS_PATH)/mini-vulf.txt" "$(TESTS_PATH)/read_error.txt"
-	# valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) $(shell cat $(TEMP_PATH)/in_files.txt)
-	# @echo "$(YEL)Executing without valgrind$(D)"
-	# ./$(EXEC) $(shell cat $(TEMP_PATH)/in_files.txt)
+	@echo "$(YEL)Executing with files from in_files.txt$(D)"
+	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) $(shell xargs -I {} echo {} < $(TEMP_PATH)/in_files.txt)
 	@echo "$(YEL)Executing with 2 files$(D)"
-	./$(EXEC) "$(TESTS_PATH)/mini-vulf.txt" "$(TESTS_PATH)/read_error.txt"
+	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) "$(TESTS_PATH)/mini-vulf.txt" "$(TESTS_PATH)/read_error.txt"
 
 test_buffer: $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 	@TIMESTAMP=$(shell date +%Y%m%d%H%M%S); \
