@@ -60,4 +60,5 @@ tags
 .build
 .temp
 lib
+docs/
 srcb/gnlTester/
