@@ -61,17 +61,6 @@ int main(int argc, char **argv)
 			return 1;
 		}
 	}	
-
-
-    // // Open the file descriptors
-    // fd[0] = open(argv[1], O_RDONLY);
-    // fd[1] = open(argv[2], O_RDONLY);
-    //
-    // if (fd[0] == -1 || fd[1] == -1) {
-    //     perror("Error opening file");
-    //     return 1;
-    // }
-
     ft_printf("Testing get_next_line\n\n");
     for (int i = 0; i < num_fds; ++i) {
         while ((input_list = get_next_line(fd[i]))!= NULL) {
@@ -80,7 +69,6 @@ int main(int argc, char **argv)
             ++n;
         }
     }
-
     close(fd[0]);
     close(fd[1]);
     return 0;
