@@ -20,12 +20,13 @@ SHELL	:= bash
 # Default test values
 FILES	= $(shell ls -l $(TESTS_PATH) | awk '{print $$9}')
 ARG		?= "files/mini-vulf.txt"
+COUNTER = 1
 SIZES	:= 1 3 9
-SIZES	+= 25 50 100
-SIZES	+= 200 400 800
-SIZES	+= 1600 3200 6400
-SIZES	+= 12800 25600 51200
-SIZES	+= 102400 204800 409600
+# SIZES	+= 25 50 100
+# SIZES	+= 200 400 800
+# SIZES	+= 1600 3200 6400
+# SIZES	+= 12800 25600 51200
+# SIZES	+= 102400 204800 409600
 
 #==============================================================================#
 #                                     NAMES                                    #
@@ -201,24 +202,36 @@ test_buffer: $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 		mv -f $(TEMP_PATH)/out.txt $(TEMP_PATH)/out.$$TIMESTAMP.txt; \
 	fi
 	@for size in $(SIZES); do \
+		echo "$(YEL)$(_SEP)$(D)" | tee -a $(TEMP_PATH)/out.txt; \
+		echo "for $(GRN)BUFFER_SIZE$(D) of : $(RED)$$size$(D)" | tee -a $(TEMP_PATH)/out.txt; \
+		echo "$(YEL)$(_SEP)$(D)" | tee -a $(TEMP_PATH)/out.txt; \
 		for file in $(FILES); do \
-			echo "$(YEL)Executing $(CYA)$$file $(YEL)with $(GRN)BUFFER_SIZE=$(RED)$$size$(D)"; \
-			echo "Current BUFFER_SIZE: $$size" >> $(TEMP_PATH)/out.txt; \
-			echo "Current file: $$file" >> $(TEMP_PATH)/out.txt; \
+			echo "Test $(MAG)$$COUNTER$(D) : Current $(GRN)BUFFER_SIZE $(D): $(RED)$$size$(D)" | tee -a $(TEMP_PATH)/out.txt; \
+			echo "$(YEL)Current file: $(CYA)$$file$(D)" | tee -a $(TEMP_PATH)/out.txt; \
 			BUFFER_SIZE=$$size; \
 			valgrind --leak-check=full --show-leak-kinds=all --log-file=$(TEMP_PATH)/temp.txt ./$(EXEC) "$(TESTS_PATH)/$$file"; \
 			sed -n '10p' $(TEMP_PATH)/temp.txt >> $(TEMP_PATH)/out.txt; \
+			COUNTER=$$((COUNTER + 1)); \
+			echo $$COUNTER > $(TEMP_PATH)/passed_count.txt; \
 		done; \
 	done
-	if command -v bat &> /dev/null; then \
-		bat $(TEMP_PATH)/out.txt; \
-	else \
-		cat $(TEMP_PATH)/out.txt; \
-	fi
+	@cat $(TEMP_PATH)/out.txt
+	@echo "$(YEL)$(_SEP)$(D)"
+	@echo "$(BCYA)Tests Summary$(D)"
+	@TOTAL=$(shell cat $(TEMP_PATH)/passed_count.txt)
+	@make --no-print-directory test_results
+	@echo "$(YEL)$(_SEP)$(D)"
 
-get_res: all
-	valgrind --leak-check=full --show-leak-kinds=all --log-file=$(TEMP_PATH)/temp.txt ./$(EXEC) $(ARG)
-	sed -n '10p' $(TEMP_PATH)/temp.txt >> $(TEMP_PATH)/out.txt
+test_results: $(TEMP_PATH)
+	@echo -ne "$(MAG)Total\t:  $(YEL)"
+	@awk '{print $$1}' $(TEMP_PATH)/passed_count.txt
+	@echo -ne "$(D)"
+	@cat $(TEMP_PATH)/out.txt | grep heap | awk '{print $$5, $$7}' > $(TEMP_PATH)/count.txt
+	@awk -v count=0 '{if ($$1 == $$2) count++} END \
+		{ print "$(GRN)Passed$(D)\t: ", count}' $(TEMP_PATH)/count.txt
+	@awk -v count=0 '{if ($$1!= $$2) \
+		{print $$1 > "failing_test_number.txt"; count++}} END \
+		{ print "$(RED)Failed$(D)\t: ", count}' $(TEMP_PATH)/count.txt
 
 gnlTester: $(EXEC) get_gnlTester		## Run gnlTester
 	$(MAKE) $(GNLTESTER_PATH) a
