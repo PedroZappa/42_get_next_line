@@ -39,65 +39,6 @@
 // }
 
 // Test bonus
-//
-// static int	ft_argv_count(char *argv);
-// static void ft_exit(char **argv, int n);
-//
-// int main(int argc, char **argv)
-// {
-// 	char	**input_list;
-// 	char	*line;
-//     int		fds[FOPEN_MAX];
-//     int		n_files;
-//     int		n = 1;
-// 	int		i;
-//
-//     if (argc < 2)
-// 		ft_exit(argv, 1);
-// 	input_list = ft_split(argv[1], ' ');
-// 	argc = ft_argv_count(*input_list) + 1;
-// 	n_files = (argc - 1);
-//
-//     ft_printf("Testing get_next_line\n\n");
-// 	i = 0;
-// 	while ((i < n_files) && )
-// 	{
-// 		while ((line = get_next_line(fds[i])) != NULL)
-// 		{
-// 			ft_printf("%d:\t%s", n, input_list[i]);
-// 			free(input_list[i]);
-// 			++i;
-// 		}
-// 	}
-//
-//     // Close all fds & input_list
-// 	for (i = 0; i < n_files; ++i)
-// 		close(fds[i]);
-// 	for (i = 0; i < n_files; ++i)
-// 		free(input_list[i]);
-// 	free(input_list);
-//
-//     return 0;
-// }
-//
-// static int	ft_argv_count(char *argv)
-// {
-// 	int	n;
-//
-// 	n = 0;
-// 	while (argv[n])
-// 		++n;
-// 	return (n);
-// }
-//
-// static void ft_exit(char **argv, int n)
-// {
-// 	printf("Usage: %s <file1> <file2>...\n", argv[0]);
-// 	exit(n);
-// }
-//
-//
-
 int main(int argc, char **argv)
 {
     int n = 1;
