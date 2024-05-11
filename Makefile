@@ -210,6 +210,11 @@ test_buffer: $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 			sed -n '10p' $(TEMP_PATH)/temp.txt >> $(TEMP_PATH)/out.txt; \
 		done; \
 	done
+	if command -v bat &> /dev/null; then \
+		bat $(TEMP_PATH)/out.txt; \
+	else \
+		cat $(TEMP_PATH)/out.txt; \
+	fi
 
 get_res: all
 	valgrind --leak-check=full --show-leak-kinds=all --log-file=$(TEMP_PATH)/temp.txt ./$(EXEC) $(ARG)
