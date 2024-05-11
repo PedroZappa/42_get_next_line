@@ -41,35 +41,39 @@
 // Test bonus
 int main(int argc, char **argv)
 {
-    int n = 1;
     char *input_list = NULL;
     int fd[FOPEN_MAX];
     int num_fds = (argc - 1);
+    int n;
+    int i;
 
     if (argc < 2)
 	{
 		ft_printf("Usage: %s <file1> <file2>\n", argv[0]);
         return 1;
 	}
-
-	for (int i = 0; i < num_fds; ++i) 
+	// open fds
+	for (i = 0; i < num_fds; ++i) 
 	{
-		fd[i] = open(argv[i + 1], O_RDONLY);
-		if (fd[i] == -1)
+		if ((fd[i] = open(argv[i + 1], O_RDONLY)) == -1)
 		{
 			ft_printf("Error opening file: %s\n", argv[i + 1]);
 			return 1;
 		}
-	}	
+	}
+	// test get_next_line
     ft_printf("Testing get_next_line\n\n");
-    for (int i = 0; i < num_fds; ++i) {
+	n = 1;
+    for (i = 0; i < num_fds; ++i) {
         while ((input_list = get_next_line(fd[i]))!= NULL) {
             ft_printf("%d:\t%s", n, input_list);
             free(input_list);
             ++n;
         }
     }
-    close(fd[0]);
-    close(fd[1]);
+	// close fds
+	for (int i = 0; i < num_fds; ++i) {
+		close(fd[i]);
+	}
     return 0;
 }
