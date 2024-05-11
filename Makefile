@@ -196,6 +196,16 @@ test:	## Test w/ default BUFFER_SIZE
 		valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) "$(TESTS_PATH)/$$file"; \
 	done
 
+test_bonus:	## Test w/ default BUFFER_SIZE
+	@if [ -f $(TEMP_PATH)/in_files.txt ]; then \
+		$(RM) $(TEMP_PATH)/in_files.txt; \
+	fi
+	@echo "$(YEL)Creating file with all FILE paths...$(D)"
+	@for file in $(FILES); do \
+		printf $$file >> "$(TEMP_PATH)/in_files.txt "; \
+	done
+	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) $(shell cat $(TEMP_PATH)/in_files.txt); \
+
 test_buffer: $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 	@TIMESTAMP=$(shell date +%Y%m%d%H%M%S); \
 	if [ -f $(TEMP_PATH)/out.txt ]; then \
@@ -246,6 +256,11 @@ get_gnlTester:
 		echo " $(RED)$(D) [$(GRN)Nothing to be done!$(D)]"; \
 	fi
 
+gdb:				## Run test w/ gdb
+	tmux split-window -v "valgrind -q --vgdb-error=0 ./$(EXEC)"
+	gdb --tui --args ./$(EXEC) $(shell cat $(TEMP_PATH)/in_files.txt)
+
+
 ##@ Clean-up Rules 󰃢
 
 clean: 				## Remove object files
@@ -280,7 +295,7 @@ fclean: clean			## Remove executable and .gdbinit
 	else \
 		echo " $(RED)$(D) [$(GRN)Nothing to be fcleaned!$(D)]"; \
 	fi
-	
+
 libclean: fclean	## Remove libs
 	$(RM) $(LIBS_PATH)
 	@echo "* $(YEL)Removing lib folder & files!$(D) : $(_SUCCESS)"
