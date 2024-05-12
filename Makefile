@@ -258,7 +258,7 @@ get_gnlTester:
 
 gdb: $(EXEC) $(TEMP_PATH)			## Run test w/ gdb
 	tmux split-window -h "valgrind -q --vgdb-error=0 ./$(EXEC)"
-	tmux split-window -v "gdb --tui --args ./$(EXEC) $(shell cat $(TEMP_PATH)/in_files.txt)"
+	tmux split-window -v "gdb --tui --args ./$(EXEC) 'files/mini-vulf.txt'"
 	lnav gdb.txt
 
 gdb_bonus: bonus $(TEMP_PATH)				## Run test w/ gdb
