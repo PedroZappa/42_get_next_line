@@ -257,10 +257,9 @@ get_gnlTester:
 	fi
 
 gdb:				## Run test w/ gdb
-	tmux split-window -v "valgrind -q --vgdb-error=0 ./$(EXEC)"
-	# gdb --tui --args ./$(EXEC) $(shell cat $(TEMP_PATH)/in_files.txt)
-	
-
+	tmux split-window -h "valgrind -q --vgdb-error=0 ./$(EXEC)"
+	tmux split-window -v "gdb --tui --args ./$(EXEC) $(shell cat $(TEMP_PATH)/in_files.txt)"
+	lnav gdb.txt
 
 ##@ Clean-up Rules 󰃢
 

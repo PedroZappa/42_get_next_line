@@ -1,5 +1,5 @@
 set trace-commands on
-set logging on
+set logging enabled on
 
 define main
 	# target record-full
@@ -71,5 +71,3 @@ end
 break get_next_line
 fs cmd
 vgdb
-next
-gnl
