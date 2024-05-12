@@ -67,10 +67,15 @@ define mchk
 	monitor leak_check full reachable any
 end
 
-# Start at get_next_line()
-break get_next_line
-fs cmd
+# Start at main()
+break main
 info break
+fs cmd
+
+# Start at get_next_line()
+# break get_next_line
+# info break
+# fs cmd
 # vgdb
 # run
 # gnl
