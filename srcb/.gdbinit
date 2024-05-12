@@ -70,4 +70,7 @@ end
 # Start at get_next_line()
 break get_next_line
 fs cmd
-gnl
+info break
+# vgdb
+# run
+# gnl
