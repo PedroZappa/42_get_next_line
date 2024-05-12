@@ -1,5 +1,5 @@
 define main
-	# target record-full
+	target record-full
 	display n
 	# display max_n
 	display fd
