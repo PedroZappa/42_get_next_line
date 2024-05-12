@@ -16,16 +16,23 @@
 ___
 
 <h3>Table o'Contents</h3>
-<p>
-    ~
-    <a href="#about-pushpin">About</a> ~
-    <a href="#implementation-scroll">Implementation</a> ~
-    <a href="#structure-construction">Structure</a> ~
-    <a href="#usage-checkered_flag">Usage</a> ~
-    <a href="#debugging-beetle">Debugging</a> ~
-    <a href="#license">License</a> ~
-</p>
-<div/>
+
+<!-- mtoc-start -->
+
+* [About :pushpin:](#about-pushpin)
+* [Implementation :scroll:](#implementation-scroll)
+* [Mandatory Requirements](#mandatory-requirements)
+* [Bonus Requirements](#bonus-requirements)
+* [Structure :construction:](#structure-construction)
+* [Mandatory & Bonus w/ Arrays: Files and Functions 🗂](#mandatory--bonus-w-arrays-files-and-functions-)
+  * [Mandatory w/ Linked Lists: Files and Functions 🔗](#mandatory-w-linked-lists-files-and-functions-)
+* [Usage :checkered_flag:](#usage-checkered_flag)
+* [Debugging :beetle:](#debugging-beetle)
+* [Debugging `get_next_line` with `Arrays`](#debugging-get_next_line-with-arrays)
+  * [Happy Debugging! 🐛](#happy-debugging-)
+  * [License :copyright:](#license-copyright)
+
+<!-- mtoc-end -->
 
 <div align="left">
 
