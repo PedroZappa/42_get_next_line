@@ -99,7 +99,8 @@ $(EXEC): $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c			## Compile Mandatory versio
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME)$(YEL) w/out bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
 	@echo "$(YEL)Getting $(CYA).gdbinit$(D) $(YEL)for debugging$(D)"
-	cp srcb/.gdbinit .
+	# cp srcb/.gdbinit .
+	ln -s $(SRCB_PATH)/.gdbinit ./.gdbinit
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) $(YEL)🖔$(D)]"
 	@make norm
 
