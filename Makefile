@@ -98,25 +98,35 @@ all: $(BUILD_PATH) deps $(EXEC)	## Compile Mandatory version
 $(EXEC): $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c			## Compile Mandatory version
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME)$(YEL) w/out bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
-	@echo "$(YEL)Getting $(CYA).gdbinit$(D) $(YEL)for debugging$(D)"
-	ln -s $(SRCB_PATH)/.gdbinit ./.gdbinit
+	@echo "$(YEL)Linking $(CYA).gdbinit$(D) $(YEL)for debugging$(D)"
+	@if test -f ".gdbinit"; then \
+		unlink .gdbinit; \
+	fi
+	ln -s $(SRCB_PATH)/.gdbinit .gdbinit
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) $(YEL)🖔$(D)]"
-	@make norm
+	make norm
 
 bonus: $(BUILD_PATH) $(OBJSB) $(LIBFT_ARC) main.c		## Compile Bonus version
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME) $(YEL)w/ bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJSB) $(LIBFT_ARC) -o $(EXEC)
-	@echo "$(YEL)Getting $(CYA).gdbinit $(YEL)for debugging$(D)"
-	ln -s $(SRCLL_PATH)/.gdbinit ./.gdbinit
+	@echo "$(YEL)Linking $(CYA).gdbinit $(YEL)for debugging$(D)"
+	@if test -f ".gdbinit"; then \
+		unlink .gdbinit; \
+	fi
+	ln -s $(SRCB_PATH)/.gdbinit .gdbinit
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) w/ bonus $(YEL)🖔$(D)]"
-	@make norm
+	make norm
 
 extrall: $(BUILD_PATH) $(OBJSLL) $(LIBFT_ARC) main.c	## Compile Linked Lists version
 	@echo "$(YEL)Creating $(NAME) w/ Linked Lists w/out bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJSLL) $(LIBFT_ARC) -o $(EXEC)
-	@echo "$(YEL)Getting $(CYA).gdbinit $(YEL)for debugging$(D)"
-	ln -s $(SRCLL_PATH)/.gdbinit ./.gdbinit
+	@echo "$(YEL)Linking $(CYA).gdbinit $(YEL)for debugging$(D)"
+	@if test -f ".gdbinit"; then \
+		unlink .gdbinit; \
+	fi
+	ln -s $(SRCLL_PATH)/.gdbinit .gdbinit
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) w/ linked lists $(YEL)🖔$(D)]"
+	make norm
 
 deps:		## Download/Update libs
 	@if test ! -d "$(LIBFT_PATH)"; then make get_libft; \
@@ -236,11 +246,11 @@ test_results: $(TEMP_PATH)
 	@echo -ne "$(MAG)Total\t:  $(YEL)"
 	@awk '{print $$1}' $(TEMP_PATH)/passed_count.txt
 	@echo -ne "$(D)"
-	@cat $(TEMP_PATH)/out.txt | grep heap | awk '{print $$5, $$7}' > $(TEMP_PATH)/count.txt
-	@awk -v count=0 '{if ($$1 == $$2) count++} END \
+	@cat $(TEMP_PATH)/out.txt | grep heap | awk '{ print $$5, $$7 }' > $(TEMP_PATH)/count.txt
+	@awk -v count=0 '{ if ($$1 == $$2) count++ } END \
 		{ print "$(GRN)Passed$(D)\t: ", count}' $(TEMP_PATH)/count.txt
-	@awk -v count=0 '{if ($$1!= $$2) \
-		{print $$1 > "failing_test_number.txt"; count++}} END \
+	@awk -v count=0 '{ if ($$1 != $$2) 
+		{ print $$1 > "failing_test_number.txt"; count++ }} END \
 		{ print "$(RED)Failed$(D)\t: ", count}' $(TEMP_PATH)/count.txt
 
 gnlTester: $(EXEC) get_gnlTester		## Run gnlTester
@@ -256,15 +266,23 @@ get_gnlTester:
 		echo " $(RED)$(D) [$(GRN)Nothing to be done!$(D)]"; \
 	fi
 
-gdb: $(EXEC) $(TEMP_PATH)			## Run test w/ gdb
+gdb: $(EXEC) $(TEMP_PATH)			## Debug w/ gdb
+	tmux split-window -v "gdb --tui --args ./$(EXEC) 'files/mini-vulf.txt'"
+	if command -v lnav; then \
+		lnav gdb.txt; \
+	else \
+		tail -f gdb.txt; \
+	fi
+
+vgdb: $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
 	tmux split-window -h "valgrind -q --vgdb-error=0 ./$(EXEC)"
 	tmux split-window -v "gdb --tui --args ./$(EXEC) 'files/mini-vulf.txt'"
-	lnav gdb.txt
-
-gdb_bonus: bonus $(TEMP_PATH)				## Run test w/ gdb
-	tmux split-window -h "valgrind -q --vgdb-error=0 ./$(EXEC)"
-	tmux split-window -v "gdb --tui --args ./$(EXEC) $(shell cat $(TEMP_PATH)/in_files.txt)"
-	lnav gdb.txt
+	tmux resize-pane -U 15
+	if command -v lnav; then \
+		lnav gdb.txt; \
+	else \
+		tail -f gdb.txt; \
+	fi
 
 ##@ Clean-up Rules 󰃢
 
