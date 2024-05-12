@@ -256,7 +256,12 @@ get_gnlTester:
 		echo " $(RED)$(D) [$(GRN)Nothing to be done!$(D)]"; \
 	fi
 
-gdb:				## Run test w/ gdb
+gdb: $(EXEC) $(TEMP_PATH)			## Run test w/ gdb
+	tmux split-window -h "valgrind -q --vgdb-error=0 ./$(EXEC)"
+	tmux split-window -v "gdb --tui --args ./$(EXEC) $(shell cat $(TEMP_PATH)/in_files.txt)"
+	lnav gdb.txt
+
+gdb_bonus: bonus $(TEMP_PATH)				## Run test w/ gdb
 	tmux split-window -h "valgrind -q --vgdb-error=0 ./$(EXEC)"
 	tmux split-window -v "gdb --tui --args ./$(EXEC) $(shell cat $(TEMP_PATH)/in_files.txt)"
 	lnav gdb.txt
