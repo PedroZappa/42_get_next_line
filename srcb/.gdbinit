@@ -2,7 +2,7 @@ set trace-commands on
 set logging enabled on
 
 define main
-	target record-full
+	# target record-full
 	display *line
 	display fd
 	display n_fds
@@ -70,4 +70,3 @@ end
 # Start at get_next_line()
 break get_next_line
 fs cmd
-vgdb
