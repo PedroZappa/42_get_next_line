@@ -3,10 +3,12 @@ set logging on
 
 define main
 	# target record-full
-	display n
+	display *line
 	display fd
-	display str
-	display *str
+	display n_fds
+	display fd[i]
+	display n
+	display i
 end
 
 define gnl

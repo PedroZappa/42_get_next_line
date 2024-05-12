@@ -16,34 +16,11 @@
 #include "srcb/get_next_line.h"
 #include "srcll/get_next_line.h"
 
-// Test mandatory
-// int main(int argc, char **argv)
-// {
-// 	int n = 1;
-// 	char *line = NULL;
-// 	int fd;
-//
-// 	if (argc != 2)
-// 		return (0);
-// 	fd = open(argv[1], O_RDONLY);
-//
-// 	ft_printf("Testing get_next_line\n\n");
-// 	while ((line = get_next_line(fd)) != NULL)
-// 	{
-// 		ft_printf("%d:\t%s", n, line);
-// 		free(line);
-// 		++n;
-// 	}
-// 	close(fd);
-// 	return (0);
-// }
-
-// Test bonus
 int main(int argc, char **argv)
 {
     char *line;
     int fd[FOPEN_MAX];
-    int num_fds;
+    int n_fds;
     int n;
     int i;
 
@@ -53,8 +30,8 @@ int main(int argc, char **argv)
         return 1;
 	}
 	// open fds
-    num_fds = (argc - 1);
-	for (i = 0; i < num_fds; ++i) 
+    n_fds = (argc - 1);
+	for (i = 0; i < n_fds; ++i) 
 	{
 		if ((fd[i] = open(argv[(i + 1)], O_RDONLY)) == -1)
 		{
@@ -66,17 +43,17 @@ int main(int argc, char **argv)
     ft_printf("Testing get_next_line\n\n");
 	n = 1;
 	line = NULL;
-    for (i = 0; i < num_fds; ++i) {
+    for (i = 0; i < n_fds; ++i) {
         while ((line = get_next_line(fd[i])) != NULL) {
             ft_printf("%d:\t%s", n, line);
             free(line);
             ++n;
-            if (++i >= num_fds)
+            if (++i >= n_fds)
                 i = 0; // Wrap around to the first file descriptor
         }
     }
 	// close fds
-	for (i = 0; i < num_fds; ++i)
+	for (i = 0; i < n_fds; ++i)
 		close(fd[i]);
     return 0;
 }
