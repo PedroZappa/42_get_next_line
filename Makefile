@@ -247,9 +247,9 @@ test_results: $(TEMP_PATH)
 	@awk '{print $$1}' $(TEMP_PATH)/passed_count.txt
 	@echo -ne "$(D)"
 	@cat $(TEMP_PATH)/out.txt | grep heap | awk '{ print $$5, $$7 }' > $(TEMP_PATH)/count.txt
-	@awk -v count=0 '{ if ($$1 == $$2) count++ } END \
+	@awk -v count=0 '{if ($$1 == $$2) count++} END \
 		{ print "$(GRN)Passed$(D)\t: ", count}' $(TEMP_PATH)/count.txt
-	@awk -v count=0 '{ if ($$1 != $$2) 
+	@awk -v count=0 '{if ($$1 != $$2) \
 		{ print $$1 > "failing_test_number.txt"; count++ }} END \
 		{ print "$(RED)Failed$(D)\t: ", count}' $(TEMP_PATH)/count.txt
 
@@ -267,7 +267,7 @@ get_gnlTester:
 	fi
 
 gdb: $(EXEC) $(TEMP_PATH)			## Debug w/ gdb
-	tmux split-window -v "gdb --tui --args ./$(EXEC) 'files/mini-vulf.txt'"
+	tmux split-window -h "gdb --tui --args ./$(EXEC) 'files/mini-vulf.txt'"
 	if command -v lnav; then \
 		lnav gdb.txt; \
 	else \
@@ -275,8 +275,8 @@ gdb: $(EXEC) $(TEMP_PATH)			## Debug w/ gdb
 	fi
 
 vgdb: $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
-	tmux split-window -h "valgrind -q --vgdb-error=0 ./$(EXEC)"
-	tmux split-window -v "gdb --tui --args ./$(EXEC) 'files/mini-vulf.txt'"
+	tmux split-window -h "valgrind -q --vgdb-error=0 ./$(EXEC) 'files/mini-vulf.txt'"
+	tmux split-window -v "gdb --tui --args ./$(EXEC)"
 	tmux resize-pane -U 15
 	if command -v lnav; then \
 		lnav gdb.txt; \
