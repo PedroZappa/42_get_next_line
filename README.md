@@ -25,7 +25,7 @@ ___
 * [Bonus Requirements](#bonus-requirements)
 * [Structure :construction:](#structure-construction)
 * [Mandatory & Bonus w/ Arrays: Files and Functions 🗂](#mandatory--bonus-w-arrays-files-and-functions-)
-  * [Mandatory w/ Linked Lists: Files and Functions 🔗](#mandatory-w-linked-lists-files-and-functions-)
+* [Mandatory w/ Linked Lists: Files and Functions 🔗](#mandatory-w-linked-lists-files-and-functions-)
 * [Usage :checkered_flag:](#usage-checkered_flag)
 * [Debugging :beetle:](#debugging-beetle)
 * [Debugging `get_next_line` with `Arrays`](#debugging-get_next_line-with-arrays)
@@ -87,7 +87,7 @@ classDiagram
 
 ___
 
-### Mandatory w/ Linked Lists: Files and Functions 🔗
+## Mandatory w/ Linked Lists: Files and Functions 🔗
 
 ```mermaid
 ---
@@ -138,7 +138,7 @@ make help
 1. Compile mandatory with `Arrays` 🗂:
 
 ```sh
-make gnl
+make
 ```
 
 2. Compile bonus with `Arrays` 🗂:
@@ -183,7 +183,7 @@ set auto-load safe-path /
 > When `gdb` starts it reads commands from several initialization files, `.gdbinit` being one of them, it defines the commands to be automatically executed at the start of a `gdb` session.
 
 > [!IMPORTANT]
-> Do this step only if you trust all the contents of the system you're working on, otherwise change `/` to the path to the folder where you cloned this repo to.
+> Do this step only if you trust all the contents of the system you're working on, otherwise change `/` to the path of the folder you cloned this repo to.
 
 1. Compile your chosen `get_next_line` implementation, for survey convenience the `-g` flag is called by default at compile time:
 
