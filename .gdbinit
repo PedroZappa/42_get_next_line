@@ -1,0 +1,1 @@
+srcb/.gdbinit
