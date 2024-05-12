@@ -99,7 +99,6 @@ $(EXEC): $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c			## Compile Mandatory versio
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME)$(YEL) w/out bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
 	@echo "$(YEL)Getting $(CYA).gdbinit$(D) $(YEL)for debugging$(D)"
-	# cp srcb/.gdbinit .
 	ln -s $(SRCB_PATH)/.gdbinit ./.gdbinit
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) $(YEL)🖔$(D)]"
 	@make norm
@@ -108,7 +107,7 @@ bonus: $(BUILD_PATH) $(OBJSB) $(LIBFT_ARC) main.c		## Compile Bonus version
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME) $(YEL)w/ bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJSB) $(LIBFT_ARC) -o $(EXEC)
 	@echo "$(YEL)Getting $(CYA).gdbinit $(YEL)for debugging$(D)"
-	cp srcb/.gdbinit .
+	ln -s $(SRCLL_PATH)/.gdbinit ./.gdbinit
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) w/ bonus $(YEL)🖔$(D)]"
 	@make norm
 
@@ -116,7 +115,7 @@ extrall: $(BUILD_PATH) $(OBJSLL) $(LIBFT_ARC) main.c	## Compile Linked Lists ver
 	@echo "$(YEL)Creating $(NAME) w/ Linked Lists w/out bonus$(D)"
 	$(CC) $(CFLAGS) $(INC) main.c $(OBJSLL) $(LIBFT_ARC) -o $(EXEC)
 	@echo "$(YEL)Getting $(CYA).gdbinit $(YEL)for debugging$(D)"
-	cp srcll/.gdbinit .
+	ln -s $(SRCLL_PATH)/.gdbinit ./.gdbinit
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) w/ linked lists $(YEL)🖔$(D)]"
 
 deps:		## Download/Update libs
