@@ -43,8 +43,10 @@ int main(int argc, char **argv)
     ft_printf("Testing get_next_line\n\n");
 	n = 1;
 	line = NULL;
-    for (i = 0; i < n_fds; ++i) {
-        while ((line = get_next_line(fd[i])) != NULL) {
+    for (i = 0; i < n_fds; ++i)
+	{
+        while ((line = get_next_line(fd[i])) != NULL)
+		{
             ft_printf("%d:\t%s", n, line);
             free(line);
             ++n;
