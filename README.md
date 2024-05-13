@@ -28,7 +28,7 @@ ___
 * [Mandatory w/ Linked Lists: Files and Functions 🔗](#mandatory-w-linked-lists-files-and-functions-)
 * [Usage :checkered_flag:](#usage-checkered_flag)
 * [Debugging :beetle:](#debugging-beetle)
-* [Debugging `get_next_line` with `Arrays`](#debugging-get_next_line-with-arrays)
+* [Debugging `get_next_line`](#debugging-get_next_line)
   * [Happy Debugging! 🐛](#happy-debugging-)
   * [License :copyright:](#license-copyright)
 
@@ -169,9 +169,13 @@ Within each implementation folder there is a `.gdbinit` file defining commands t
 >
 > For user convenience the `make` command will copy the `.gdbinit` file related to the selected implementation into the root of the project.
 
+> [!IMPORTANT]
+>
+> If you use `tmux` give `make gdb` and `make vgdb` rules a try 😉
+
 ___
 
-### Debugging `get_next_line` with `Arrays`
+### Debugging `get_next_line`
 
 0. In your home directory, create a `.gdbinit` file with the following content:
 
@@ -188,7 +192,11 @@ set auto-load safe-path /
 1. Compile your chosen `get_next_line` implementation, for survey convenience the `-g` flag is called by default at compile time:
 
 ```sh
-make bonus
+make
+# or
+make bonus 
+# or
+make extrall
 ```
 
 2. Open another terminal instance and fire up `valgrind` and `vgdb` by running `valgrind` with the flag `--vgdb-error=0`: 
@@ -202,7 +210,7 @@ valgrind -q --vgdb-error=0 ./a.out
 3. On the first terminal, run `gdb` with the `--tui` flag to launch `gdb` with a graphical user interface:
 
 ```sh
-gdb --tui ./a.out
+gdb --tui ./a.out <file>
 ```
 
 4. On a third terminal instance run `tail` with the `-f` flag, which will keep track and print to the screen `gdb`'s output:
