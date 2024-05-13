@@ -304,7 +304,7 @@ vgdb_bonus: $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
 		tail -f gdb.txt; \
 	fi
 
-vgdb_pid: $(EXEC) $(TEMP_PATH)		## Get valgrind PID
+vgdb_pid: $(EXEC) $(TEMP_PATH)
 	printf "target remote | vgdb --pid=" > $(TEMP_PATH)/gdb_commands.txt
 	printf "$(shell pgrep -f valgrind)" >> $(TEMP_PATH)/gdb_commands.txt
 
