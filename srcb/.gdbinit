@@ -1,5 +1,6 @@
 set trace-commands on
 set logging enabled on
+set print array on
 
 define rfr
 	refresh
@@ -72,14 +73,12 @@ define mchk
 end
 
 # Start at main()
-# break main
-# info break
-# fs cmd
-# main
-
-# Start at get_next_line()
-break get_next_line
+break main
 info break
 fs cmd
-run
-gnl
+
+# Start at get_next_line()
+# break get_next_line
+# info break
+# fs cmd
+# rfr
