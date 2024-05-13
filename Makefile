@@ -261,34 +261,6 @@ test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 	@make --no-print-directory test_results
 	@echo "$(YEL)$(_SEP)$(D)"
 
-#
-# # Modified test_buffer rule
-# test_buffer: $(TEMP_PATH)
-# 	@TIMESTAMP=$(shell date +%Y%m%d%H%M%S); \
-# 	if [ -f $(TEMP_PATH)/out.txt ]; then \
-# 		mv -f $(TEMP_PATH)/out.txt $(TEMP_PATH)/out.$$TIMESTAMP.txt; \
-# 	fi
-# 	@for size in $(SIZES); do \
-# 		echo "$(YEL)$(_SEP)$(D)" | tee -a $(TEMP_PATH)/out.txt; \
-# 		echo "for $(GRN)BUFFER_SIZE$(D) of : $(RED)$$size$(D)" | tee -a $(TEMP_PATH)/out.txt; \
-# 		echo "$(YEL)$(_SEP)$(D)" | tee -a $(TEMP_PATH)/out.txt; \
-# 		for file in $(FILES); do \
-# 			echo "Test $(MAG)$$COUNTER$(D) : Current $(GRN)BUFFER_SIZE $(D): $(RED)$$size$(D)" | tee -a $(TEMP_PATH)/out.txt; \
-# 			echo "$(YEL)Current file: $(CYA)$$file$(D)" | tee -a $(TEMP_PATH)/out.txt; \
-# 			make BUFFER_SIZE=$$size $(EXEC)_buffer; \
-# 			valgrind --leak-check=full --show-leak-kinds=all --log-file=$(TEMP_PATH)/temp.txt./$(EXEC)_buffer "$(TESTS_PATH)/$$file"; \
-# 			sed -n '10p' $(TEMP_PATH)/temp.txt >> $(TEMP_PATH)/out.txt; \
-# 			COUNTER=$$((COUNTER + 1)); \
-# 			echo $$COUNTER > $(TEMP_PATH)/passed_count.txt; \
-# 		done; \
-# 	done
-# 	@cat $(TEMP_PATH)/out.txt
-# 	@echo "$(YEL)$(_SEP)$(D)"
-# 	@echo "$(BCYA)Tests Summary$(D)"
-# 	@TOTAL=$(shell cat $(TEMP_PATH)/passed_count.txt)
-# 	@make --no-print-directory test_results
-# 	@echo "$(YEL)$(_SEP)$(D)"
-
 test_results: $(TEMP_PATH)
 	@echo -ne "$(MAG)Total\t:  $(YEL)"
 	@awk '{print $$1}' $(TEMP_PATH)/passed_count.txt
