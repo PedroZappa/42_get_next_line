@@ -280,7 +280,6 @@ vgdb: $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
 	tmux split-window -h "valgrind --vgdb-error=0 --log-file=gdb.txt ./$(EXEC) 'files/mini-vulf.txt'"
 	make vgdb_pid
 	tmux split-window -v "gdb --tui -x $(TEMP_PATH)/gdb_commands.txt $(EXEC)"
-	# tmux send-keys -t -lt3 "gdb --tui $(EXEC)" C-m
 	tmux resize-pane -U 15
 	touch gdb.txt
 	if command -v lnav; then \
