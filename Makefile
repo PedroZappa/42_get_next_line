@@ -277,16 +277,16 @@ gdb: $(EXEC) $(TEMP_PATH)			## Debug w/ gdb
 	fi
 
 vgdb: $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
-	tmux split-window -h "valgrind -q --vgdb-error=0 --log-file=vgdb.txt ./$(EXEC) 'files/mini-vulf.txt'"
-	sleep 0.5s
+	tmux split-window -h "valgrind --vgdb-error=0 --log-file=gdb.txt ./$(EXEC) 'files/mini-vulf.txt'"
 	make vgdb_pid
-	tmux split-window -v
-	tmux send-keys -t -lt3 "gdb --tui -x $(TEMP_PATH)/gdb_commands.txt $(EXEC)" C-m
+	tmux split-window -v "gdb --tui -x $(TEMP_PATH)/gdb_commands.txt $(EXEC)"
+	# tmux send-keys -t -lt3 "gdb --tui $(EXEC)" C-m
 	tmux resize-pane -U 15
+	touch gdb.txt
 	if command -v lnav; then \
-		lnav vgdb.txt; \
+		lnav gdb.txt; \
 	else \
-		tail -f vgdb.txt; \
+		tail -f gdb.txt; \
 	fi
 
 vgdb_pid: $(EXEC) $(TEMP_PATH)		## Get valgrind PID

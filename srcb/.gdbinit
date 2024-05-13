@@ -1,6 +1,10 @@
 set trace-commands on
 set logging enabled on
 
+define rfr
+	refresh
+end
+
 define main
 	# target record-full
 	display *line
@@ -71,7 +75,6 @@ end
 # break main
 # info break
 # fs cmd
-# gnl
 # main
 
 # Start at get_next_line()
@@ -80,4 +83,3 @@ info break
 fs cmd
 run
 gnl
-# vgdb
