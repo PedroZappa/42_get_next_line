@@ -97,7 +97,7 @@ all: $(BUILD_PATH) deps $(EXEC)	## Compile Mandatory version
 
 $(EXEC): $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c			## Compile Mandatory version
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME)$(YEL) w/out bonus$(D)"
-	$(CC) $(CFLAGS) $(INC) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
+	$(CC) $(CFLAGS) $(DFLAGS) $(INC) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
 	@echo "$(YEL)Linking $(CYA).gdbinit$(D) $(YEL)for debugging$(D)"
 	@if test -f ".gdbinit"; then \
 		unlink .gdbinit; \
@@ -108,7 +108,7 @@ $(EXEC): $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c			## Compile Mandatory versio
 
 bonus: $(BUILD_PATH) $(OBJSB) $(LIBFT_ARC) main.c		## Compile Bonus version
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME) $(YEL)w/ bonus$(D)"
-	$(CC) $(CFLAGS) $(INC) main.c $(OBJSB) $(LIBFT_ARC) -o $(EXEC)
+	$(CC) $(CFLAGS) $(DFLAGS) $(INC) main.c $(OBJSB) $(LIBFT_ARC) -o $(EXEC)
 	@echo "$(YEL)Linking $(CYA).gdbinit $(YEL)for debugging$(D)"
 	@if test -f ".gdbinit"; then \
 		unlink .gdbinit; \
@@ -203,20 +203,25 @@ test: deps $(EXEC)		## Test w/ default BUFFER_SIZE
 		valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) "$(TESTS_PATH)/$$file"; \
 	done
 
-test_bonus: deps bonus ## Test w/ default BUFFER_SIZE
+test_bonus: deps bonus $(TEMP_PATH) ## Test w/ default BUFFER_SIZE
 	@if [ -f $(TEMP_PATH)/in_files.txt ]; then \
 		$(RM) $(TEMP_PATH)/in_files.txt; \
 	fi
 	@echo "$(YEL)Creating file with all FILE paths...$(D)"
 	@for file in $(FILES); do \
-		echo "$(TESTS_PATH)//$$file" >> $(TEMP_PATH)/in_files.txt; \
+		printf "$(TESTS_PATH)/$$file" >> $(TEMP_PATH)/in_files.txt; \
+		printf " " >> $(TEMP_PATH)/in_files.txt; \
 	done
 	@echo "$(YEL)Executing with files from in_files.txt$(D)"
-	# ARGS=$(shell xargs -I {} echo {} < $(TEMP_PATH)/in_files.txt)
-	# valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) $(ARGS)
-	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) $(shell xargs -I {} echo {} < $(TEMP_PATH)/in_files.txt)
+	sleep 0.5s
+	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) $(shell cat "$(TEMP_PATH)/in_files.txt")
 	@echo "$(YEL)Executing with 2 files$(D)"
 	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) "$(TESTS_PATH)/mini-vulf.txt" "$(TESTS_PATH)/read_error.txt"
+
+test_files:
+	echo $(ARG)
+	echo $(FILES)
+	
 
 test_buffer: $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 	@TIMESTAMP=$(shell date +%Y%m%d%H%M%S); \
@@ -280,7 +285,19 @@ vgdb: $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
 	tmux split-window -h "valgrind --vgdb-error=0 --log-file=gdb.txt ./$(EXEC) 'files/mini-vulf.txt'"
 	make vgdb_pid
 	tmux split-window -v "gdb --tui -x $(TEMP_PATH)/gdb_commands.txt $(EXEC)"
-	tmux resize-pane -U 15
+	tmux resize-pane -U 18
+	touch gdb.txt
+	if command -v lnav; then \
+		lnav gdb.txt; \
+	else \
+		tail -f gdb.txt; \
+	fi
+
+vgdb_bonus: $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
+	tmux split-window -h "valgrind --vgdb-error=0 --log-file=gdb.txt ./$(EXEC) 'files/mini-vulf.txt'"
+	make vgdb_pid
+	tmux split-window -v "gdb --tui -x $(TEMP_PATH)/gdb_commands.txt $(EXEC)"
+	tmux resize-pane -U 18
 	touch gdb.txt
 	if command -v lnav; then \
 		lnav gdb.txt; \
@@ -290,7 +307,6 @@ vgdb: $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
 
 vgdb_pid: $(EXEC) $(TEMP_PATH)		## Get valgrind PID
 	printf "target remote | vgdb --pid=" > $(TEMP_PATH)/gdb_commands.txt
-	export VGDB_PID=$(shell pgrep -f valgrind)
 	printf "$(shell pgrep -f valgrind)" >> $(TEMP_PATH)/gdb_commands.txt
 
 ##@ Clean-up Rules 󰃢
