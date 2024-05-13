@@ -197,13 +197,13 @@ check_ext_func: all		## Check for external functions
 
 ##@ Test Rules 🧪
 
-test:	## Test w/ default BUFFER_SIZE
+test: deps $(EXEC)		## Test w/ default BUFFER_SIZE
 	@for file in $(FILES); do \
 		echo "$(YEL)Executing $(CYA)$$file$(D)"; \
 		valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) "$(TESTS_PATH)/$$file"; \
 	done
 
-test_bonus:	## Test w/ default BUFFER_SIZE
+test_bonus: deps bonus ## Test w/ default BUFFER_SIZE
 	@if [ -f $(TEMP_PATH)/in_files.txt ]; then \
 		$(RM) $(TEMP_PATH)/in_files.txt; \
 	fi
@@ -212,6 +212,8 @@ test_bonus:	## Test w/ default BUFFER_SIZE
 		echo "$(TESTS_PATH)//$$file" >> $(TEMP_PATH)/in_files.txt; \
 	done
 	@echo "$(YEL)Executing with files from in_files.txt$(D)"
+	# ARGS=$(shell xargs -I {} echo {} < $(TEMP_PATH)/in_files.txt)
+	# valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) $(ARGS)
 	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) $(shell xargs -I {} echo {} < $(TEMP_PATH)/in_files.txt)
 	@echo "$(YEL)Executing with 2 files$(D)"
 	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) "$(TESTS_PATH)/mini-vulf.txt" "$(TESTS_PATH)/read_error.txt"
