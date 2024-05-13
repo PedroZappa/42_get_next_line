@@ -213,7 +213,6 @@ test_bonus: deps bonus $(TEMP_PATH) ## Test w/ default BUFFER_SIZE
 		printf " " >> $(TEMP_PATH)/in_files.txt; \
 	done
 	@echo "$(YEL)Executing with files from in_files.txt$(D)"
-	sleep 0.5s
 	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) $(shell cat "$(TEMP_PATH)/in_files.txt")
 	@echo "$(YEL)Executing with 2 files$(D)"
 	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) "$(TESTS_PATH)/mini-vulf.txt" "$(TESTS_PATH)/read_error.txt"
@@ -282,7 +281,7 @@ gdb: $(EXEC) $(TEMP_PATH)			## Debug w/ gdb
 	fi
 
 vgdb: $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
-	tmux split-window -h "valgrind --vgdb-error=0 --log-file=gdb.txt ./$(EXEC) 'files/mini-vulf.txt'"
+	tmux split-window -h "valgrind --vgdb-error=0 --log-file=gdb.txt ./$(EXEC) $(ARG)"
 	make vgdb_pid
 	tmux split-window -v "gdb --tui -x $(TEMP_PATH)/gdb_commands.txt $(EXEC)"
 	tmux resize-pane -U 18
@@ -294,7 +293,7 @@ vgdb: $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
 	fi
 
 vgdb_bonus: $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
-	tmux split-window -h "valgrind --vgdb-error=0 --log-file=gdb.txt ./$(EXEC) 'files/mini-vulf.txt'"
+	tmux split-window -h "valgrind --vgdb-error=0 --log-file=gdb.txt ./$(EXEC) '$(TESTS_PATH)/mini-vulf.txt' '$(TESTS_PATH)/read_error.txt'"
 	make vgdb_pid
 	tmux split-window -v "gdb --tui -x $(TEMP_PATH)/gdb_commands.txt $(EXEC)"
 	tmux resize-pane -U 18
