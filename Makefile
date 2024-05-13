@@ -277,11 +277,11 @@ gdb: $(EXEC) $(TEMP_PATH)			## Debug w/ gdb
 	fi
 
 vgdb: $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
-	tmux split-window -h "valgrind -q --vgdb-error=0 ./$(EXEC) 'files/mini-vulf.txt'"
+	tmux split-window -h "valgrind -q --vgdb-error=0 --log-file=vgdb.txt ./$(EXEC) 'files/mini-vulf.txt'"
 	sleep 0.5s
 	make vgdb_pid
 	tmux split-window -v
-	tmux send-keys -t -lt3 "gdb -x $(TEMP_PATH)/gdb_commands.txt $(EXEC) | tee vgdb.txt" C-m
+	tmux send-keys -t -lt3 "gdb --tui -x $(TEMP_PATH)/gdb_commands.txt $(EXEC)" C-m
 	tmux resize-pane -U 15
 	if command -v lnav; then \
 		lnav vgdb.txt; \
