@@ -68,14 +68,16 @@ define mchk
 end
 
 # Start at main()
-break main
-info break
-fs cmd
-
-# Start at get_next_line()
-# break get_next_line
+# break main
 # info break
 # fs cmd
-# vgdb
-# run
 # gnl
+# main
+
+# Start at get_next_line()
+break get_next_line
+info break
+fs cmd
+run
+gnl
+# vgdb

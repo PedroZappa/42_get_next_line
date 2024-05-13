@@ -276,15 +276,20 @@ gdb: $(EXEC) $(TEMP_PATH)			## Debug w/ gdb
 
 vgdb: $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
 	tmux split-window -h "valgrind -q --vgdb-error=0 ./$(EXEC) 'files/mini-vulf.txt'"
-	VGDB_PID=$(shell VGDB_PID=$(shell pgrep -f valgrind))
-	echo "target remote | vgdb --pid=$$VGDB_PID" > $(TEMP_PATH)/gdb_commands.txt
-	tmux split-window -v "gdb -x $(TEMP_PATH)/gdb_commands.txt $(EXE)"
+	sleep 0.5s
+	make vgdb_pid
+	tmux split-window -v "gdb -x $(TEMP_PATH)/gdb_commands.txt $(EXEC)"
 	tmux resize-pane -U 15
 	if command -v lnav; then \
 		lnav gdb.txt; \
 	else \
 		tail -f gdb.txt; \
 	fi
+
+vgdb_pid: $(EXEC) $(TEMP_PATH)		## Get valgrind PID
+	printf "target remote | vgdb --pid=" > $(TEMP_PATH)/gdb_commands.txt
+	export VGDB_PID=$(shell pgrep -f valgrind)
+	printf "$(shell pgrep -f valgrind)" >> $(TEMP_PATH)/gdb_commands.txt
 
 ##@ Clean-up Rules 󰃢
 
