@@ -22,11 +22,11 @@ FILES	= $(shell ls -l $(TESTS_PATH) | awk '{print $$9}')
 ARG		?= "files/mini-vulf.txt"
 COUNTER = 1
 SIZES	:= 1 3 9
-# SIZES	+= 25 50 100
-# SIZES	+= 200 400 800
-# SIZES	+= 1600 3200 6400
-# SIZES	+= 12800 25600 51200
-# SIZES	+= 102400 204800 409600
+SIZES	+= 25 50 100
+SIZES	+= 200 400 800
+SIZES	+= 1600 3200 6400
+SIZES	+= 12800 25600 51200
+SIZES	+= 102400 204800 409600
 
 #==============================================================================#
 #                                     NAMES                                    #
@@ -275,15 +275,15 @@ gdb: $(EXEC) $(TEMP_PATH)			## Debug w/ gdb
 	fi
 
 vgdb: $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
-	tmux split-window -h "valgrind -q --vgdb-error=0 ./$(EXEC) 'files/mini-vulf.txt'"
+	tmux split-window -h "valgrind -q --vgdb-error=0 --log-file=vgdb.txt ./$(EXEC) 'files/mini-vulf.txt'"
 	sleep 0.5s
 	make vgdb_pid
 	tmux split-window -v "gdb -x $(TEMP_PATH)/gdb_commands.txt $(EXEC)"
 	tmux resize-pane -U 15
 	if command -v lnav; then \
-		lnav gdb.txt; \
+		lnav vgdb.txt; \
 	else \
-		tail -f gdb.txt; \
+		tail -f vgdb.txt; \
 	fi
 
 vgdb_pid: $(EXEC) $(TEMP_PATH)		## Get valgrind PID
