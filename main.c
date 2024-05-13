@@ -40,7 +40,7 @@ int main(int argc, char **argv)
 		}
 	}
 	// test get_next_line
-    ft_printf("Testing get_next_line\n\n");
+    ft_printf("Testing get_next_line w BUFFER_SIZE = %d\n\n", BUFFER_SIZE);
 	n = 1;
 	line = NULL;
     for (i = 0; i < n_fds; ++i)
