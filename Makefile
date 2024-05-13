@@ -18,15 +18,17 @@ MAKE	= make -C
 SHELL	:= bash
 
 # Default test values
-FILES	= $(shell ls -l $(TESTS_PATH) | awk '{print $$9}')
-ARG		?= "files/mini-vulf.txt"
-COUNTER = 1
-SIZES	:= 1 3 9
-SIZES	+= 25 50 100
-SIZES	+= 200 400 800
-SIZES	+= 1600 3200 6400
-SIZES	+= 12800 25600 51200
-SIZES	+= 102400 204800 409600
+FILES		= $(shell ls -l $(TESTS_PATH) | awk '{print $$9}')
+ARG			?= "files/mini-vulf.txt"
+COUNTER		= 1
+BUFFER_SIZE = 42
+SIZES		:= 1 3 9
+# SIZES		+= 25 50 100
+# SIZES		+= 200 400 800
+# SIZES		+= 1600 3200 6400
+# SIZES		+= 12800 25600 51200
+# SIZES		+= 102400 204800 409600
+SIZES		+= -42 0
 
 #==============================================================================#
 #                                     NAMES                                    #
@@ -73,11 +75,12 @@ GNLTESTER_PATH	= $(SRCB_PATH)/gnlTester
 #                              COMPILER & FLAGS                                #
 #==============================================================================#
 
-CC		= cc
+CC			= cc
 
-CFLAGS	= -Wall -Wextra -Werror
-DFLAGS	= -g
-INC		= -I.
+CFLAGS		= -Wall -Wextra -Werror
+DFLAGS		= -g
+INC			= -I.
+BFLAGS		?= -D BUFFER_SIZE=
 
 #==============================================================================#
 #                                COMMANDS                                      #
@@ -221,8 +224,12 @@ test_files:
 	echo $(ARG)
 	echo $(FILES)
 	
+$(EXEC)_buffer: $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c
+	@echo "$(YEL)Compiling test for $(MAG)$(NAME)$(YEL) with BUFFER_SIZE=$(BUFFER_SIZE)$(D)"
+	$(CC) $(CFLAGS) $(DFLAGS) $(INC) -D BUFFER_SIZE=$(BUFFER_SIZE) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
+	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) with BUFFER_SIZE=$(BUFFER_SIZE) $(YEL)🖔$(D)]"
 
-test_buffer: $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
+test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 	@TIMESTAMP=$(shell date +%Y%m%d%H%M%S); \
 	if [ -f $(TEMP_PATH)/out.txt ]; then \
 		mv -f $(TEMP_PATH)/out.txt $(TEMP_PATH)/out.$$TIMESTAMP.txt; \
@@ -231,10 +238,16 @@ test_buffer: $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 		echo "$(YEL)$(_SEP)$(D)" | tee -a $(TEMP_PATH)/out.txt; \
 		echo "for $(GRN)BUFFER_SIZE$(D) of : $(RED)$$size$(D)" | tee -a $(TEMP_PATH)/out.txt; \
 		echo "$(YEL)$(_SEP)$(D)" | tee -a $(TEMP_PATH)/out.txt; \
+		if [ -f a.out ]; then \
+			$(RM) a.out; \
+		fi; \
+		make BUFFER_SIZE=$$size $(EXEC)_buffer; \
 		for file in $(FILES); do \
 			echo "Test $(MAG)$$COUNTER$(D) : Current $(GRN)BUFFER_SIZE $(D): $(RED)$$size$(D)" | tee -a $(TEMP_PATH)/out.txt; \
 			echo "$(YEL)Current file: $(CYA)$$file$(D)" | tee -a $(TEMP_PATH)/out.txt; \
-			BUFFER_SIZE=$$size; \
+			# export BUFFER_SIZE=$$size; \
+			# echo $(BUFFER_SIZE); \
+			# echo "$(BUFFER_SIZE)"; \
 			valgrind --leak-check=full --show-leak-kinds=all --log-file=$(TEMP_PATH)/temp.txt ./$(EXEC) "$(TESTS_PATH)/$$file"; \
 			sed -n '10p' $(TEMP_PATH)/temp.txt >> $(TEMP_PATH)/out.txt; \
 			COUNTER=$$((COUNTER + 1)); \
@@ -247,6 +260,34 @@ test_buffer: $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 	@TOTAL=$(shell cat $(TEMP_PATH)/passed_count.txt)
 	@make --no-print-directory test_results
 	@echo "$(YEL)$(_SEP)$(D)"
+
+#
+# # Modified test_buffer rule
+# test_buffer: $(TEMP_PATH)
+# 	@TIMESTAMP=$(shell date +%Y%m%d%H%M%S); \
+# 	if [ -f $(TEMP_PATH)/out.txt ]; then \
+# 		mv -f $(TEMP_PATH)/out.txt $(TEMP_PATH)/out.$$TIMESTAMP.txt; \
+# 	fi
+# 	@for size in $(SIZES); do \
+# 		echo "$(YEL)$(_SEP)$(D)" | tee -a $(TEMP_PATH)/out.txt; \
+# 		echo "for $(GRN)BUFFER_SIZE$(D) of : $(RED)$$size$(D)" | tee -a $(TEMP_PATH)/out.txt; \
+# 		echo "$(YEL)$(_SEP)$(D)" | tee -a $(TEMP_PATH)/out.txt; \
+# 		for file in $(FILES); do \
+# 			echo "Test $(MAG)$$COUNTER$(D) : Current $(GRN)BUFFER_SIZE $(D): $(RED)$$size$(D)" | tee -a $(TEMP_PATH)/out.txt; \
+# 			echo "$(YEL)Current file: $(CYA)$$file$(D)" | tee -a $(TEMP_PATH)/out.txt; \
+# 			make BUFFER_SIZE=$$size $(EXEC)_buffer; \
+# 			valgrind --leak-check=full --show-leak-kinds=all --log-file=$(TEMP_PATH)/temp.txt./$(EXEC)_buffer "$(TESTS_PATH)/$$file"; \
+# 			sed -n '10p' $(TEMP_PATH)/temp.txt >> $(TEMP_PATH)/out.txt; \
+# 			COUNTER=$$((COUNTER + 1)); \
+# 			echo $$COUNTER > $(TEMP_PATH)/passed_count.txt; \
+# 		done; \
+# 	done
+# 	@cat $(TEMP_PATH)/out.txt
+# 	@echo "$(YEL)$(_SEP)$(D)"
+# 	@echo "$(BCYA)Tests Summary$(D)"
+# 	@TOTAL=$(shell cat $(TEMP_PATH)/passed_count.txt)
+# 	@make --no-print-directory test_results
+# 	@echo "$(YEL)$(_SEP)$(D)"
 
 test_results: $(TEMP_PATH)
 	@echo -ne "$(MAG)Total\t:  $(YEL)"
@@ -292,7 +333,7 @@ vgdb: $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
 		tail -f gdb.txt; \
 	fi
 
-vgdb_bonus: $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
+vgdb_bonus: $(EXEC) $(TEMP_PATH)			## Debug bonus w/ valgrind & gdb
 	tmux split-window -h "valgrind --vgdb-error=0 --log-file=gdb.txt ./$(EXEC) '$(TESTS_PATH)/mini-vulf.txt' '$(TESTS_PATH)/read_error.txt'"
 	make vgdb_pid
 	tmux split-window -v "gdb --tui -x $(TEMP_PATH)/gdb_commands.txt $(EXEC)"
