@@ -258,7 +258,7 @@ test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 	done
 	@make --no-print-directory test_results
 
-test_zero_buffer: deps all $(TEMP_PATH)	## Test w/ zero BUFFER_SIZE
+test_n_buffer: deps all $(TEMP_PATH)	## Test w/ n BUFFER_SIZE
 	make BUFFER_SIZE=0 $(EXEC)_buffer
 	make gdb
 
