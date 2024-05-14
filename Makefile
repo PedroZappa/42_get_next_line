@@ -311,7 +311,7 @@ get_gnlStationTester:
 gdb: $(EXEC) $(TEMP_PATH)			## Debug w/ gdb
 	tmux split-window -h "gdb --tui --args ./$(EXEC) 'files/mini-vulf.txt'"
 	tmux resize-pane -L 8
-	if command -v lnav; then \
+	@if command -v lnav; then \
 		lnav gdb.txt; \
 	else \
 		tail -f gdb.txt; \
@@ -323,7 +323,7 @@ vgdb: $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
 	tmux split-window -v "gdb --tui -x $(TEMP_PATH)/gdb_commands.txt $(EXEC)"
 	tmux resize-pane -U 18
 	touch gdb.txt
-	if command -v lnav; then \
+	@if command -v lnav; then \
 		lnav gdb.txt; \
 	else \
 		tail -f gdb.txt; \
