@@ -34,8 +34,6 @@ ___
 
 <!-- mtoc-end -->
 
-<div align="left">
-
 # About :pushpin:
 
 `get_next_line` is a [42 Common Core](https://github.com/PedroZappa/42_CommonCore) project that delves into how `static variables` and `file descriptors` work. It is a challenging introduction to `memory allocation`. 
@@ -233,7 +231,6 @@ ___
 
 ___
 
-<div/>
 
 <div align="center">
 
