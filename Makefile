@@ -236,7 +236,7 @@ $(EXEC)_buffer: $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c
 
 test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 	@TIMESTAMP=$(shell date +%Y%m%d%H%M%S); \
-	@if [ -f $(TEMP_PATH)/out.txt ]; then \
+	if [ -f $(TEMP_PATH)/out.txt ]; then \
 		mv -f $(TEMP_PATH)/out.txt $(TEMP_PATH)/out.$$TIMESTAMP.txt; \
 	fi
 	@for size in $(SIZES); do \
