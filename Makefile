@@ -20,7 +20,7 @@ SHELL	:= bash
 # Default test values
 FILES		= $(shell ls -l $(TESTS_PATH) | awk '{print $$9}')
 ARG			?= "files/mini-vulf.txt"
-COUNTER		= 1
+COUNTER		:= 1
 BUFFER_SIZE = 42
 SIZES		:= 1 3 9
 # SIZES		+= 25 50 100
