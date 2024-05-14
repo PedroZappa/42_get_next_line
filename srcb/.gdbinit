@@ -74,6 +74,7 @@ end
 
 # Start at main()
 break main
+break get_next_line
 info break
 fs cmd
 
