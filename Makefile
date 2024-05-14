@@ -201,10 +201,18 @@ check_ext_func: all		## Check for external functions
 ##@ Test Rules 🧪
 
 test: deps $(EXEC)		## Test w/ default BUFFER_SIZE
+	@TIMESTAMP=$(shell date +%Y%m%d%H%M%S); \
+	if [ -f $(TEMP_PATH)/out.txt ]; then \
+		mv -f $(TEMP_PATH)/out.txt $(TEMP_PATH)/out.$$TIMESTAMP.txt; \
+	fi
 	@for file in $(FILES); do \
-		echo "$(YEL)Executing $(CYA)$$file$(D)"; \
-		valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) "$(TESTS_PATH)/$$file"; \
+		echo "Test $(MAG)$$COUNTER$(D) : Executing $(CYA)$$file$(D)" | tee -a $(TEMP_PATH)/out.txt; \
+		valgrind --leak-check=full --show-leak-kinds=all --log-file=$(TEMP_PATH)/temp.txt ./$(EXEC) "$(TESTS_PATH)/$$file"; \
+		sed -n '10p' $(TEMP_PATH)/temp.txt >> $(TEMP_PATH)/out.txt; \
+		COUNTER=$$((COUNTER + 1)); \
+		echo $$COUNTER > $(TEMP_PATH)/passed_count.txt; \
 	done
+	@make --no-print-directory test_results
 
 test_bonus: deps bonus $(TEMP_PATH) ## Test w/ default BUFFER_SIZE
 	@if [ -f $(TEMP_PATH)/in_files.txt ]; then \
@@ -219,14 +227,10 @@ test_bonus: deps bonus $(TEMP_PATH) ## Test w/ default BUFFER_SIZE
 	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) $(shell cat "$(TEMP_PATH)/in_files.txt")
 	@echo "$(YEL)Executing with 2 files$(D)"
 	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) "$(TESTS_PATH)/mini-vulf.txt" "$(TESTS_PATH)/read_error.txt"
-
-test_files:
-	echo $(ARG)
-	echo $(FILES)
 	
 $(EXEC)_buffer: $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME)$(YEL) with BUFFER_SIZE=$(BUFFER_SIZE)$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) $(INC) -D BUFFER_SIZE=$(BUFFER_SIZE) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
+	$(CC) $(CFLAGS) $(DFLAGS) $(BFLAGS)$(BUFFER_SIZE) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) with BUFFER_SIZE=$(BUFFER_SIZE) $(YEL)🖔$(D)]"
 
 test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
@@ -245,23 +249,23 @@ test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 		for file in $(FILES); do \
 			echo "Test $(MAG)$$COUNTER$(D) : Current $(GRN)BUFFER_SIZE $(D): $(RED)$$size$(D)" | tee -a $(TEMP_PATH)/out.txt; \
 			echo "$(YEL)Current file: $(CYA)$$file$(D)" | tee -a $(TEMP_PATH)/out.txt; \
-			# export BUFFER_SIZE=$$size; \
-			# echo $(BUFFER_SIZE); \
-			# echo "$(BUFFER_SIZE)"; \
 			valgrind --leak-check=full --show-leak-kinds=all --log-file=$(TEMP_PATH)/temp.txt ./$(EXEC) "$(TESTS_PATH)/$$file"; \
 			sed -n '10p' $(TEMP_PATH)/temp.txt >> $(TEMP_PATH)/out.txt; \
 			COUNTER=$$((COUNTER + 1)); \
 			echo $$COUNTER > $(TEMP_PATH)/passed_count.txt; \
 		done; \
 	done
+	@make --no-print-directory test_results
+
+test_zero_buffer: deps all $(TEMP_PATH)	## Test w/ zero BUFFER_SIZE
+	make BUFFER_SIZE=0 $(EXEC)_buffer
+	make gdb
+
+test_results: $(TEMP_PATH)
 	@cat $(TEMP_PATH)/out.txt
 	@echo "$(YEL)$(_SEP)$(D)"
 	@echo "$(BCYA)Tests Summary$(D)"
 	@TOTAL=$(shell cat $(TEMP_PATH)/passed_count.txt)
-	@make --no-print-directory test_results
-	@echo "$(YEL)$(_SEP)$(D)"
-
-test_results: $(TEMP_PATH)
 	@echo -ne "$(MAG)Total\t:  $(YEL)"
 	@awk '{print $$1}' $(TEMP_PATH)/passed_count.txt
 	@echo -ne "$(D)"
@@ -271,6 +275,18 @@ test_results: $(TEMP_PATH)
 	@awk -v count=0 '{if ($$1 != $$2) \
 		{ print $$1 > "failing_test_number.txt"; count++ }} END \
 		{ print "$(RED)Failed$(D)\t: ", count}' $(TEMP_PATH)/count.txt
+	@echo "$(YEL)$(_SEP)$(D)"
+
+# test_results: $(TEMP_PATH)
+# 	@echo -ne "$(MAG)Total\t:  $(YEL)"
+# 	@awk '{print $$1}' $(TEMP_PATH)/passed_count.txt
+# 	@echo -ne "$(D)"
+# 	@cat $(TEMP_PATH)/out.txt | grep heap | awk '{ print $$5, $$7 }' > $(TEMP_PATH)/count.txt
+# 	@awk -v count=0 '{if ($$1 == $$2) count++} END \
+# 		{ print "$(GRN)Passed$(D)\t: ", count}' $(TEMP_PATH)/count.txt
+# 	@awk -v count=0 '{if ($$1 != $$2) \
+# 		{ print $$1 > "failing_test_number.txt"; count++ }} END \
+# 		{ print "$(RED)Failed$(D)\t: ", count}' $(TEMP_PATH)/count.txt
 
 gnlTester: $(EXEC) get_gnlTester		## Run gnlTester
 	$(MAKE) $(GNLTESTER_PATH) a
@@ -287,6 +303,7 @@ get_gnlTester:
 
 gdb: $(EXEC) $(TEMP_PATH)			## Debug w/ gdb
 	tmux split-window -h "gdb --tui --args ./$(EXEC) 'files/mini-vulf.txt'"
+	tmux resize-pane -L 8
 	if command -v lnav; then \
 		lnav gdb.txt; \
 	else \
