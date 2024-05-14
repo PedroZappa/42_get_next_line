@@ -14,8 +14,6 @@
 </p>
 
 <div/>
-<div/>
-
 ___
 
 <h3>Table o'Contents</h3>
@@ -36,6 +34,8 @@ ___
   * [License :copyright:](#license-copyright)
 
 <!-- mtoc-end -->
+
+<div align="left">
 
 # About :pushpin:
 
