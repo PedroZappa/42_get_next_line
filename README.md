@@ -169,10 +169,6 @@ Within each implementation folder there is a `.gdbinit` file defining commands t
 >
 > For user convenience the `make` command will copy the `.gdbinit` file related to the selected implementation into the root of the project.
 
-> [!IMPORTANT]
->
-> If you use `tmux` give `make gdb` and `make vgdb` rules a try 😉
-
 ___
 
 ### Debugging `get_next_line`
@@ -226,6 +222,10 @@ tail -f gdb.txt
 ```
 
 > This command is an alias for `monitor leak_check full reachable any` 
+
+> [!IMPORTANT]
+>
+> If you use `tmux` give `make gdb` and `make vgdb` rules a try 😉
 
 ___
 
