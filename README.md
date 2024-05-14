@@ -123,7 +123,7 @@ git clone https://github.com/PedroZappa/42_get_next_line.git zedro-gnl
 cd zedro-gnl
 ```
 
->[!NOTE]
+> [!Note]
 > 
 > Two distinct implementation can be found in this repository: the one on `srcll` implements `Linked Lists` without the bonus; while the other on `srcb` uses `Arrays` and meets both mandatory and bonus requirements. 
 
@@ -153,7 +153,7 @@ make bonus
 make extrall
 ```
 
-> [!IMPORTANT]
+> [!Important]
 > 
 > The `Linked Lists` implementation does not fully pass [norminette](https://github.com/42School/norminette)'s tests. It was my first attempt at this project, I decided to keep it for future reference on handling `Linked Lists`. 
 > It seems impossible to solve this challenge using `Linked Lists` taking the appropriate precautions to avoid memory leaks while adhering to `The Norm`.
@@ -182,7 +182,7 @@ set auto-load safe-path /
 > This command is used to set the directories from which `gdb` can automatically load files.
 > When `gdb` starts it reads commands from several initialization files, `.gdbinit` being one of them, it defines the commands to be automatically executed at the start of a `gdb` session.
 
-> [!IMPORTANT]
+> [!Important]
 > Do this step only if you trust all the contents of the system you're working on, otherwise change `/` to the path of the folder you cloned this repo to.
 
 1. Compile your chosen `get_next_line` implementation, for survey convenience the `-g` flag is called by default at compile time:
@@ -223,7 +223,7 @@ tail -f gdb.txt
 
 > This command is an alias for `monitor leak_check full reachable any` 
 
-> [!IMPORTANT]
+> [!Important]
 >
 > If you use `tmux` give `make gdb` and `make vgdb` rules a try 😉
 
