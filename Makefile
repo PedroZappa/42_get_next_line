@@ -231,12 +231,12 @@ test_bonus: deps bonus $(TEMP_PATH) ## Test w/ default BUFFER_SIZE
 	
 $(EXEC)_buffer: $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME)$(YEL) with BUFFER_SIZE=$(BUFFER_SIZE)$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) $(BFLAGS)$(BUFFER_SIZE) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
+	$(CC) $(CFLAGS) $(BFLAGS)$(BUFFER_SIZE) $(DFLAGS) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) with BUFFER_SIZE=$(BUFFER_SIZE) $(YEL)🖔$(D)]"
 
 test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 	@TIMESTAMP=$(shell date +%Y%m%d%H%M%S); \
-	if [ -f $(TEMP_PATH)/out.txt ]; then \
+	@if [ -f $(TEMP_PATH)/out.txt ]; then \
 		mv -f $(TEMP_PATH)/out.txt $(TEMP_PATH)/out.$$TIMESTAMP.txt; \
 	fi
 	@for size in $(SIZES); do \
@@ -259,8 +259,8 @@ test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 	@make --no-print-directory test_results
 
 test_n_buffer: deps all $(TEMP_PATH)	## Test w/ n BUFFER_SIZE
-	make BUFFER_SIZE=0 $(EXEC)_buffer
-	make gdb
+	make --no-print-directory BUFFER_SIZE=22 $(EXEC)_buffer
+	make --no-print-directory gdb
 
 test_results: $(TEMP_PATH)
 	@cat $(TEMP_PATH)/out.txt
@@ -310,7 +310,7 @@ get_gnlStationTester:
 
 gdb: $(EXEC) $(TEMP_PATH)			## Debug w/ gdb
 	tmux split-window -h "gdb --tui --args ./$(EXEC) 'files/mini-vulf.txt'"
-	tmux resize-pane -L 8
+	tmux resize-pane -L 5
 	@if command -v lnav; then \
 		lnav gdb.txt; \
 	else \
@@ -335,7 +335,7 @@ vgdb_bonus: $(EXEC) $(TEMP_PATH)			## Debug bonus w/ valgrind & gdb
 	tmux split-window -v "gdb --tui -x $(TEMP_PATH)/gdb_commands.txt $(EXEC)"
 	tmux resize-pane -U 18
 	touch gdb.txt
-	if command -v lnav; then \
+	@if command -v lnav; then \
 		lnav gdb.txt; \
 	else \
 		tail -f gdb.txt; \
