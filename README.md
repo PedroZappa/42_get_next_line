@@ -13,6 +13,8 @@
     <img src="https://img.shields.io/github/last-commit/PedroZappa/get_next_line?style=for-the-badge" />
 </p>
 
+<div/>
+
 ___
 
 <h3>Table o'Contents</h3>
@@ -33,8 +35,6 @@ ___
   * [License :copyright:](#license-copyright)
 
 <!-- mtoc-end -->
-
-<div align="left">
 
 # About :pushpin:
 
@@ -232,8 +232,6 @@ ___
 #### Happy Debugging! 🐛
 
 ___
-
-<div/>
 
 <div align="center">
 
