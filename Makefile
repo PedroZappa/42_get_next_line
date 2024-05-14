@@ -69,7 +69,8 @@ OBJSLL	= $(SRCLL:$(SRCLL_PATH)/%.c=$(BUILD_PATH)/%.o)
 LIBFT_PATH	= $(LIBS_PATH)/libft
 LIBFT_ARC	= $(LIBFT_PATH)/libft.a
 
-GNLTESTER_PATH	= $(SRCB_PATH)/gnlTester
+GNLTESTER_PATH			= $(SRCB_PATH)/gnlTester
+GNL_STATION_TESTER_PATH	= $(SRCB_PATH)/gnlStationTester
 
 #==============================================================================#
 #                              COMPILER & FLAGS                                #
@@ -167,7 +168,7 @@ get_libft:
 	echo " $(RED)$(D) [$(GRN)Nothing to be done!$(D)]"; \
 	fi
 
-##@ Norm, Debug & Leak Check Rules 
+##@ Norm Rules
 
 norm: $(TEMP_PATH)		## Run norminette test on source files
 	@echo "$(CYA)$(_SEP)$(D)"
@@ -273,23 +274,13 @@ test_results: $(TEMP_PATH)
 	@awk -v count=0 '{if ($$1 == $$2) count++} END \
 		{ print "$(GRN)Passed$(D)\t: ", count}' $(TEMP_PATH)/count.txt
 	@awk -v count=0 '{if ($$1 != $$2) \
-		{ print $$1 > "failing_test_number.txt"; count++ }} END \
+		{ print $$1 > "$(TEMP_PATH)/failing_test_number.txt"; count++ }} END \
 		{ print "$(RED)Failed$(D)\t: ", count}' $(TEMP_PATH)/count.txt
 	@echo "$(YEL)$(_SEP)$(D)"
 
-# test_results: $(TEMP_PATH)
-# 	@echo -ne "$(MAG)Total\t:  $(YEL)"
-# 	@awk '{print $$1}' $(TEMP_PATH)/passed_count.txt
-# 	@echo -ne "$(D)"
-# 	@cat $(TEMP_PATH)/out.txt | grep heap | awk '{ print $$5, $$7 }' > $(TEMP_PATH)/count.txt
-# 	@awk -v count=0 '{if ($$1 == $$2) count++} END \
-# 		{ print "$(GRN)Passed$(D)\t: ", count}' $(TEMP_PATH)/count.txt
-# 	@awk -v count=0 '{if ($$1 != $$2) \
-# 		{ print $$1 > "failing_test_number.txt"; count++ }} END \
-# 		{ print "$(RED)Failed$(D)\t: ", count}' $(TEMP_PATH)/count.txt
-
 gnlTester: $(EXEC) get_gnlTester		## Run gnlTester
-	$(MAKE) $(GNLTESTER_PATH) a
+	tmux split-window -h "$(MAKE) $(GNLTESTER_PATH) a"
+	tmux set-option remain-on-exit on
 
 get_gnlTester:
 	@echo "* $(CYA)Getting gnlTester submodule$(D)]"
@@ -300,6 +291,22 @@ get_gnlTester:
 		echo "* $(GRN)gnlTester already exists 🖔"; \
 		echo " $(RED)$(D) [$(GRN)Nothing to be done!$(D)]"; \
 	fi
+
+gnl-station-tester: deps $(EXEC) get_gnlStationTester			## Run gnl-station-tester
+	tmux split-window -h "$(MAKE) $(GNL_STATION_TESTER_PATH)"
+	tmux set-option remain-on-exit on
+
+get_gnlStationTester:
+	@echo "* $(CYA)Getting gnlStationTester submodule$(D)]"
+	@if test ! -d "$(GNL_STATION_TESTER_PATH)"; then \
+		git clone git@github.com:kodpe/gnl-station-tester.git $(GNL_STATION_TESTER_PATH); \
+		echo "* $(GRN)gnl-station-tester download$(D): $(_SUCCESS)"; \
+	else \
+		echo "* $(GRN)gnl-station-tester already exists 🖔"; \
+		echo " $(RED)$(D) [$(GRN)Running tester!$(D)]"; \
+	fi
+
+##@ Debug Rules 
 
 gdb: $(EXEC) $(TEMP_PATH)			## Debug w/ gdb
 	tmux split-window -h "gdb --tui --args ./$(EXEC) 'files/mini-vulf.txt'"
@@ -354,6 +361,10 @@ clean: 				## Remove object files
 		if [ -d "$(GNLTESTER_PATH)" ]; then \
 			$(RM) $(GNLTESTER_PATH); \
 			echo "* $(YEL)Removing $(CYA)$(GNLTESTER_PATH)$(D) folder & files:$(D) $(_SUCCESS)"; \
+		fi; \
+		if [ -d "$(GNL_STATION_TESTER_PATH)" ]; then \
+			$(RM) $(GNL_STATION_TESTER_PATH); \
+			echo "* $(YEL)Removing $(CYA)$(GNL_STATION_TESTER_PATH)$(D) folder & files:$(D) $(_SUCCESS)"; \
 		fi; \
 	else \
 		echo " $(RED)$(D) [$(GRN)Nothing to clean!$(D)]"; \
