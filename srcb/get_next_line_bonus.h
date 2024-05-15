@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 // Default compile time buffersize
 # ifndef BUFFER_SIZE
