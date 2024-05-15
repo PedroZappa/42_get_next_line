@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/25 11:39:41 by passunca          #+#    #+#              #
-#    Updated: 2024/05/15 15:54:36 by passunca         ###   ########.fr        #
+#    Updated: 2024/05/15 18:03:10 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,13 +22,13 @@ FILES		= $(shell ls -l $(TESTS_PATH) | awk '{print $$9}')
 ARG			?= "files/mini-vulf.txt"
 COUNTER		:= 1
 BUFFER_SIZE ?= 42
-SIZES		:= 1 3 9
+SIZES		:= 1 666 9999
 # SIZES		+= 25 50 100
 # SIZES		+= 200 400 800
 # SIZES		+= 1600 3200 6400
 # SIZES		+= 12800 25600 51200
 # SIZES		+= 102400 204800 409600
-# SIZES		+= -42 0
+SIZES		+= -1
 
 #==============================================================================#
 #                                     NAMES                                    #
@@ -250,15 +250,14 @@ test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 		echo "$(YEL)$(_SEP)$(D)" | tee -a $(TEMP_PATH)/out.txt; \
 		echo "for $(GRN)BUFFER_SIZE$(D) of : $(RED)$$size$(D)" | tee -a $(TEMP_PATH)/out.txt; \
 		echo "$(YEL)$(_SEP)$(D)" | tee -a $(TEMP_PATH)/out.txt; \
-		if [ -f a.out ]; then \
-			$(RM) a.out; \
-		fi; \
 		if [ -f $(EXEC) ]; then \
 			$(RM) $(EXEC); \
+			$(RM) $(OBJS); \
 		fi; \
 		sleep 0.3s; \
 		make BUFFER_SIZE=$$size $(EXEC)_buffer; \
 		for file in $(FILES); do \
+			echo "$(YEL)$(_SEP)$(D)"
 			echo "Test $(MAG)$$COUNTER$(D) : Current $(GRN)BUFFER_SIZE $(D): $(RED)$$size$(D)" | tee -a $(TEMP_PATH)/out.txt; \
 			echo "$(YEL)Current file: $(CYA)$$file$(D)" | tee -a $(TEMP_PATH)/out.txt; \
 			valgrind --leak-check=full --show-leak-kinds=all --log-file=$(TEMP_PATH)/temp.txt ./$(EXEC) "$(TESTS_PATH)/$$file"; \
