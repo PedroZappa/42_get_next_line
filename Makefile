@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/25 11:39:41 by passunca          #+#    #+#              #
-#    Updated: 2024/05/15 19:40:10 by passunca         ###   ########.fr        #
+#    Updated: 2024/05/15 20:14:20 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,12 @@ SHELL	:= bash
 FILES		= $(shell ls -l $(TESTS_PATH) | awk '{print $$9}')
 ARG			?= "files/mini-vulf.txt"
 COUNTER		:= 1
-BUFFER_SIZE ?= 42
-SIZES		:= 1 666 9999
-# SIZES		+= 25 50 100
-# SIZES		+= 200 400 800
-# SIZES		+= 1600 3200 6400
-# SIZES		+= 12800 25600 51200
-# SIZES		+= 102400 204800 409600
+BUFFER_SIZE ?= 11
+SIZES		:= 1 42 666
+SIZES		+= 1600 3200 6400
+SIZES		+= 12800 25600 51200
+SIZES		+= 102400 204800 409600
+SIZES		+= 10000000
 # SIZES		+= -1
 
 #==============================================================================#
@@ -101,7 +100,7 @@ all: $(BUILD_PATH) deps $(EXEC)	## Compile Mandatory version
 
 $(EXEC): $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c			## Compile Mandatory version
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME)$(YEL) w/out bonus$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
+	$(CC) $(CFLAGS) $(DFLAGS) $(BFLAGS)$(BUFFER_SIZE) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
 	@echo "$(YEL)Linking $(CYA).gdbinit$(D) $(YEL)for debugging$(D)"
 	@if test -f ".gdbinit"; then \
 		unlink .gdbinit; \
@@ -238,7 +237,7 @@ test_bonus: deps bonus $(TEMP_PATH) ## Test with multiple fds (bonus features)
 
 $(EXEC)_buffer: $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME)$(YEL) with BUFFER_SIZE=$(BUFFER_SIZE)$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
+	$(CC) $(CFLAGS) $(DFLAGS) $(BFLAGS)$(BUFFER_SIZE) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) with BUFFER_SIZE=$(BUFFER_SIZE) $(YEL)🖔$(D)]"
 
 test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
@@ -258,7 +257,7 @@ test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 		make BUFFER_SIZE=$$size $(EXEC)_buffer; \
 		for file in $(FILES); do \
 			echo "$(YEL)$(_SEP)$(D)"; \
-			echo "Test $(MAG)$$COUNTER$(D) : Current $(GRN)BUFFER_SIZE $(D): $(RED)$$size$(D)" | tee -a $(TEMP_PATH)/out.txt; \
+			echo "Test $(MAG)$$COUNTER$(D)" | tee -a $(TEMP_PATH)/out.txt; \
 			echo "$(YEL)Current file: $(CYA)$$file$(D)" | tee -a $(TEMP_PATH)/out.txt; \
 			if [ $$size -lt 0 ]; then \
 				echo "read() with a BUFFER_SIZE smaller than 0 does not compile! Skipping Valgrind 🏇" | tee -a $(TEMP_PATH)/temp.txt; \
@@ -276,11 +275,19 @@ test_n_buffer: deps all $(TEMP_PATH)	## Test w/ n BUFFER_SIZE
 	make --no-print-directory BUFFER_SIZE=$(BUFFER_SIZE) $(EXEC)_buffer
 	make --no-print-directory gdb
 
+remove_ansi_noise:
+	@sed -i 's/\//g' $(TEMP_PATH)/out.txt
+
 test_results: $(TEMP_PATH)
+	make --no-print-directory remove_ansi_noise
 	@if command -v tmux; then \
-		tmux split-window -h "cat $(TEMP_PATH)/out.txt"; \
+		if command -v lnav; then \
+			tmux split-window -h "lnav $(TEMP_PATH)/out.txt"; \
+		else \
+			tmux split-window -h "cat $(TEMP_PATH)/out.txt"; \
+		fi; \
 	else \
-		cat $(TEMP_PATH)/out.txt; \
+		tmux split-window -h "cat $(TEMP_PATH)/out.txt | sed 's/\x1b\[[0-9;]*m//g'"; \
 	fi
 	@echo "$(YEL)$(_SEP)$(D)"
 	@echo "$(BCYA)Tests Summary$(D)"
