@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/25 11:39:41 by passunca          #+#    #+#              #
-#    Updated: 2024/05/15 14:13:45 by passunca         ###   ########.fr        #
+#    Updated: 2024/05/15 15:24:52 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SHELL	:= bash
 FILES		= $(shell ls -l $(TESTS_PATH) | awk '{print $$9}')
 ARG			?= "files/mini-vulf.txt"
 COUNTER		:= 1
-BUFFER_SIZE = 42
+BUFFER_SIZE ?= 42
 SIZES		:= 1 3 9
 # SIZES		+= 25 50 100
 # SIZES		+= 200 400 800
@@ -76,7 +76,7 @@ GNL_STATION_TESTER_PATH	= $(SRCB_PATH)/gnlStationTester
 #                              COMPILER & FLAGS                                #
 #==============================================================================#
 
-CC			= cc
+CC			= clang
 
 CFLAGS		= -Wall -Wextra -Werror
 DFLAGS		= -g
@@ -215,7 +215,14 @@ test: deps $(EXEC)		## Test w/ default BUFFER_SIZE
 	done
 	@make --no-print-directory test_results
 
-test_bonus: deps bonus $(TEMP_PATH) ## Test w/ default BUFFER_SIZE
+test_stdin: deps $(OBJS)	## Test w/ stdin
+	@echo "$(YEL)Compiling $(CYA)stdin test$(D) for $(MAG)$(NAME)$(D)"
+	$(CC) $(CFLAGS) $(BFLAGS)$(BUFFER_SIZE) $(DFLAGS) main_stdin.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
+	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) $(YEL)🖔$(D)]"
+	make --no-print-directory norm
+	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC)
+
+test_bonus: deps bonus $(TEMP_PATH) ## Test with multiple fds (bonus features)
 	@if [ -f $(TEMP_PATH)/in_files.txt ]; then \
 		$(RM) $(TEMP_PATH)/in_files.txt; \
 	fi
@@ -231,15 +238,8 @@ test_bonus: deps bonus $(TEMP_PATH) ## Test w/ default BUFFER_SIZE
 	
 $(EXEC)_buffer: $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME)$(YEL) with BUFFER_SIZE=$(BUFFER_SIZE)$(D)"
-	$(CC) $(CFLAGS) $(BFLAGS)$(BUFFER_SIZE) $(DFLAGS) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
+	$(CC) $(CFLAGS) $(DFLAGS) $(BFLAGS)$(BUFFER_SIZE) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) with BUFFER_SIZE=$(BUFFER_SIZE) $(YEL)🖔$(D)]"
-
-test_stdin: deps $(OBJS)
-	@echo "$(YEL)Compiling $(CYA)stdin test$(D) for $(MAG)$(NAME)$(D)"
-	$(CC) $(CFLAGS) $(BFLAGS)$(BUFFER_SIZE) $(DFLAGS) main_stdin.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
-	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) $(YEL)🖔$(D)]"
-	make --no-print-directory norm
-	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC)
 
 test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 	@TIMESTAMP=$(shell date +%Y%m%d%H%M%S); \
@@ -266,7 +266,7 @@ test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 	@make --no-print-directory test_results
 
 test_n_buffer: deps all $(TEMP_PATH)	## Test w/ n BUFFER_SIZE
-	make --no-print-directory BUFFER_SIZE=22 $(EXEC)_buffer
+	make --no-print-directory BUFFER_SIZE=$(BUFFER_SIZE) $(EXEC)_buffer
 	make --no-print-directory gdb
 
 test_results: $(TEMP_PATH)
