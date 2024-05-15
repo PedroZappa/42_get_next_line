@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/25 11:39:41 by passunca          #+#    #+#              #
-#    Updated: 2024/05/15 15:30:42 by passunca         ###   ########.fr        #
+#    Updated: 2024/05/15 15:34:05 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -238,7 +238,7 @@ test_bonus: deps bonus $(TEMP_PATH) ## Test with multiple fds (bonus features)
 	
 $(EXEC)_buffer: $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME)$(YEL) with BUFFER_SIZE=$(BUFFER_SIZE)$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
+	$(CC) $(CFLAGS) $(DFLAGS) $(BFLAGS)$(BUFFER_SIZE) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) with BUFFER_SIZE=$(BUFFER_SIZE) $(YEL)🖔$(D)]"
 
 test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
