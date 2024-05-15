@@ -28,7 +28,7 @@ SIZES		:= 1 3 9
 # SIZES		+= 1600 3200 6400
 # SIZES		+= 12800 25600 51200
 # SIZES		+= 102400 204800 409600
-SIZES		+= -42 0
+# SIZES		+= -42 0
 
 #==============================================================================#
 #                                     NAMES                                    #
@@ -80,8 +80,8 @@ CC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror
 DFLAGS		= -g
-INC			= -I.
 BFLAGS		?= -D BUFFER_SIZE=
+INC			= -I.
 
 #==============================================================================#
 #                                COMMANDS                                      #
@@ -101,7 +101,7 @@ all: $(BUILD_PATH) deps $(EXEC)	## Compile Mandatory version
 
 $(EXEC): $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c			## Compile Mandatory version
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME)$(YEL) w/out bonus$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) $(INC) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
+	$(CC) $(CFLAGS) $(DFLAGS) $(BFLAGS)$(BUFFER_SIZE) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
 	@echo "$(YEL)Linking $(CYA).gdbinit$(D) $(YEL)for debugging$(D)"
 	@if test -f ".gdbinit"; then \
 		unlink .gdbinit; \
@@ -110,9 +110,9 @@ $(EXEC): $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c			## Compile Mandatory versio
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) $(YEL)🖔$(D)]"
 	make norm
 
-bonus: $(BUILD_PATH) $(OBJSB) $(LIBFT_ARC) main.c		## Compile Bonus version
+bonus: $(BUILD_PATH) deps $(OBJSB) $(LIBFT_ARC) main.c		## Compile Bonus version
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME) $(YEL)w/ bonus$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) $(INC) main.c $(OBJSB) $(LIBFT_ARC) -o $(EXEC)
+	$(CC) $(CFLAGS) $(DFLAGS) $(BFLAGS)$(BUFFER_SIZE) main.c $(OBJSB) $(LIBFT_ARC) -o $(EXEC)
 	@echo "$(YEL)Linking $(CYA).gdbinit $(YEL)for debugging$(D)"
 	@if test -f ".gdbinit"; then \
 		unlink .gdbinit; \
@@ -121,9 +121,9 @@ bonus: $(BUILD_PATH) $(OBJSB) $(LIBFT_ARC) main.c		## Compile Bonus version
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) w/ bonus $(YEL)🖔$(D)]"
 	make norm
 
-extrall: $(BUILD_PATH) $(OBJSLL) $(LIBFT_ARC) main.c	## Compile Linked Lists version
+extrall: $(BUILD_PATH) deps $(OBJSLL) $(LIBFT_ARC) main.c	## Compile Linked Lists version
 	@echo "$(YEL)Creating $(NAME) w/ Linked Lists w/out bonus$(D)"
-	$(CC) $(CFLAGS) $(INC) main.c $(OBJSLL) $(LIBFT_ARC) -o $(EXEC)
+	$(CC) $(CFLAGS) $(BFLAGS)$(BUFFER_SIZE) main.c $(OBJSLL) $(LIBFT_ARC) -o $(EXEC)
 	@echo "$(YEL)Linking $(CYA).gdbinit $(YEL)for debugging$(D)"
 	@if test -f ".gdbinit"; then \
 		unlink .gdbinit; \
