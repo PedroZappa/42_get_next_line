@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/25 11:39:41 by passunca          #+#    #+#              #
-#    Updated: 2024/05/15 19:10:49 by passunca         ###   ########.fr        #
+#    Updated: 2024/05/15 19:40:10 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SIZES		:= 1 666 9999
 # SIZES		+= 1600 3200 6400
 # SIZES		+= 12800 25600 51200
 # SIZES		+= 102400 204800 409600
-SIZES		+= -1
+# SIZES		+= -1
 
 #==============================================================================#
 #                                     NAMES                                    #
@@ -260,8 +260,12 @@ test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 			echo "$(YEL)$(_SEP)$(D)"; \
 			echo "Test $(MAG)$$COUNTER$(D) : Current $(GRN)BUFFER_SIZE $(D): $(RED)$$size$(D)" | tee -a $(TEMP_PATH)/out.txt; \
 			echo "$(YEL)Current file: $(CYA)$$file$(D)" | tee -a $(TEMP_PATH)/out.txt; \
-			valgrind --leak-check=full --show-leak-kinds=all --log-file=$(TEMP_PATH)/temp.txt ./$(EXEC) "$(TESTS_PATH)/$$file"; \
-			sed -n '10p' $(TEMP_PATH)/temp.txt >> $(TEMP_PATH)/out.txt; \
+			if [ $$size -lt 0 ]; then \
+				echo "read() with a BUFFER_SIZE smaller than 0 does not compile! Skipping Valgrind 🏇" | tee -a $(TEMP_PATH)/temp.txt; \
+			else \
+				valgrind --leak-check=full --show-leak-kinds=all --log-file=$(TEMP_PATH)/temp.txt ./$(EXEC) "$(TESTS_PATH)/$$file"; \
+				sed -n '10p' $(TEMP_PATH)/temp.txt >> $(TEMP_PATH)/out.txt; \
+			fi; \
 			COUNTER=$$((COUNTER + 1)); \
 			echo $$COUNTER > $(TEMP_PATH)/passed_count.txt; \
 		done; \
