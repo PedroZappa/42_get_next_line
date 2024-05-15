@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:19 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/24 11:33:51 by passunca         ###   ########.fr       */
+/*   Updated: 2024/05/15 20:31:44 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = ft_gettillnl(vault[fd]);
 	vault[fd] = ft_getrest(vault[fd]);
+	if (!vault[fd])
+		free(vault[fd]);
 	return (line);
 }
 
