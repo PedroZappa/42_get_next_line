@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/25 11:39:41 by passunca          #+#    #+#              #
-#    Updated: 2024/05/15 20:14:20 by passunca         ###   ########.fr        #
+#    Updated: 2024/05/15 20:28:53 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -214,7 +214,7 @@ test: deps $(EXEC)		## Test w/ default BUFFER_SIZE
 	done
 	@make --no-print-directory test_results
 
-test_stdin: deps $(OBJS)	## Test w/ stdin
+test_stdin: deps $(EXEC) $(OBJS)	## Test w/ stdin
 	@echo "$(YEL)Compiling $(CYA)stdin test$(D) for $(MAG)$(NAME)$(D)"
 	$(CC) $(CFLAGS) $(BFLAGS)$(BUFFER_SIZE) $(DFLAGS) main_stdin.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) $(YEL)🖔$(D)]"
