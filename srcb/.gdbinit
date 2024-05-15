@@ -73,8 +73,9 @@ define mchk
 end
 
 # Start at main()
-break main
-break get_next_line
+# break main
+# break get_next_line
+break ft_getline
 info break
 fs cmd
 
