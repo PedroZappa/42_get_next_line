@@ -6,12 +6,12 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:08:09 by passunca          #+#    #+#             */
-/*   Updated: 2024/05/15 14:19:20 by passunca         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:31:28 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <stdio.h>
 # include "srcb/get_next_line.h"
+# include <stdio.h>
 
 int main(void)
 {
