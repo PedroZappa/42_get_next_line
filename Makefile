@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/25 11:39:41 by passunca          #+#    #+#              #
-#    Updated: 2024/05/15 15:34:05 by passunca         ###   ########.fr        #
+#    Updated: 2024/05/15 15:54:36 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ all: $(BUILD_PATH) deps $(EXEC)	## Compile Mandatory version
 
 $(EXEC): $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c			## Compile Mandatory version
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME)$(YEL) w/out bonus$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) $(BFLAGS)$(BUFFER_SIZE) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
+	$(CC) $(CFLAGS) $(DFLAGS) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
 	@echo "$(YEL)Linking $(CYA).gdbinit$(D) $(YEL)for debugging$(D)"
 	@if test -f ".gdbinit"; then \
 		unlink .gdbinit; \
@@ -112,7 +112,7 @@ $(EXEC): $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c			## Compile Mandatory versio
 
 bonus: $(BUILD_PATH) deps $(OBJSB) $(LIBFT_ARC) main.c		## Compile Bonus version
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME) $(YEL)w/ bonus$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) $(BFLAGS)$(BUFFER_SIZE) main.c $(OBJSB) $(LIBFT_ARC) -o $(EXEC)
+	$(CC) $(CFLAGS) $(DFLAGS) main.c $(OBJSB) $(LIBFT_ARC) -o $(EXEC)
 	@echo "$(YEL)Linking $(CYA).gdbinit $(YEL)for debugging$(D)"
 	@if test -f ".gdbinit"; then \
 		unlink .gdbinit; \
@@ -123,7 +123,7 @@ bonus: $(BUILD_PATH) deps $(OBJSB) $(LIBFT_ARC) main.c		## Compile Bonus version
 
 extrall: $(BUILD_PATH) deps $(OBJSLL) $(LIBFT_ARC) main.c	## Compile Linked Lists version
 	@echo "$(YEL)Creating $(NAME) w/ Linked Lists w/out bonus$(D)"
-	$(CC) $(CFLAGS) $(BFLAGS)$(BUFFER_SIZE) main.c $(OBJSLL) $(LIBFT_ARC) -o $(EXEC)
+	$(CC) $(CFLAGS) $(DFLAGS) main.c $(OBJSLL) $(LIBFT_ARC) -o $(EXEC)
 	@echo "$(YEL)Linking $(CYA).gdbinit $(YEL)for debugging$(D)"
 	@if test -f ".gdbinit"; then \
 		unlink .gdbinit; \
@@ -141,11 +141,11 @@ deps:		## Download/Update libs
 
 $(BUILD_PATH)/%.o: $(SRCB_PATH)/%.c
 	@echo -n "$(MAG)█$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) -MMD -MP -c $< -o $@
+	$(CC) $(CFLAGS) $(DFLAGS) $(BFLAGS)$(BUFFER_SIZE) -MMD -MP -c $< -o $@
 
 $(BUILD_PATH)/%.o: $(SRCLL_PATH)/%.c
 	@echo -n "$(MAG)█$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) -MMD -MP -c $< -o $@
+	$(CC) $(CFLAGS) $(DFLAGS) $(BFLAGS)$(BUFFER_SIZE) -MMD -MP -c $< -o $@
 
 $(BUILD_PATH):
 	$(MKDIR_P) $(BUILD_PATH)
@@ -238,7 +238,7 @@ test_bonus: deps bonus $(TEMP_PATH) ## Test with multiple fds (bonus features)
 	
 $(EXEC)_buffer: $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME)$(YEL) with BUFFER_SIZE=$(BUFFER_SIZE)$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) $(BFLAGS)$(BUFFER_SIZE) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
+	$(CC) $(CFLAGS) $(DFLAGS) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) with BUFFER_SIZE=$(BUFFER_SIZE) $(YEL)🖔$(D)]"
 
 test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
@@ -253,6 +253,10 @@ test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 		if [ -f a.out ]; then \
 			$(RM) a.out; \
 		fi; \
+		if [ -f $(EXEC) ]; then \
+			$(RM) $(EXEC); \
+		fi; \
+		sleep 0.3s; \
 		make BUFFER_SIZE=$$size $(EXEC)_buffer; \
 		for file in $(FILES); do \
 			echo "Test $(MAG)$$COUNTER$(D) : Current $(GRN)BUFFER_SIZE $(D): $(RED)$$size$(D)" | tee -a $(TEMP_PATH)/out.txt; \
