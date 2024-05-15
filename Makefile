@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/25 11:39:41 by passunca          #+#    #+#              #
-#    Updated: 2024/05/15 18:03:10 by passunca         ###   ########.fr        #
+#    Updated: 2024/05/15 19:10:49 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -235,7 +235,7 @@ test_bonus: deps bonus $(TEMP_PATH) ## Test with multiple fds (bonus features)
 	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) $(shell cat "$(TEMP_PATH)/in_files.txt")
 	@echo "$(YEL)Executing with 2 files$(D)"
 	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC) "$(TESTS_PATH)/mini-vulf.txt" "$(TESTS_PATH)/read_error.txt"
-	
+
 $(EXEC)_buffer: $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME)$(YEL) with BUFFER_SIZE=$(BUFFER_SIZE)$(D)"
 	$(CC) $(CFLAGS) $(DFLAGS) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
@@ -257,7 +257,7 @@ test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 		sleep 0.3s; \
 		make BUFFER_SIZE=$$size $(EXEC)_buffer; \
 		for file in $(FILES); do \
-			echo "$(YEL)$(_SEP)$(D)"
+			echo "$(YEL)$(_SEP)$(D)"; \
 			echo "Test $(MAG)$$COUNTER$(D) : Current $(GRN)BUFFER_SIZE $(D): $(RED)$$size$(D)" | tee -a $(TEMP_PATH)/out.txt; \
 			echo "$(YEL)Current file: $(CYA)$$file$(D)" | tee -a $(TEMP_PATH)/out.txt; \
 			valgrind --leak-check=full --show-leak-kinds=all --log-file=$(TEMP_PATH)/temp.txt ./$(EXEC) "$(TESTS_PATH)/$$file"; \
@@ -273,7 +273,11 @@ test_n_buffer: deps all $(TEMP_PATH)	## Test w/ n BUFFER_SIZE
 	make --no-print-directory gdb
 
 test_results: $(TEMP_PATH)
-	@cat $(TEMP_PATH)/out.txt
+	@if command -v tmux; then \
+		tmux split-window -h "cat $(TEMP_PATH)/out.txt"; \
+	else \
+		cat $(TEMP_PATH)/out.txt; \
+	fi
 	@echo "$(YEL)$(_SEP)$(D)"
 	@echo "$(BCYA)Tests Summary$(D)"
 	@TOTAL=$(shell cat $(TEMP_PATH)/passed_count.txt)
