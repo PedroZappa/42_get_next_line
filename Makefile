@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/25 11:39:41 by passunca          #+#    #+#              #
-#    Updated: 2024/05/15 20:28:53 by passunca         ###   ########.fr        #
+#    Updated: 2024/05/15 21:24:48 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -271,10 +271,6 @@ test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 	done
 	@make --no-print-directory test_results
 
-test_n_buffer: deps all $(TEMP_PATH)	## Test w/ n BUFFER_SIZE
-	make --no-print-directory BUFFER_SIZE=$(BUFFER_SIZE) $(EXEC)_buffer
-	make --no-print-directory gdb
-
 remove_ansi_noise:
 	@sed -i 's/\//g' $(TEMP_PATH)/out.txt
 
@@ -303,7 +299,7 @@ test_results: $(TEMP_PATH)
 		{ print "$(RED)Failed$(D)\t: ", count}' $(TEMP_PATH)/count.txt
 	@echo "$(YEL)$(_SEP)$(D)"
 
-gnlTester: $(EXEC) get_gnlTester		## Run gnlTester
+gnlTester: deps $(EXEC) get_gnlTester		## Run gnlTester
 	tmux split-window -h "$(MAKE) $(GNLTESTER_PATH) a"
 	tmux set-option remain-on-exit on
 
@@ -333,7 +329,7 @@ get_gnlStationTester:
 
 ##@ Debug Rules 
 
-gdb: $(EXEC) $(TEMP_PATH)			## Debug w/ gdb
+gdb: deps $(EXEC) $(TEMP_PATH)			## Debug w/ gdb
 	tmux split-window -h "gdb --tui --args ./$(EXEC) 'files/mini-vulf.txt'"
 	tmux resize-pane -L 5
 	@if command -v lnav; then \
@@ -342,7 +338,7 @@ gdb: $(EXEC) $(TEMP_PATH)			## Debug w/ gdb
 		tail -f gdb.txt; \
 	fi
 
-vgdb: $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
+vgdb: deps $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
 	tmux split-window -h "valgrind --vgdb-error=0 --log-file=gdb.txt ./$(EXEC) $(ARG)"
 	make vgdb_pid
 	tmux split-window -v "gdb --tui -x $(TEMP_PATH)/gdb_commands.txt $(EXEC)"
@@ -354,7 +350,7 @@ vgdb: $(EXEC) $(TEMP_PATH)			## Debug w/ valgrind & gdb
 		tail -f gdb.txt; \
 	fi
 
-vgdb_bonus: $(EXEC) $(TEMP_PATH)			## Debug bonus w/ valgrind & gdb
+vgdb_bonus: deps $(EXEC) $(TEMP_PATH)			## Debug bonus w/ valgrind & gdb
 	tmux split-window -h "valgrind --vgdb-error=0 --log-file=gdb.txt ./$(EXEC) '$(TESTS_PATH)/mini-vulf.txt' '$(TESTS_PATH)/read_error.txt'"
 	make vgdb_pid
 	tmux split-window -v "gdb --tui -x $(TEMP_PATH)/gdb_commands.txt $(EXEC)"
@@ -421,7 +417,7 @@ help: 			## Display this help page
 	@awk 'BEGIN {FS = ":.*##"; \
 			printf "\n=> Usage:\n\tmake $(GRN)<target>$(D)\n"} \
 		/^[a-zA-Z_0-9-]+:.*?##/ { \
-			printf "\t$(GRN)%-15s$(D) %s\n", $$1, $$2 } \
+			printf "\t$(GRN)%-18s$(D) %s\n", $$1, $$2 } \
 		/^##@/ { \
 			printf "\n=> %s\n", substr($$0, 5) } ' Makefile
 ## Tweaked from source:
