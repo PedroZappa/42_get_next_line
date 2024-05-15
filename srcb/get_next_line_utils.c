@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:23:57 by passunca          #+#    #+#             */
-/*   Updated: 2023/11/25 22:00:30 by passunca         ###   ########.fr       */
+/*   Updated: 2024/05/15 18:58:33 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	sptr = s1;
-	len = ft_strlen_gnl(s1) + ft_strlen_gnl(s2);
+	len = (ft_strlen_gnl(s1) + ft_strlen_gnl(s2));
 	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
