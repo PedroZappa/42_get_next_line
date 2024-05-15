@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/25 11:39:41 by passunca          #+#    #+#              #
-#    Updated: 2023/11/25 18:01:22 by passunca         ###   ########.fr        #
+#    Updated: 2024/05/15 14:13:45 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -233,6 +233,13 @@ $(EXEC)_buffer: $(BUILD_PATH) $(OBJS) $(LIBFT_ARC) main.c
 	@echo "$(YEL)Compiling test for $(MAG)$(NAME)$(YEL) with BUFFER_SIZE=$(BUFFER_SIZE)$(D)"
 	$(CC) $(CFLAGS) $(BFLAGS)$(BUFFER_SIZE) $(DFLAGS) main.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) with BUFFER_SIZE=$(BUFFER_SIZE) $(YEL)🖔$(D)]"
+
+test_stdin: deps $(OBJS)
+	@echo "$(YEL)Compiling $(CYA)stdin test$(D) for $(MAG)$(NAME)$(D)"
+	$(CC) $(CFLAGS) $(BFLAGS)$(BUFFER_SIZE) $(DFLAGS) main_stdin.c $(OBJS) $(LIBFT_ARC) -o $(EXEC)
+	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) $(YEL)🖔$(D)]"
+	make --no-print-directory norm
+	valgrind --leak-check=full --show-leak-kinds=all ./$(EXEC)
 
 test_buffer: deps all $(TEMP_PATH)	## Test w/ different BUFFER_SIZEs
 	@TIMESTAMP=$(shell date +%Y%m%d%H%M%S); \
