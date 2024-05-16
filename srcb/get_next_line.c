@@ -110,13 +110,13 @@ static char	*ft_getrest(char *vault)
 	char	*rest;
 
 	i = 0;
+	while (vault[i] && (vault[i] != '\n'))
+		++i;
 	if (!vault[i])
 	{
 		free(vault);
 		return (NULL);
 	}
-	while (vault[i] && (vault[i] != '\n'))
-		++i;
 	rest = malloc(sizeof(char) * (ft_strlen_gnl(vault) - i + 1));
 	if (!rest)
 	{
