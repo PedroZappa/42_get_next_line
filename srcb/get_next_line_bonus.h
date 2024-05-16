@@ -23,8 +23,8 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_getline(int fd, char *vault);
-char	*ft_gettillnl(char *vault);
+char	*ft_read(int fd, char *vault);
+char	*ft_getline(char *vault);
 char	*ft_getrest(char *vault);
 
 // Utils functions

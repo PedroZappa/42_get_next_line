@@ -13,8 +13,8 @@
 #include "get_next_line_bonus.h"
 #include <stdio.h>
 
-char	*ft_getline(int fd, char *vault);
-char	*ft_gettillnl(char *vault);
+char	*ft_read(int fd, char *vault);
+char	*ft_getline(char *vault);
 char	*ft_getrest(char *vault);
 
 /// @brief		Get next line from 'fd'
@@ -32,10 +32,10 @@ char	*get_next_line(int fd)
 		vault[fd] = malloc(1);
 		vault[fd][0] = '\0';
 	}
-	vault[fd] = ft_getline(fd, vault[fd]);
+	vault[fd] = ft_read(fd, vault[fd]);
 	if (!vault[fd])
 		return (NULL);
-	line = ft_gettillnl(vault[fd]);
+	line = ft_getline(vault[fd]);
 	vault[fd] = ft_getrest(vault[fd]);
 	return (line);
 }
@@ -44,7 +44,7 @@ char	*get_next_line(int fd)
 /// @param fd		File descriptor
 /// @param vault	Pointer to the storage vault
 /// @return			Pointer to the filled storage vault
-char	*ft_getline(int fd, char *vault)
+char	*ft_read(int fd, char *vault)
 {
 	char	*buffer;
 	int		bytes_read;
@@ -73,7 +73,7 @@ char	*ft_getline(int fd, char *vault)
 /// @brief			Extract line terminated by '\n' from 'vault'
 /// @param vault	Pointer to the storage vault
 /// @return			Pointer to the line
-char	*ft_gettillnl(char *vault)
+char	*ft_getline(char *vault)
 {
 	int		i;
 	char	*line;
