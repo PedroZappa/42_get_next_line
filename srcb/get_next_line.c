@@ -12,8 +12,8 @@
 
 #include "get_next_line.h"
 
-static char	*ft_getline(int fd, char *vault);
-static char	*ft_gettillnl(char *vault);
+static char	*ft_read(int fd, char *vault);
+static char	*ft_getline(char *vault);
 static char	*ft_getrest(char *vault);
 
 /// @brief		Get next line from 'fd'
@@ -31,10 +31,10 @@ char	*get_next_line(int fd)
 		vault = malloc(1);
 		vault[0] = '\0';
 	}
-	vault = ft_getline(fd, vault);
+	vault = ft_read(fd, vault);
 	if (!vault)
 		return (NULL);
-	line = ft_gettillnl(vault);
+	line = ft_getline(vault);
 	vault = ft_getrest(vault);
 	return (line);
 }
@@ -43,7 +43,7 @@ char	*get_next_line(int fd)
 /// @param fd		File descriptor
 /// @param vault	Pointer to the storage vault
 /// @return			Pointer to the filled storage vault
-static char	*ft_getline(int fd, char *vault)
+static char	*ft_read(int fd, char *vault)
 {
 	char	*buffer;
 	int		bytes_read;
@@ -72,7 +72,7 @@ static char	*ft_getline(int fd, char *vault)
 /// @brief			Extract line terminated by '\n' from 'vault'
 /// @param vault	Pointer to the storage vault
 /// @return			Pointer to the line
-static char	*ft_gettillnl(char *vault)
+static char	*ft_getline(char *vault)
 {
 	int		i;
 	char	*line;
